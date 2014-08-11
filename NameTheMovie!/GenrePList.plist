@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Western</string>
+		<key>id</key>
+		<string>37</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Thriller</string>
+		<key>id</key>
+		<string>53</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Drama</string>
+		<key>id</key>
+		<string>18</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Fantasy</string>
+		<key>id</key>
+		<string>14</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Romance</string>
+		<key>id</key>
+		<string>10749</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Science Fiction</string>
+		<key>id</key>
+		<string>878</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Adventure</string>
+		<key>id</key>
+		<string>12</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Animation</string>
+		<key>id</key>
+		<string>16</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Comedy</string>
+		<key>id</key>
+		<string>35</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Crime</string>
+		<key>id</key>
+		<string>80</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Action</string>
+		<key>id</key>
+		<string>28</string>
+	</dict>
+</array>
+</plist>
