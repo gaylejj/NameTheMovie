@@ -19,6 +19,7 @@
 		2557D51F19995EFA008E0E61 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D51E19995EFA008E0E61 /* API.swift */; };
 		2557D52119995F08008E0E61 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D52019995F08008E0E61 /* NetworkController.swift */; };
 		2557D52319995F5E008E0E61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2557D52219995F5E008E0E61 /* Main.storyboard */; };
+		2557D52519996E38008E0E61 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D52419996E38008E0E61 /* GenreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2557D51E19995EFA008E0E61 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		2557D52019995F08008E0E61 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		2557D52219995F5E008E0E61 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2557D52419996E38008E0E61 /* GenreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			children = (
 				2557D50B19995EBC008E0E61 /* ViewController.swift */,
 				2557D51119995EC7008E0E61 /* MovieViewController.swift */,
+				2557D52419996E38008E0E61 /* GenreViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				2557D51319995EC7008E0E61 /* MovieViewController.swift in Sources */,
 				2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */,
 				2557D51819995ED3008E0E61 /* Genre.swift in Sources */,
+				2557D52519996E38008E0E61 /* GenreViewController.swift in Sources */,
 				2557D51219995EC7008E0E61 /* Movie.swift in Sources */,
 				2557D52119995F08008E0E61 /* NetworkController.swift in Sources */,
 				2557D51F19995EFA008E0E61 /* API.swift in Sources */,

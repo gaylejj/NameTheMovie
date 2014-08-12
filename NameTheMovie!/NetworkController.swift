@@ -41,6 +41,62 @@ class NetworkController: NSObject {
         return movies
     }
     
+    func parseResponseForMovieID(responseData: NSData) -> Movie? {
+        var movie : Movie?
+        
+        if let responseDict = NSJSONSerialization.JSONObjectWithData(responseData, options: nil, error: nil) as? NSDictionary {
+            movie = Movie(resultDict: responseDict)
+            println("Movie's overview is \(movie!.overview!)")
+        }
+        println(movie!.title)
+        
+        return movie
+    }
+
+    func fetchMovieForClick(movie: Movie!, callback: (movies: Movie!, errorDescription: String?) -> Void) {
+        
+        println("Click movie is \(movie!.id)")
+//        println("Movie title is \(movie.title)")
+        
+        var movieID = "\(movie!.id)"
+        
+        let newMovieID = movieID.stringByReplacingOccurrencesOfString("Optional(", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        let finalMovieID = newMovieID.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        if finalMovieID != nil {
+            var url = NSURL(string: "http://api.themoviedb.org/3/movie/\(finalMovieID)?api_key=\(apiKey.apiKey)")
+            println(url)
+            
+            var request = NSMutableURLRequest(URL: url)
+            
+            request.HTTPMethod = "GET"
+            
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            var task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+                if (error) {
+                    //Handle error
+                    println(error.localizedDescription)
+                } else {
+                    if let httpResponse = response as? NSHTTPURLResponse {
+                        switch httpResponse.statusCode {
+                        case 200:
+                            println("Everything Ok")
+                            callback(movies: self.parseResponseForMovieID(data), errorDescription: nil)
+                        default:
+                            println("Something happened")
+                            println(httpResponse.description)
+                        }
+                    }
+                }
+            })
+            
+            task.resume()
+        }
+        
+    }
+    
     func fetchMovie(searchTerm: String, callback: (movies: [Movie]?, errorDescription: String?) -> Void) {
         var url = NSURL(string: "http://api.themoviedb.org/3/search/movie?api_key=\(apiKey.apiKey)&include_adult=false&query=\(searchTerm)")
         
@@ -54,7 +110,7 @@ class NetworkController: NSObject {
             
             if (error) {
                 // Handle error...
-                return
+                println(error.localizedDescription)
             } else {
                 if let httpResponse = response as? NSHTTPURLResponse {
                     switch httpResponse.statusCode {
@@ -75,12 +131,12 @@ class NetworkController: NSObject {
         task.resume()
     }
     
-    func discoverMovie(genreID: Genre, callback: (movies: [Movie]?, errorDescription: String?) -> Void) {
+    func discoverMovie(genre: Genre, callback: (movies: [Movie]?, errorDescription: String?) -> Void) {
         
-        println("Discover Movie Call: \(genreID.name)")
-        println("Discover Movie Call: \(genreID.id)")
+        println("Discover Movie Call: \(genre.name)")
+        println("Discover Movie Call: \(genre.id)")
         
-        if let genrePicked = genreID.id as String! {
+        if let genrePicked = genre.id as String! {
             
             var urlString = "http://api.themoviedb.org/3/discover/movie?api_key=\(apiKey.apiKey)&include_adult=false&vote_count.gte=90&with_genres=\(genrePicked)"
             println(apiKey.apiKey)

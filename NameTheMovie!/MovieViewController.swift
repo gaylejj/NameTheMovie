@@ -11,6 +11,7 @@ import UIKit
 class MovieViewController: UIViewController, UITextFieldDelegate {
     
     var selectedMovie : Movie?
+    let networkController = NetworkController()
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewTextView: UITextView!
@@ -18,13 +19,28 @@ class MovieViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.titleLabel.text = "Title: \(selectedMovie!.title), id: \(selectedMovie!.id)"
-        println(selectedMovie?.title)
-        if selectedMovie?.overview != nil {
-            self.overviewTextView.text = selectedMovie!.overview
-        } else {
-            self.overviewTextView.text = "No overview found"
-        }
+        networkController.fetchMovieForClick(selectedMovie, callback: { (movies, errorDescription) -> Void in
+            self.selectedMovie = movies
+            println(self.selectedMovie?.overview)
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                self.titleLabel.text = "Title: \(self.selectedMovie!.title), id: \(self.selectedMovie!.id)"
+                if self.selectedMovie?.overview != nil {
+                    self.overviewTextView.text = self.selectedMovie!.overview
+                } else {
+                    self.overviewTextView.text = "No overview found"
+                }
+            }
+        })
+        
+
+//        
+//        self.titleLabel.text = "Title: \(selectedMovie?.title), id: \(selectedMovie?.id)"
+//        println(selectedMovie?.title)
+//        if selectedMovie?.overview != nil {
+//            self.overviewTextView.text = selectedMovie?.overview
+//        } else {
+//            self.overviewTextView.text = "No overview found"
+//        }
         
         // Do any additional setup after loading the view.
     }

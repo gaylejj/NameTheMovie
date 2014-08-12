@@ -13,7 +13,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     var movies : [Movie]?
+    var genreMovies : [Movie]?
     var genres = Genre.genreFromPlist()
+    var movie : Movie?
     
     let networkController = NetworkController()
     
@@ -31,7 +33,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.navigationItem.rightBarButtonItem = searchButton
         
-        println(self.genres.count)
+//        let fcDict = ["title" : "Fight Club", "id" : "550"]
+//        
+//        let fightClub = Movie(resultDict: fcDict)
+//        
+//        networkController.fetchMovieForClick(fightClub, callback: { (movies, errorDescription) -> Void in
+//            self.movie = movies
+//            println(self.movie?.overview)
+//        })
+//        
+//        println(self.genres.count)
         
     }
     
@@ -56,6 +67,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             cell.detailTextLabel.text = "Poster not available"
         }
+//        
+//        let genre = genres[indexPath.row]
+//        
+//        cell.textLabel.text = genre.name
+//        cell.detailTextLabel.text = genre.id
         
         return cell
         
@@ -72,17 +88,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: UITableView Delegate
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        
+//        let genreVC = self.storyboard.instantiateViewControllerWithIdentifier("Genre") as GenreViewController
+//        
+//        let genre = self.genres[indexPath.row]
+//        
+//        networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
+//            genreVC.movies = movies
+//            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                genreVC.tableView.reloadData()
+//                
+//            })
+//        })
+//        
+//        if self.navigationController {
+//            self.navigationController.pushViewController(genreVC, animated: true)
+//        }
         
         let movieVC = self.storyboard.instantiateViewControllerWithIdentifier("MovieVC") as MovieViewController
-        
+    
         let movie = self.movies![indexPath.row] as Movie
-        
+    
         movieVC.selectedMovie = movie
         
         if self.navigationController {
             self.navigationController.pushViewController(movieVC, animated: true)
         }
     }
+        
+
     
     //MARK: Search Bar
     func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
@@ -105,15 +139,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //Search Button Hardcode
     func listOfMovies() {
-        //        networkController.fetchMovie("Matrix", callback: {(movies: [Movie]?, errorDescription: String?) -> Void in
-        //
-        //                self.movies = movies
-        //                NSOperationQueue.mainQueue().addOperationWithBlock(
-        //                    {() -> Void in
-        //                        self.tableView.reloadData()
-        //
-        //                    })
-        //            })
+
         
         let randomIndex = Int(arc4random_uniform(UInt32(genres.count)))
         let randomGenre = genres[randomIndex]
@@ -130,6 +156,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.tableView.reloadData()
             })
         })
+        
+        
     }
     
     //    func listOfGenres() {

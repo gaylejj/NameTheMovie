@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Movie: NSObject {
+class Movie {
     var title : String?
     var poster_path : String?
     var id : Int?
