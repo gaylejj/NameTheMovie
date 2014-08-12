@@ -53,10 +53,10 @@ class NetworkController: NSObject {
         return movie
     }
 
-    func fetchMovieForClick(movie: Movie!, callback: (movies: Movie!, errorDescription: String?) -> Void) {
+    func fetchMovieForClick(movie: Movie!, callback: (movie: Movie!, errorDescription: String?) -> Void) {
         
         println("Click movie is \(movie!.id)")
-//        println("Movie title is \(movie.title)")
+        println("Click movie title is \(movie.title)")
         
         var movieID = "\(movie!.id)"
         
@@ -83,7 +83,11 @@ class NetworkController: NSObject {
                         switch httpResponse.statusCode {
                         case 200:
                             println("Everything Ok")
-                            callback(movies: self.parseResponseForMovieID(data), errorDescription: nil)
+                            callback(movie: self.parseResponseForMovieID(data), errorDescription: nil)
+                        case 404:
+                            println("URL Not found")
+                        case 503:
+                            println("Being Rate Limited")
                         default:
                             println("Something happened")
                             println(httpResponse.description)
@@ -117,6 +121,10 @@ class NetworkController: NSObject {
                     case 200:
                         println("Everything Ok")
                         callback(movies: self.parseResponse(data), errorDescription: nil)
+                    case 401:
+                        println("Authentication Failed: You do not have permissions to access this service")
+                    case 404:
+                        println("URL Not found")
                     default:
                         println("Something happened")
                     }
@@ -175,14 +183,4 @@ class NetworkController: NSObject {
         }
         
     }
-    
-    
-    
-    //    "http://api.themoviedb.org/3/discover/movie" with_genres vote_count.gte include_adult sort_by=vote_average.desc
-    //    
-    //    http://api.themoviedb.org/3/movie/{id}
-    
-    
-    
-    
 }

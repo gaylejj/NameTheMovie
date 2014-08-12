@@ -20,6 +20,11 @@
 		2557D52119995F08008E0E61 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D52019995F08008E0E61 /* NetworkController.swift */; };
 		2557D52319995F5E008E0E61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2557D52219995F5E008E0E61 /* Main.storyboard */; };
 		2557D52519996E38008E0E61 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D52419996E38008E0E61 /* GenreViewController.swift */; };
+		2557D5291999C041008E0E61 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D5281999C041008E0E61 /* TestViewController.swift */; };
+		2557D52B1999C11A008E0E61 /* GenreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D52A1999C11A008E0E61 /* GenreModel.swift */; };
+		2557D531199A7CC3008E0E61 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D530199A7CC3008E0E61 /* GameViewController.swift */; };
+		2557D533199A7E9A008E0E61 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D532199A7E9A008E0E61 /* GameLogic.swift */; };
+		2557D535199A8BB1008E0E61 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D534199A8BB1008E0E61 /* Question.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,11 @@
 		2557D52019995F08008E0E61 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		2557D52219995F5E008E0E61 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2557D52419996E38008E0E61 /* GenreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
+		2557D5281999C041008E0E61 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		2557D52A1999C11A008E0E61 /* GenreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreModel.swift; sourceTree = "<group>"; };
+		2557D530199A7CC3008E0E61 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		2557D532199A7E9A008E0E61 /* GameLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
+		2557D534199A8BB1008E0E61 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,12 +141,14 @@
 		2557D51B19995EDA008E0E61 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2557D52019995F08008E0E61 /* NetworkController.swift */,
 				2557D51019995EC7008E0E61 /* Movie.swift */,
 				2557D51419995ED3008E0E61 /* Genre Data.playground */,
 				2557D51519995ED3008E0E61 /* Genre.swift */,
 				2557D51619995ED3008E0E61 /* GenreList.json */,
 				2557D51719995ED3008E0E61 /* GenrePList.plist */,
+				2557D52A1999C11A008E0E61 /* GenreModel.swift */,
+				2557D532199A7E9A008E0E61 /* GameLogic.swift */,
+				2557D534199A8BB1008E0E61 /* Question.swift */,
 				2557D51E19995EFA008E0E61 /* API.swift */,
 			);
 			name = Model;
@@ -147,7 +159,10 @@
 			children = (
 				2557D50B19995EBC008E0E61 /* ViewController.swift */,
 				2557D51119995EC7008E0E61 /* MovieViewController.swift */,
+				2557D5281999C041008E0E61 /* TestViewController.swift */,
 				2557D52419996E38008E0E61 /* GenreViewController.swift */,
+				2557D530199A7CC3008E0E61 /* GameViewController.swift */,
+				2557D52019995F08008E0E61 /* NetworkController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -261,12 +276,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2557D50C19995EBC008E0E61 /* ViewController.swift in Sources */,
+				2557D52B1999C11A008E0E61 /* GenreModel.swift in Sources */,
 				2557D51319995EC7008E0E61 /* MovieViewController.swift in Sources */,
 				2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */,
 				2557D51819995ED3008E0E61 /* Genre.swift in Sources */,
 				2557D52519996E38008E0E61 /* GenreViewController.swift in Sources */,
+				2557D533199A7E9A008E0E61 /* GameLogic.swift in Sources */,
 				2557D51219995EC7008E0E61 /* Movie.swift in Sources */,
+				2557D535199A8BB1008E0E61 /* Question.swift in Sources */,
 				2557D52119995F08008E0E61 /* NetworkController.swift in Sources */,
+				2557D5291999C041008E0E61 /* TestViewController.swift in Sources */,
+				2557D531199A7CC3008E0E61 /* GameViewController.swift in Sources */,
 				2557D51F19995EFA008E0E61 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

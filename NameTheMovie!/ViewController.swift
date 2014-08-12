@@ -32,6 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let searchButton = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.Plain, target: self, action: "listOfMovies")
         
         self.navigationItem.rightBarButtonItem = searchButton
+
         
 //        let fcDict = ["title" : "Fight Club", "id" : "550"]
 //        

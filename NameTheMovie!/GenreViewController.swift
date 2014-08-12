@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenreViewController: UIViewController, UITableViewDataSource {
+class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,6 +19,16 @@ class GenreViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let genre = genres[1]
+        
+        networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
+            self.movies = movies
+            for movie in self.movies! {
+                println(movie.id)
+                println(movie.title)
+            }
+        })
 
         // Do any additional setup after loading the view.
     }
@@ -35,18 +45,35 @@ class GenreViewController: UIViewController, UITableViewDataSource {
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as UITableViewCell
         
-        if self.movies != nil {
-            let movie = self.movies![indexPath.row]
-            
-            cell.textLabel.text = movie.title!
-            cell.detailTextLabel.text = "\(movie.id!)"
-        } else {
-            cell.textLabel.text = "No movie found"
-            cell.detailTextLabel.text = "No ID Found"
-        }
+//        if self.movies != nil {
+//            let movie = self.movies![indexPath.row]
+//            
+//            cell.textLabel.text = movie.title!
+//            cell.detailTextLabel.text = "\(movie.id!)"
+//        } else {
+//            cell.textLabel.text = "No movie found"
+//            cell.detailTextLabel.text = "No ID Found"
+//        }
+        
+        let genre = self.genres[indexPath.row]
+        
+        cell.textLabel.text = genre.name
+        cell.detailTextLabel.text = genre.id
 
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let gameVC = self.storyboard.instantiateViewControllerWithIdentifier("Game") as GameViewController
+        
+        gameVC.movies = self.movies
+        
+        if self.navigationController {
+            self.navigationController.pushViewController(gameVC, animated: true)
+        }
+        
     }
 
     /*

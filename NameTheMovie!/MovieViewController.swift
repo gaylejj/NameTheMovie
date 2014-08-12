@@ -19,8 +19,8 @@ class MovieViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkController.fetchMovieForClick(selectedMovie, callback: { (movies, errorDescription) -> Void in
-            self.selectedMovie = movies
+        networkController.fetchMovieForClick(selectedMovie, callback: { (movie, errorDescription) -> Void in
+            self.selectedMovie = movie
             println(self.selectedMovie?.overview)
             NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                 self.titleLabel.text = "Title: \(self.selectedMovie!.title), id: \(self.selectedMovie!.id)"
