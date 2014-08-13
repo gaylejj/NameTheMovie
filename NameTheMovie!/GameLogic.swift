@@ -68,6 +68,7 @@ class GameLogic: NSObject {
         
         let firstFalse = originalMovies![randomIndex]
         generatedAnswers.append(firstFalse)
+        self.originalMovies!.removeAtIndex(randomIndex)
         println(firstFalse.title)
         
         numbers.removeAtIndex(randomIndex)
@@ -76,6 +77,7 @@ class GameLogic: NSObject {
         
         let secondFalse = originalMovies![randomIndexTwo]
         generatedAnswers.append(secondFalse)
+        self.originalMovies!.removeAtIndex(randomIndexTwo)
         println(secondFalse.title)
         
         numbers.removeAtIndex(randomIndexTwo)
@@ -84,6 +86,7 @@ class GameLogic: NSObject {
         
         let thirdFalse = originalMovies![randomIndexThree]
         generatedAnswers.append(thirdFalse)
+        self.originalMovies!.removeAtIndex(randomIndexThree)
         println(thirdFalse.title)
         
         numbers.removeAtIndex(randomIndexThree)
@@ -91,12 +94,23 @@ class GameLogic: NSObject {
         question.answers = generatedAnswers
         question.movie = rightAnswer
         println(self.answers.count)
+        println(randomIndex)
+        println(randomIndexTwo)
+        println(randomIndexThree)
         
         self.originalMovies!.append(rightAnswer)
+        self.originalMovies!.append(firstFalse)
+        self.originalMovies!.append(secondFalse)
+        self.originalMovies!.append(thirdFalse)
+        for i in 0..<originalMovies!.count {
+            var iarray = [Int]()
+            iarray.append(i)
+            for num in iarray {
+                println(originalMovies![i].title)
+            }
+        }
 
         self.shuffleQuestionAnswers(question)
-        //Notify delgate that question is ready
-        //self.delegate?.readyToDisplayQuestion(question!)
         
         
     }

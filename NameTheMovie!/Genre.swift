@@ -32,6 +32,7 @@ class Genre: NSObject {
                 genres.append(Genre(name: name, id: id))
             }
         }
+        genres.sort{$1.name > $0.name}
         return genres
     }
     

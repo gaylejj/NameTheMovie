@@ -1,0 +1,13 @@
+PODS:
+  - TTCounterLabel (1.0.5):
+    - TTTAttributedLabel
+  - TTTAttributedLabel (1.10.1)
+
+DEPENDENCIES:
+  - TTCounterLabel (~> 1.0.5)
+
+SPEC CHECKSUMS:
+  TTCounterLabel: 1b25160553f885c13b9cfe57b6bb1758dcaff60b
+  TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
+
+COCOAPODS: 0.33.1

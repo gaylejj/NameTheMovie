@@ -20,15 +20,18 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let genre = genres[1]
+        let profileButton = UIBarButtonItem(title: "Profile", style: UIBarButtonItemStyle.Plain, target: self, action: "segueToProfileController")
+        self.navigationItem.rightBarButtonItem = profileButton
         
-        networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
-            self.movies = movies
-            for movie in self.movies! {
-                println(movie.id)
-                println(movie.title)
-            }
-        })
+//        let genre = genres[1]
+//        
+//        networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
+//            self.movies = movies
+//            for movie in self.movies! {
+//                println(movie.id)
+//                println(movie.title)
+//            }
+//        })
 
         // Do any additional setup after loading the view.
     }
@@ -68,12 +71,28 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let gameVC = self.storyboard.instantiateViewControllerWithIdentifier("Game") as GameViewController
         
-        gameVC.movies = self.movies
+        let genre = genres[indexPath.row]
         
-        if self.navigationController {
-            self.navigationController.pushViewController(gameVC, animated: true)
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
+                self.movies = movies
+                for movie in self.movies! {
+                    println(movie.id)
+                    println(movie.title)
+                }
+                gameVC.movies = self.movies
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    if self.navigationController {
+                        self.navigationController.pushViewController(gameVC, animated: true)
+                    }
+                })
+            })
+
         }
-        
+    }
+    
+    func segueToProfileController() {
+        self.performSegueWithIdentifier("Profile", sender: self)
     }
 
     /*
