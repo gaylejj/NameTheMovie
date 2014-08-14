@@ -10,7 +10,7 @@
 
 typedef NS_ENUM(NSInteger, kCountDirection){
     kCountDirectionUp = 0,
-    kCountDirectionDown = 1
+    kCountDirectionDown
 };
 
 typedef NS_ENUM(NSInteger, kDisplayMode) {
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, kDisplayMode) {
 @property (weak) id <TTCounterLabelDelegate> countdownDelegate;
 @property (assign, nonatomic) unsigned long long currentValue;
 @property (assign, nonatomic) unsigned long long startValue;
-@property (assign, nonatomic) NSInteger countDirection;
+@property (assign, nonatomic) kCountDirection countDirection;
 @property (strong, nonatomic) UIFont *boldFont;
 @property (strong, nonatomic) UIFont *regularFont;
 @property (assign, nonatomic) BOOL isRunning;

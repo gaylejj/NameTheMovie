@@ -58,60 +58,90 @@ class GameLogic: NSObject {
             var num = i
             numbers.append(i)
         }
-        for num in numbers {
-            println("\(num) Title is \(self.originalMovies![num].title)")
-        }
+//        for num in numbers {
+//            println("\(num) Title is \(self.originalMovies![num].title)")
+//        }
         
         //self.movies?.removeAtIndex(index)
+        
+//        var randomIndex = Int(arc4random_uniform(UInt32(numbers.count)))
+//        
+//        let firstFalse = originalMovies![randomIndex]
+//        
+//        generatedAnswers.append(firstFalse)
+//        self.originalMovies!.removeAtIndex(randomIndex)
+//        println(firstFalse.title)
+//        
+//        numbers.removeAtIndex(randomIndex)
+//        
+//        var randomIndexTwo = Int(arc4random_uniform(UInt32(numbers.count)))
+//        
+//        let secondFalse = originalMovies![randomIndexTwo]
+//        generatedAnswers.append(secondFalse)
+//        self.originalMovies!.removeAtIndex(randomIndexTwo)
+//        println(secondFalse.title)
+//        
+//        numbers.removeAtIndex(randomIndexTwo)
+//        
+//        var randomIndexThree = Int(arc4random_uniform(UInt32(numbers.count)))
+//        
+//        let thirdFalse = originalMovies![randomIndexThree]
+//        generatedAnswers.append(thirdFalse)
+//        self.originalMovies!.removeAtIndex(randomIndexThree)
+//        println(thirdFalse.title)
+        
+//        numbers.removeAtIndex(randomIndexThree)
+        
+        var i = 0
+        while i < 3 {
+            var incorrectAnswer = self.returnRandomAnswer(numbers, rightAnswer: rightAnswer)
+            for answer in generatedAnswers {
+                if incorrectAnswer.title == answer.title {
+                    incorrectAnswer = self.returnRandomAnswer(numbers, rightAnswer: rightAnswer)
+                }
+            }
+            generatedAnswers.append(incorrectAnswer)
+            i++
+        }
+        
+        var question = Question()
+        question.answers = generatedAnswers
+        question.movie = rightAnswer
+        
+        println(self.answers.count)
+//        println(randomIndex)
+//        println(randomIndexTwo)
+//        println(randomIndexThree)
+        
+//        self.originalMovies!.append(rightAnswer)
+//        self.originalMovies!.append(firstFalse)
+//        self.originalMovies!.append(secondFalse)
+//        self.originalMovies!.append(thirdFalse)
+//        for i in 0..<originalMovies!.count {
+//            var iarray = [Int]()
+//            iarray.append(i)
+//            for num in iarray {
+//                println(originalMovies![i].title)
+//            }
+//        }
+
+        self.shuffleQuestionAnswers(question)
+        
+        
+    }
+    
+    func returnRandomAnswer(numbers: [Int], rightAnswer: Movie) -> Movie {
         
         var randomIndex = Int(arc4random_uniform(UInt32(numbers.count)))
         
         let firstFalse = originalMovies![randomIndex]
-        generatedAnswers.append(firstFalse)
-        self.originalMovies!.removeAtIndex(randomIndex)
-        println(firstFalse.title)
-        
-        numbers.removeAtIndex(randomIndex)
-        
-        var randomIndexTwo = Int(arc4random_uniform(UInt32(numbers.count)))
-        
-        let secondFalse = originalMovies![randomIndexTwo]
-        generatedAnswers.append(secondFalse)
-        self.originalMovies!.removeAtIndex(randomIndexTwo)
-        println(secondFalse.title)
-        
-        numbers.removeAtIndex(randomIndexTwo)
-        
-        var randomIndexThree = Int(arc4random_uniform(UInt32(numbers.count)))
-        
-        let thirdFalse = originalMovies![randomIndexThree]
-        generatedAnswers.append(thirdFalse)
-        self.originalMovies!.removeAtIndex(randomIndexThree)
-        println(thirdFalse.title)
-        
-        numbers.removeAtIndex(randomIndexThree)
-        var question = Question()
-        question.answers = generatedAnswers
-        question.movie = rightAnswer
-        println(self.answers.count)
-        println(randomIndex)
-        println(randomIndexTwo)
-        println(randomIndexThree)
-        
-        self.originalMovies!.append(rightAnswer)
-        self.originalMovies!.append(firstFalse)
-        self.originalMovies!.append(secondFalse)
-        self.originalMovies!.append(thirdFalse)
-        for i in 0..<originalMovies!.count {
-            var iarray = [Int]()
-            iarray.append(i)
-            for num in iarray {
-                println(originalMovies![i].title)
-            }
+        if firstFalse.title == rightAnswer.title {
+            return self.returnRandomAnswer(numbers, rightAnswer: rightAnswer)
+        } else {
+//            self.originalMovies!.removeAtIndex(randomIndex)
+            println(firstFalse.title)
+            return firstFalse
         }
-
-        self.shuffleQuestionAnswers(question)
-        
         
     }
     

@@ -17,11 +17,15 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     let networkController = NetworkController()
     
+    var gameCenterEnabled = false
+    var leaderboardIdentifier = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let profileButton = UIBarButtonItem(title: "Profile", style: UIBarButtonItemStyle.Plain, target: self, action: "segueToProfileController")
         self.navigationItem.rightBarButtonItem = profileButton
+        
         
 //        let genre = genres[1]
 //        
@@ -34,6 +38,11 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        })
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.authenticatePlayer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,6 +102,31 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func segueToProfileController() {
         self.performSegueWithIdentifier("Profile", sender: self)
+    }
+    
+    func authenticatePlayer() {
+        var localPlayer = GKLocalPlayer()
+        localPlayer.authenticateHandler = ({ (viewController: UIViewController!, error: NSError!) in
+            if viewController != nil {
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    self.presentViewController(viewController, animated: true, completion: nil)
+                })
+            } else if (localPlayer.authenticated == true) {
+                self.gameCenterEnabled = true
+                println("GameCenter Enabled")
+                
+                localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier : String!, error : NSError!) -> Void in
+                    if (error) {
+                        println(error.localizedDescription)
+                    } else {
+                        self.leaderboardIdentifier = leaderboardIdentifier
+                    }
+                })
+            } else {
+                self.gameCenterEnabled = false
+                println("GameCenter Disabled")
+            }
+        })
     }
 
     /*

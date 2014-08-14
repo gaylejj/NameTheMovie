@@ -86,7 +86,10 @@ class GameViewController: UIViewController, GameLogicDelegate, TTCounterLabelDel
         let question = questions[0]
         self.answer = question.movie
         
-        self.overviewTextView.text = question.movie?.overview
+        var overview = "\(question.movie!.overview!)"
+        let newOverview = overview.stringByReplacingOccurrencesOfString(question.movie!.title!, withString: "________", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+        
+        self.overviewTextView.text = newOverview
         
         self.resetButtonTitleColor()
 
@@ -137,18 +140,6 @@ class GameViewController: UIViewController, GameLogicDelegate, TTCounterLabelDel
             
             self.questionTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "questionWasAnswered", userInfo: nil, repeats: false)
             self.questionTimerTwo = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "displayQuestion", userInfo: nil, repeats: false)
-//            if sender.currentTitle == self.answer?.title {
-//                self.presentViewController(self.correctAnswerAlertView, animated: true, completion: { () -> Void in
-//                    self.score++
-//                    self.questionWasAnswered()
-//                    self.displayQuestion()
-//                })
-//            } else {
-//                self.presentViewController(self.incorrectAnswerAlertView, animated: true, completion: { () -> Void in
-//                    self.displayQuestion()
-//                    self.questionWasAnswered()
-//                })
-//            }
         }
     }
     
@@ -176,8 +167,6 @@ class GameViewController: UIViewController, GameLogicDelegate, TTCounterLabelDel
             self.resetViewController()
 
         }
-//
-//        timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "backToMainScreen", userInfo: nil, repeats: false)
         
     }
     
