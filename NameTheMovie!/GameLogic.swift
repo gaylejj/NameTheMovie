@@ -58,39 +58,6 @@ class GameLogic: NSObject {
             var num = i
             numbers.append(i)
         }
-//        for num in numbers {
-//            println("\(num) Title is \(self.originalMovies![num].title)")
-//        }
-        
-        //self.movies?.removeAtIndex(index)
-        
-//        var randomIndex = Int(arc4random_uniform(UInt32(numbers.count)))
-//        
-//        let firstFalse = originalMovies![randomIndex]
-//        
-//        generatedAnswers.append(firstFalse)
-//        self.originalMovies!.removeAtIndex(randomIndex)
-//        println(firstFalse.title)
-//        
-//        numbers.removeAtIndex(randomIndex)
-//        
-//        var randomIndexTwo = Int(arc4random_uniform(UInt32(numbers.count)))
-//        
-//        let secondFalse = originalMovies![randomIndexTwo]
-//        generatedAnswers.append(secondFalse)
-//        self.originalMovies!.removeAtIndex(randomIndexTwo)
-//        println(secondFalse.title)
-//        
-//        numbers.removeAtIndex(randomIndexTwo)
-//        
-//        var randomIndexThree = Int(arc4random_uniform(UInt32(numbers.count)))
-//        
-//        let thirdFalse = originalMovies![randomIndexThree]
-//        generatedAnswers.append(thirdFalse)
-//        self.originalMovies!.removeAtIndex(randomIndexThree)
-//        println(thirdFalse.title)
-        
-//        numbers.removeAtIndex(randomIndexThree)
         
         var i = 0
         while i < 3 {
@@ -109,6 +76,9 @@ class GameLogic: NSObject {
         question.movie = rightAnswer
         
         println(self.answers.count)
+        
+        self.shuffleQuestionAnswers(question)
+
 //        println(randomIndex)
 //        println(randomIndexTwo)
 //        println(randomIndexThree)
@@ -124,9 +94,40 @@ class GameLogic: NSObject {
 //                println(originalMovies![i].title)
 //            }
 //        }
-
-        self.shuffleQuestionAnswers(question)
         
+        //        for num in numbers {
+        //            println("\(num) Title is \(self.originalMovies![num].title)")
+        //        }
+        
+        //self.movies?.removeAtIndex(index)
+        
+        //        var randomIndex = Int(arc4random_uniform(UInt32(numbers.count)))
+        //
+        //        let firstFalse = originalMovies![randomIndex]
+        //
+        //        generatedAnswers.append(firstFalse)
+        //        self.originalMovies!.removeAtIndex(randomIndex)
+        //        println(firstFalse.title)
+        //
+        //        numbers.removeAtIndex(randomIndex)
+        //
+        //        var randomIndexTwo = Int(arc4random_uniform(UInt32(numbers.count)))
+        //
+        //        let secondFalse = originalMovies![randomIndexTwo]
+        //        generatedAnswers.append(secondFalse)
+        //        self.originalMovies!.removeAtIndex(randomIndexTwo)
+        //        println(secondFalse.title)
+        //
+        //        numbers.removeAtIndex(randomIndexTwo)
+        //
+        //        var randomIndexThree = Int(arc4random_uniform(UInt32(numbers.count)))
+        //
+        //        let thirdFalse = originalMovies![randomIndexThree]
+        //        generatedAnswers.append(thirdFalse)
+        //        self.originalMovies!.removeAtIndex(randomIndexThree)
+        //        println(thirdFalse.title)
+        
+        //        numbers.removeAtIndex(randomIndexThree)
         
     }
     

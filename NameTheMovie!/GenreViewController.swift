@@ -42,7 +42,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.authenticatePlayer()
+//        self.authenticatePlayer()
     }
 
     override func didReceiveMemoryWarning() {
