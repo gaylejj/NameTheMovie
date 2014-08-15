@@ -15,6 +15,7 @@ extern NSString *const PresentAuthenticationViewController;
 @property (nonatomic, readonly) 
   UIViewController *authenticationViewController;
 @property (nonatomic, readonly) NSError *lastError;
+@property (nonatomic) NSString *leaderboardIdentifier;
 
 + (instancetype)sharedGameKitHelper;
 - (void)authenticateLocalPlayer;

@@ -54,9 +54,19 @@ NSString *const PresentAuthenticationViewController =
       } else if([GKLocalPlayer localPlayer].isAuthenticated) {
         //5
         _enableGameCenter = YES;
+          NSLog(@"GameCenter Enabled");
+        [[GKLocalPlayer localPlayer]loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
+            if (error) {
+                NSLog(@"%@", error.localizedDescription);
+            } else {
+                NSLog(@"Leadeboard ID: %@", _leaderboardIdentifier);
+                _leaderboardIdentifier = leaderboardIdentifier;
+            }
+        }];
       } else {
         //6
         _enableGameCenter = NO;
+          NSLog(@"GameCenter Disabled");
       }
   };
 }

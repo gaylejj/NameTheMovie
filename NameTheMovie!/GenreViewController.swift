@@ -18,31 +18,30 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     let networkController = NetworkController()
     
     var gameCenterEnabled = false
-    var leaderboardIdentifier = ""
+    let gamekitHelper = GameKitHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let profileButton = UIBarButtonItem(title: "Profile", style: UIBarButtonItemStyle.Plain, target: self, action: "segueToProfileController")
         self.navigationItem.rightBarButtonItem = profileButton
-        
-        
-//        let genre = genres[1]
-//        
-//        networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
-//            self.movies = movies
-//            for movie in self.movies! {
-//                println(movie.id)
-//                println(movie.title)
-//            }
-//        })
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showGameCenterAuthController:"), name: "present_authentication_view_controller", object: nil)
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func showGameCenterAuthController(note: NSNotification) {
+        if let gkHelper = note.object as? GameKitHelper {
+            self.presentViewController(gkHelper.authenticationViewController, animated: true, completion: { () -> Void in
+                println("Showing auth vc")
+            })
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-//        self.authenticatePlayer()
+        gamekitHelper.authenticateLocalPlayer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +49,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: TableView Methods
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         return self.genres.count
     }
@@ -57,20 +57,10 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as UITableViewCell
         
-//        if self.movies != nil {
-//            let movie = self.movies![indexPath.row]
-//            
-//            cell.textLabel.text = movie.title!
-//            cell.detailTextLabel.text = "\(movie.id!)"
-//        } else {
-//            cell.textLabel.text = "No movie found"
-//            cell.detailTextLabel.text = "No ID Found"
-//        }
-        
         let genre = self.genres[indexPath.row]
         
         cell.textLabel.text = genre.name
-        cell.detailTextLabel.text = genre.id
+        cell.detailTextLabel.hidden = true
 
         
         return cell
@@ -85,10 +75,10 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
             self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
                 self.movies = movies
-                for movie in self.movies! {
-                    println(movie.id)
-                    println(movie.title)
-                }
+//                for movie in self.movies! {
+//                    println(movie.id)
+//                    println(movie.title)
+//                }
                 gameVC.movies = self.movies
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     if self.navigationController {
@@ -104,39 +94,64 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.performSegueWithIdentifier("Profile", sender: self)
     }
     
-    func authenticatePlayer() {
-        var localPlayer = GKLocalPlayer()
-        localPlayer.authenticateHandler = ({ (viewController: UIViewController!, error: NSError!) in
-            if viewController != nil {
-                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    self.presentViewController(viewController, animated: true, completion: nil)
-                })
-            } else if (localPlayer.authenticated == true) {
-                self.gameCenterEnabled = true
-                println("GameCenter Enabled")
-                
-                localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier : String!, error : NSError!) -> Void in
-                    if (error) {
-                        println(error.localizedDescription)
-                    } else {
-                        self.leaderboardIdentifier = leaderboardIdentifier
-                    }
-                })
-            } else {
-                self.gameCenterEnabled = false
-                println("GameCenter Disabled")
-            }
-        })
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    //MARK: GameKit Authentication
+//    func authenticatePlayer() {
+//        var localPlayer = GKLocalPlayer()
+//        localPlayer.authenticateHandler = ({ (viewController: UIViewController!, error: NSError!) in
+//            if viewController != nil {
+//                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                    self.presentViewController(viewController, animated: true, completion: nil)
+//                })
+//            } else {
+//                if (localPlayer.authenticated == true) {
+//                    self.gameCenterEnabled = true
+//                    println("GameCenter Enabled")
+//                    
+//                    localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier : String!, error : NSError!) -> Void in
+//                        if (error) {
+//                            println(error.localizedDescription)
+//                        } else {
+//                            println("Incoming ID \(leaderboardIdentifier)")
+//                            self.leaderboardIdentifier = leaderboardIdentifier
+//                            println("Identifier \(self.leaderboardIdentifier)")
+//                        }
+//                    })
+//                }
+//            else {
+//                self.gameCenterEnabled = false
+//                println("GameCenter Disabled")
+//            }
+//        }
+//    })
+//    }
+    
+//    func authenticatePlayer() {
+//        var localPlayer = GKLocalPlayer()
+//        localPlayer.authenticateHandler = {(viewController: UIViewController!, error: NSError!) -> Void in
+//            
+//            if viewController != nil {
+//                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                    self.presentViewController(viewController, animated: true, completion: nil)
+//                })
+//            }
+//            else {
+//                if localPlayer.authenticated == true {
+//                    self.gameCenterEnabled = true
+//                    localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier: String!, error: NSError!) -> Void in
+//                        if error != nil {
+//                            println(error.localizedDescription)
+//                        } else {
+//                            println("Leaderboard ID = \(leaderboardIdentifier)")
+//                            self.leaderboardIdentifier = leaderboardIdentifier
+//                            println("Self.Leaderboard ID = \(self.leaderboardIdentifier)")
+//                        }
+//                    })
+//                }
+//                else {
+//                    self.gameCenterEnabled = false
+//                }
+//            }
+//        }
+//        
+//    }
 }
