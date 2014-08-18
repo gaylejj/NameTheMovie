@@ -22,5 +22,6 @@ extern NSString *const PresentAuthenticationViewController;
 - (void)reportAchievements:(NSArray *)achievements;
 - (void)showGKGameCenterViewController:
   (UIViewController *)viewController;
+//- (void)showLeaderboardAndAchievements:(BOOL)ShouldShowLeaderboard;
 
 @end

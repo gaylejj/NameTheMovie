@@ -7,6 +7,7 @@
 //
 
 #import "GameKitHelper.h"
+#import "NameTheMovie_-Swift.h"
 
 NSString *const PresentAuthenticationViewController =
   @"present_authentication_view_controller";
@@ -131,5 +132,20 @@ NSString *const PresentAuthenticationViewController =
   [gameCenterViewController dismissViewControllerAnimated:YES
                                                completion:nil];
 }
+
+//- (void)showLeaderboardAndAchievements:(BOOL)ShouldShowLeaderboard {
+//    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc]init];
+//    gcViewController.gameCenterDelegate = self;
+//    
+//    if (ShouldShowLeaderboard) {
+//        gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
+//        gcViewController.leaderboardIdentifier = _leaderboardIdentifier;
+//    } else {
+//        gcViewController.viewState = GKGameCenterViewControllerStateAchievements;
+//    }
+//    
+//    [self presentViewController: gcViewController animated: YES completion: nil];
+//}
+
 
 @end

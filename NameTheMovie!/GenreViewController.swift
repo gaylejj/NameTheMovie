@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GKGameCenterControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,6 +26,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let profileButton = UIBarButtonItem(title: "Profile", style: UIBarButtonItemStyle.Plain, target: self, action: "segueToProfileController")
         self.navigationItem.rightBarButtonItem = profileButton
+        
+        self.navigationController.navigationBar.barTintColor = UIColor.blackColor()
         
         // Do any additional setup after loading the view.
     }
@@ -53,12 +55,11 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         let genre = self.genres[indexPath.row]
         
         let color = self.rainbowColors[indexPath.row]
-        println("R: \(color.r) G: \(color.g) B: \(color.b) A: \(color.a)")
         cell.backgroundColor = UIColor(red: color.r/255, green: color.g/255, blue: color.b/255, alpha: color.a)
         
         cell.genreTitleLabel.text = genre.name
         
-        if indexPath.row < 5 {
+        if indexPath.row < 6 {
             cell.genreTitleLabel.textColor = UIColor.blackColor()
         } else {
             cell.genreTitleLabel.textColor = UIColor.whiteColor()
@@ -96,7 +97,12 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func segueToProfileController() {
-        self.performSegueWithIdentifier("Profile", sender: self)
+//        self.performSegueWithIdentifier("Profile", sender: self)
+        self.gamekitHelper.showGKGameCenterViewController(self)
+    }
+    
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func unwindToGenreVC(segue: UIStoryboardSegue!) {
