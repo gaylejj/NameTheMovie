@@ -78,57 +78,6 @@ class GameLogic: NSObject {
         println(self.answers.count)
         
         self.shuffleQuestionAnswers(question)
-
-//        println(randomIndex)
-//        println(randomIndexTwo)
-//        println(randomIndexThree)
-        
-//        self.originalMovies!.append(rightAnswer)
-//        self.originalMovies!.append(firstFalse)
-//        self.originalMovies!.append(secondFalse)
-//        self.originalMovies!.append(thirdFalse)
-//        for i in 0..<originalMovies!.count {
-//            var iarray = [Int]()
-//            iarray.append(i)
-//            for num in iarray {
-//                println(originalMovies![i].title)
-//            }
-//        }
-        
-        //        for num in numbers {
-        //            println("\(num) Title is \(self.originalMovies![num].title)")
-        //        }
-        
-        //self.movies?.removeAtIndex(index)
-        
-        //        var randomIndex = Int(arc4random_uniform(UInt32(numbers.count)))
-        //
-        //        let firstFalse = originalMovies![randomIndex]
-        //
-        //        generatedAnswers.append(firstFalse)
-        //        self.originalMovies!.removeAtIndex(randomIndex)
-        //        println(firstFalse.title)
-        //
-        //        numbers.removeAtIndex(randomIndex)
-        //
-        //        var randomIndexTwo = Int(arc4random_uniform(UInt32(numbers.count)))
-        //
-        //        let secondFalse = originalMovies![randomIndexTwo]
-        //        generatedAnswers.append(secondFalse)
-        //        self.originalMovies!.removeAtIndex(randomIndexTwo)
-        //        println(secondFalse.title)
-        //
-        //        numbers.removeAtIndex(randomIndexTwo)
-        //
-        //        var randomIndexThree = Int(arc4random_uniform(UInt32(numbers.count)))
-        //
-        //        let thirdFalse = originalMovies![randomIndexThree]
-        //        generatedAnswers.append(thirdFalse)
-        //        self.originalMovies!.removeAtIndex(randomIndexThree)
-        //        println(thirdFalse.title)
-        
-        //        numbers.removeAtIndex(randomIndexThree)
-        
     }
     
     func returnRandomAnswer(numbers: [Int], rightAnswer: Movie) -> Movie {

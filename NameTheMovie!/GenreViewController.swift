@@ -16,32 +16,24 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     var movies : [Movie]?
     
     let networkController = NetworkController()
+    let gamekitHelper = GameKitHelper()
     
     var gameCenterEnabled = false
-    let gamekitHelper = GameKitHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let profileButton = UIBarButtonItem(title: "Profile", style: UIBarButtonItemStyle.Plain, target: self, action: "segueToProfileController")
         self.navigationItem.rightBarButtonItem = profileButton
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showGameCenterAuthController:"), name: "present_authentication_view_controller", object: nil)
         
         // Do any additional setup after loading the view.
     }
     
-    func showGameCenterAuthController(note: NSNotification) {
-        if let gkHelper = note.object as? GameKitHelper {
-            self.presentViewController(gkHelper.authenticationViewController, animated: true, completion: { () -> Void in
-                println("Showing auth vc")
-            })
-        }
-    }
+
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        gamekitHelper.authenticateLocalPlayer()
+        self.tableView.userInteractionEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,23 +47,25 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as GenreTableViewCell
         
         let genre = self.genres[indexPath.row]
         
-        cell.textLabel.text = genre.name
-        cell.detailTextLabel.hidden = true
+        cell.genreTitleLabel.text = genre.name
 
-        
         return cell
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.userInteractionEnabled = false
+        
         let gameVC = self.storyboard.instantiateViewControllerWithIdentifier("Game") as GameViewController
         
         let genre = genres[indexPath.row]
-        
+        gameVC.genre = genre
+
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
             self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
                 self.movies = movies
@@ -92,6 +86,10 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func segueToProfileController() {
         self.performSegueWithIdentifier("Profile", sender: self)
+    }
+    
+    @IBAction func unwindToGenreVC(segue: UIStoryboardSegue!) {
+        println("Pressing Play Again")
     }
     
     //MARK: GameKit Authentication

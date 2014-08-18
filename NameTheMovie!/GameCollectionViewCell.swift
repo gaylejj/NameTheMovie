@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnswerCollectionViewCell: UICollectionViewCell {
+class GameCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionAnswerLabel: UILabel!
     
