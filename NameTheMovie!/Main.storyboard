@@ -301,7 +301,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="rfR-ef-SXy" kind="unwind" identifier="playAgain" unwindAction="unwindToGenreVC:" id="oAj-JK-NEs"/>
+                                    <segue destination="rfR-ef-SXy" kind="unwind" identifier="playAgain" unwindAction="unwindToGenreVC:" id="fYM-Ic-M18"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPF-Px-xRk">
@@ -341,7 +341,6 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="playAgainButton" destination="TXp-3K-gnD" id="YZs-Oq-zy9"/>
                         <outlet property="scoreLabel" destination="BPF-Px-xRk" id="RJa-KO-7Dj"/>
                         <outlet property="tableView" destination="paf-bl-jkx" id="76i-LH-ocB"/>
                     </connections>

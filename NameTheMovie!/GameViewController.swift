@@ -32,7 +32,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var score = 0.0
     
-    var gameTime = 12.0
+    var gameTime = 13.0
     
     let nf = NSNumberFormatter()
     let scoreNF = NSNumberFormatter()
@@ -41,6 +41,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     var questionTimerTwo : NSTimer!
     var timerLabelTimer : NSTimer!
     var beginningTimer : NSTimer!
+    var showAnswersTimer : NSTimer!
     var scoreTimer : NSTimer!
     
     var questionHasBeenAnswered = false
@@ -97,8 +98,9 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func displayQuestion(questionsAnswered: Int) {
         self.timerLabel.font = UIFont.systemFontOfSize(18.0)
+        self.collectionView.hidden = true
         if self.questionsAnswered < 5 {
-            self.gameTime = 12.0
+            self.gameTime = 13.0
             let question = questions[self.questionsAnswered]
             self.answer = question.movie
             
@@ -117,12 +119,17 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.collectionView.reloadData()
             if self.questionHasBeenAnswered == false {
                 self.beginningTimer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "startTimer", userInfo: nil, repeats: false)
+                self.showAnswersTimer = NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: "displayAnswers", userInfo: nil, repeats: false)
             }
             
         } else {
             self.displayScore()
         }
 
+    }
+    
+    func displayAnswers() {
+        self.collectionView.hidden = false
     }
     
     func questionWasAnswered() {

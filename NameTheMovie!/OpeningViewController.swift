@@ -40,6 +40,7 @@ class OpeningViewController: UIViewController {
         
         self.gamekitHelper.authenticateLocalPlayer()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showGameCenterAuthController:"), name: "present_authentication_view_controller", object: nil)
+
         // Do any additional setup after loading the view.
     }
     

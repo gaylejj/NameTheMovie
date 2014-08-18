@@ -37,8 +37,6 @@ class ResultsViewController: UIViewController, UITableViewDataSource {
             println("Correct \(otherAnswer)")
         }
         
-        self.playAgainButton.addTarget(self, action: "unwindSegue", forControlEvents: UIControlEvents.TouchUpInside)
-        
         // Do any additional setup after loading the view.
     }
     
@@ -78,15 +76,6 @@ class ResultsViewController: UIViewController, UITableViewDataSource {
             return self.correctAnswers.count
     }
     
-    func unwindSegue() {
-        self.performSegueWithIdentifier("playAgain", sender: self)
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        if segue.identifier == "playAgain" {
-            let genreVC = segue.destinationViewController as GenreViewController
-        }
-    }
 
 
     /*

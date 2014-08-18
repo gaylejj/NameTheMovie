@@ -54,15 +54,21 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let genre = self.genres[indexPath.row]
         
-        let color = self.rainbowColors[indexPath.row]
-        cell.backgroundColor = UIColor(red: color.r/255, green: color.g/255, blue: color.b/255, alpha: color.a)
+//        let color = self.rainbowColors[indexPath.row]
+//        cell.backgroundColor = UIColor(red: color.r/255, green: color.g/255, blue: color.b/255, alpha: color.a)
+        
+        if indexPath.row % 2 == true {
+            cell.backgroundColor = UIColor(red: 3/255, green: 0/255, blue: 127/255, alpha: 1.0)
+        } else {
+            cell.backgroundColor = UIColor(red: 0/255, green: 255/255, blue: 34/255, alpha: 1.0)
+        }
         
         cell.genreTitleLabel.text = genre.name
         
-        if indexPath.row < 6 {
-            cell.genreTitleLabel.textColor = UIColor.blackColor()
-        } else {
+        if indexPath.row % 2 == true {
             cell.genreTitleLabel.textColor = UIColor.whiteColor()
+        } else {
+            cell.genreTitleLabel.textColor = UIColor.blackColor()
         }
 
         return cell
