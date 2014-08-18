@@ -34,13 +34,10 @@ class OpeningViewController: UIViewController {
         self.appTitleLabel.adjustsFontSizeToFitWidth = true
         self.createdByLabel.adjustsFontSizeToFitWidth = true
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "segueToGenreVC", userInfo: nil, repeats: false)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "segueToGenreVC", userInfo: nil, repeats: false)
         
         self.view.backgroundColor = UIColor(red: 255/255, green: 103/255, blue: 97/255, alpha: 1.0)
         
-        self.clapboardImageView.clipsToBounds = true
-        self.clapboardImageView.layer.cornerRadius = 0.2 * self.clapboardImageView.frame.width
-
         self.gamekitHelper.authenticateLocalPlayer()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showGameCenterAuthController:"), name: "present_authentication_view_controller", object: nil)
         // Do any additional setup after loading the view.

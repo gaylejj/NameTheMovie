@@ -392,11 +392,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film-clapboard.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="63x-RD-cc6">
-                                <rect key="frame" x="175" y="158" width="250" height="250"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film-clapboard.png" translatesAutoresizingMaskIntoConstraints="NO" id="63x-RD-cc6">
+                                <rect key="frame" x="150" y="158" width="300" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="5T8-fg-IBw"/>
-                                    <constraint firstAttribute="height" constant="250" id="Qg3-qS-hW2"/>
+                                    <constraint firstAttribute="width" constant="300" id="5T8-fg-IBw"/>
+                                    <constraint firstAttribute="height" constant="300" id="Qg3-qS-hW2"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -453,6 +453,6 @@
     </scenes>
     <resources>
         <image name="TMDb logo.jpeg" width="290" height="174"/>
-        <image name="film-clapboard.jpeg" width="250" height="250"/>
+        <image name="film-clapboard.png" width="300" height="273"/>
     </resources>
 </document>

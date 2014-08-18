@@ -56,7 +56,8 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(red: 88/255, green: 167/255, blue: 210/255, alpha: 1.0)
+        self.overviewTextView.backgroundColor = UIColor(red: 88/255, green: 167/255, blue: 210/255, alpha: 1.0)
         // Do any additional setup after loading the view.
     }
     
@@ -231,6 +232,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.collectionAnswerLabel.text = question.answers[indexPath.row].title
         if cell != nil {
             cell.collectionAnswerLabel.numberOfLines = 0
+            cell.collectionAnswerLabel.adjustsFontSizeToFitWidth = true
         }
         
         return cell
@@ -260,7 +262,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                 })
             } else {
                 UIView.animateWithDuration(2.0, animations: { () -> Void in
-                    cell.collectionAnswerLabel.textColor = UIColor.redColor()
+                    cell.collectionAnswerLabel.textColor = UIColor(red: 225/255, green: 1/255, blue: 20/255, alpha: 1.0)
                     self.disableUserInteraction()
                     self.showCorrectAnswer()
                     self.questionTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "questionWasAnswered", userInfo: nil, repeats: false)

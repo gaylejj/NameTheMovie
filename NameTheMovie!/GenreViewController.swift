@@ -14,6 +14,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var genres : [Genre] = Genre.genreFromPlist()
     var movies : [Movie]?
+    var rainbowColors = RainbowColors.colorsFromPlist()
     
     let networkController = NetworkController()
     let gamekitHelper = GameKitHelper()
@@ -51,7 +52,17 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let genre = self.genres[indexPath.row]
         
+        let color = self.rainbowColors[indexPath.row]
+        println("R: \(color.r) G: \(color.g) B: \(color.b) A: \(color.a)")
+        cell.backgroundColor = UIColor(red: color.r/255, green: color.g/255, blue: color.b/255, alpha: color.a)
+        
         cell.genreTitleLabel.text = genre.name
+        
+        if indexPath.row < 5 {
+            cell.genreTitleLabel.textColor = UIColor.blackColor()
+        } else {
+            cell.genreTitleLabel.textColor = UIColor.whiteColor()
+        }
 
         return cell
     }
@@ -65,7 +76,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let genre = genres[indexPath.row]
         gameVC.genre = genre
-
+        
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
             self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
                 self.movies = movies
