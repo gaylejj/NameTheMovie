@@ -34,7 +34,7 @@ class OpeningViewController: UIViewController {
         self.appTitleLabel.adjustsFontSizeToFitWidth = true
         self.createdByLabel.adjustsFontSizeToFitWidth = true
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "segueToGenreVC", userInfo: nil, repeats: false)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "segueToGenreVC", userInfo: nil, repeats: false)
         
         self.view.backgroundColor = UIColor(red: 255/255, green: 103/255, blue: 97/255, alpha: 1.0)
         

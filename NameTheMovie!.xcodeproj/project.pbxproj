@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250DA4A519A2B17F00A50F17 /* romcom.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A419A2B17F00A50F17 /* romcom.png */; };
+		250DA4B019A2B4AE00A50F17 /* thriller.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A619A2B4AE00A50F17 /* thriller.png */; };
+		250DA4B119A2B4AE00A50F17 /* western.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A719A2B4AE00A50F17 /* western.png */; };
+		250DA4B219A2B4AE00A50F17 /* action.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A819A2B4AE00A50F17 /* action.png */; };
+		250DA4B319A2B4AE00A50F17 /* adventure.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A919A2B4AE00A50F17 /* adventure.png */; };
+		250DA4B419A2B4AE00A50F17 /* animation.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AA19A2B4AE00A50F17 /* animation.png */; };
+		250DA4B519A2B4AE00A50F17 /* comedy.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AB19A2B4AE00A50F17 /* comedy.png */; };
+		250DA4B619A2B4AE00A50F17 /* crime.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AC19A2B4AE00A50F17 /* crime.png */; };
+		250DA4B719A2B4AE00A50F17 /* drama.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AD19A2B4AE00A50F17 /* drama.png */; };
+		250DA4B819A2B4AE00A50F17 /* fantasy.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AE19A2B4AE00A50F17 /* fantasy.png */; };
+		250DA4B919A2B4AE00A50F17 /* scifi.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AF19A2B4AE00A50F17 /* scifi.png */; };
+		250DA4BC19A2B79A00A50F17 /* realanimation.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4BB19A2B79A00A50F17 /* realanimation.png */; };
+		250DA4BE19A2B88800A50F17 /* PlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4BD19A2B88800A50F17 /* PlotView.xib */; };
+		250DA4C019A2B89A00A50F17 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DA4BF19A2B89A00A50F17 /* PlotView.swift */; };
 		2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D4EE19995E48008E0E61 /* AppDelegate.swift */; };
 		2557D4F619995E48008E0E61 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2557D4F519995E48008E0E61 /* Images.xcassets */; };
 		2557D51219995EC7008E0E61 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D51019995EC7008E0E61 /* Movie.swift */; };
@@ -38,6 +52,20 @@
 
 /* Begin PBXFileReference section */
 		1E9F11CAD0B542E1AE2F34B3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		250DA4A419A2B17F00A50F17 /* romcom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = romcom.png; sourceTree = "<group>"; };
+		250DA4A619A2B4AE00A50F17 /* thriller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thriller.png; sourceTree = "<group>"; };
+		250DA4A719A2B4AE00A50F17 /* western.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = western.png; sourceTree = "<group>"; };
+		250DA4A819A2B4AE00A50F17 /* action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = action.png; sourceTree = "<group>"; };
+		250DA4A919A2B4AE00A50F17 /* adventure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adventure.png; sourceTree = "<group>"; };
+		250DA4AA19A2B4AE00A50F17 /* animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = animation.png; sourceTree = "<group>"; };
+		250DA4AB19A2B4AE00A50F17 /* comedy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comedy.png; sourceTree = "<group>"; };
+		250DA4AC19A2B4AE00A50F17 /* crime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crime.png; sourceTree = "<group>"; };
+		250DA4AD19A2B4AE00A50F17 /* drama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drama.png; sourceTree = "<group>"; };
+		250DA4AE19A2B4AE00A50F17 /* fantasy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fantasy.png; sourceTree = "<group>"; };
+		250DA4AF19A2B4AE00A50F17 /* scifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scifi.png; sourceTree = "<group>"; };
+		250DA4BB19A2B79A00A50F17 /* realanimation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = realanimation.png; sourceTree = "<group>"; };
+		250DA4BD19A2B88800A50F17 /* PlotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlotView.xib; sourceTree = "<group>"; };
+		250DA4BF19A2B89A00A50F17 /* PlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		2557D4E919995E48008E0E61 /* NameTheMovie!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NameTheMovie!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2557D4ED19995E48008E0E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2557D4EE19995E48008E0E61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +114,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		250DA4BA19A2B4B200A50F17 /* Genre Icons */ = {
+			isa = PBXGroup;
+			children = (
+				250DA4BB19A2B79A00A50F17 /* realanimation.png */,
+				250DA4A619A2B4AE00A50F17 /* thriller.png */,
+				250DA4A719A2B4AE00A50F17 /* western.png */,
+				250DA4A819A2B4AE00A50F17 /* action.png */,
+				250DA4A919A2B4AE00A50F17 /* adventure.png */,
+				250DA4AA19A2B4AE00A50F17 /* animation.png */,
+				250DA4AB19A2B4AE00A50F17 /* comedy.png */,
+				250DA4AC19A2B4AE00A50F17 /* crime.png */,
+				250DA4AD19A2B4AE00A50F17 /* drama.png */,
+				250DA4AE19A2B4AE00A50F17 /* fantasy.png */,
+				250DA4AF19A2B4AE00A50F17 /* scifi.png */,
+				250DA4A419A2B17F00A50F17 /* romcom.png */,
+			);
+			name = "Genre Icons";
+			sourceTree = "<group>";
+		};
 		2557D4E019995E48008E0E61 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +223,8 @@
 			children = (
 				25C2926719A1A01A00A5472A /* RainbowColors.swift */,
 				25C2926919A1A2FF00A5472A /* ColorsPList.plist */,
+				250DA4BD19A2B88800A50F17 /* PlotView.xib */,
+				250DA4BF19A2B89A00A50F17 /* PlotView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -192,6 +241,7 @@
 		25C059A2199EAD210069BDD3 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				250DA4BA19A2B4B200A50F17 /* Genre Icons */,
 				25C2926319A1951400A5472A /* film-clapboard.png */,
 				25C2926119A194DC00A5472A /* film-clapboard.jpeg */,
 				25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */,
@@ -295,14 +345,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				250DA4BC19A2B79A00A50F17 /* realanimation.png in Resources */,
 				2557D4F619995E48008E0E61 /* Images.xcassets in Resources */,
 				25C2926A19A1A2FF00A5472A /* ColorsPList.plist in Resources */,
 				2557D51919995ED3008E0E61 /* GenreList.json in Resources */,
+				250DA4B319A2B4AE00A50F17 /* adventure.png in Resources */,
 				25C2926219A194DC00A5472A /* film-clapboard.jpeg in Resources */,
+				250DA4A519A2B17F00A50F17 /* romcom.png in Resources */,
+				250DA4B919A2B4AE00A50F17 /* scifi.png in Resources */,
 				25C059A4199EAD210069BDD3 /* TMDb logo.jpeg in Resources */,
 				2557D51A19995ED3008E0E61 /* GenrePList.plist in Resources */,
+				250DA4B219A2B4AE00A50F17 /* action.png in Resources */,
+				250DA4B719A2B4AE00A50F17 /* drama.png in Resources */,
+				250DA4B519A2B4AE00A50F17 /* comedy.png in Resources */,
 				2557D52319995F5E008E0E61 /* Main.storyboard in Resources */,
 				25C2926419A1951400A5472A /* film-clapboard.png in Resources */,
+				250DA4B619A2B4AE00A50F17 /* crime.png in Resources */,
+				250DA4B819A2B4AE00A50F17 /* fantasy.png in Resources */,
+				250DA4B019A2B4AE00A50F17 /* thriller.png in Resources */,
+				250DA4BE19A2B88800A50F17 /* PlotView.xib in Resources */,
+				250DA4B419A2B4AE00A50F17 /* animation.png in Resources */,
+				250DA4B119A2B4AE00A50F17 /* western.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25C0599F199E97FA0069BDD3 /* GameCollectionViewCell.swift in Sources */,
+				250DA4C019A2B89A00A50F17 /* PlotView.swift in Sources */,
 				2557D53F199AE3CA008E0E61 /* GameKitHelper.m in Sources */,
 				25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */,
 				2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */,

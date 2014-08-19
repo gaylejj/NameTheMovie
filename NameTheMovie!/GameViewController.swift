@@ -11,7 +11,7 @@ import UIKit
 class GameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GameLogicDelegate {
     
     var movies : [Movie]?
-    
+        
     var answer : Movie?
     
     var genre : Genre?

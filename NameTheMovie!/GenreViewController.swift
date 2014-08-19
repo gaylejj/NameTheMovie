@@ -21,18 +21,38 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var gameCenterEnabled = false
     
+    var genreImages = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let profileButton = UIBarButtonItem(title: "Profile", style: UIBarButtonItemStyle.Plain, target: self, action: "segueToProfileController")
         self.navigationItem.rightBarButtonItem = profileButton
         
-        self.navigationController.navigationBar.barTintColor = UIColor.blackColor()
+        self.title = "Genres"
+        
+        self.createImagesArray()
+        
+//        self.navigationController.navigationBar.barTintColor = UIColor.blackColor()
         
         // Do any additional setup after loading the view.
     }
     
-
+    func createImagesArray() {
+        var action = UIImage(named: "action.png")
+        var adventure = UIImage(named: "adventure.png")
+        var animation = UIImage(named: "realanimation.png")
+        var comedy = UIImage(named: "comedy.png")
+        var crime = UIImage(named: "crime.png")
+        var drama = UIImage(named: "drama.png")
+        var fantasy = UIImage(named: "fantasy.png")
+        var romance = UIImage(named: "romcom.png")
+        var sciFi = UIImage(named: "scifi.png")
+        var thriller = UIImage(named: "thriller.png")
+        var western = UIImage(named: "western.png")
+        
+        self.genreImages = [action, adventure, animation, comedy, crime, drama, fantasy, romance, sciFi, thriller, western]
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -53,23 +73,10 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as GenreTableViewCell
         
         let genre = self.genres[indexPath.row]
-        
-//        let color = self.rainbowColors[indexPath.row]
-//        cell.backgroundColor = UIColor(red: color.r/255, green: color.g/255, blue: color.b/255, alpha: color.a)
-        
-        if indexPath.row % 2 == true {
-            cell.backgroundColor = UIColor(red: 3/255, green: 0/255, blue: 127/255, alpha: 1.0)
-        } else {
-            cell.backgroundColor = UIColor(red: 0/255, green: 255/255, blue: 34/255, alpha: 1.0)
-        }
+        let image = self.genreImages[indexPath.row]
         
         cell.genreTitleLabel.text = genre.name
-        
-        if indexPath.row % 2 == true {
-            cell.genreTitleLabel.textColor = UIColor.whiteColor()
-        } else {
-            cell.genreTitleLabel.textColor = UIColor.blackColor()
-        }
+        cell.genreImageView.image = image
 
         return cell
     }

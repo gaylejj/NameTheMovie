@@ -12,6 +12,7 @@ class GenreTableViewCell: UITableViewCell {
     
     @IBOutlet weak var genreTitleLabel: UILabel!
     
+    @IBOutlet weak var genreImageView : UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
