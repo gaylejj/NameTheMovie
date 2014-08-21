@@ -100,7 +100,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
 //                }
                 gameVC.movies = self.movies
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    if self.navigationController {
+                    if (self.navigationController != nil) {
                         self.navigationController.pushViewController(gameVC, animated: true)
                     }
                 })

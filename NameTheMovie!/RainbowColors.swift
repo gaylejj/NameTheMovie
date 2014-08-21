@@ -26,7 +26,7 @@ class RainbowColors: NSObject {
         
         let path = NSBundle.mainBundle().pathForResource("ColorsPList", ofType: "plist")
         
-        let plistArray = NSArray(contentsOfFile: path)
+        let plistArray = NSArray(contentsOfFile: path!)
         
         for obj in plistArray {
             if let color = obj as? Dictionary<String, Int> {

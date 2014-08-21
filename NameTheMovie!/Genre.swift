@@ -23,7 +23,7 @@ class Genre: NSObject {
         
         let path = NSBundle.mainBundle().pathForResource("GenrePList", ofType: "plist")
         
-        let plistArray = NSArray(contentsOfFile: path)
+        let plistArray = NSArray(contentsOfFile: path!)
         
         for obj in plistArray {
             if let genre = obj as? Dictionary<String, String> {
