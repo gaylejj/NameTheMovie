@@ -9,6 +9,7 @@
 #import <GameKit/GameKit.h>
 
 extern NSString *const PresentAuthenticationViewController;
+extern NSString *const AuthenticationViewControllerFinished;
 
 @interface GameKitHelper : NSObject
 

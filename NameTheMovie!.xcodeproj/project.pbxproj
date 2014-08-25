@@ -35,7 +35,6 @@
 		2557D533199A7E9A008E0E61 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D532199A7E9A008E0E61 /* GameLogic.swift */; };
 		2557D535199A8BB1008E0E61 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D534199A8BB1008E0E61 /* Question.swift */; };
 		2557D537199ADE95008E0E61 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D536199ADE95008E0E61 /* ProfileViewController.swift */; };
-		2557D53F199AE3CA008E0E61 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2557D53E199AE3CA008E0E61 /* GameKitHelper.m */; };
 		2557D542199AE46A008E0E61 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2557D541199AE46A008E0E61 /* GameKit.framework */; };
 		2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2564AC8E19A402A200CA092B /* QuestionViewController.swift */; };
 		25C0599F199E97FA0069BDD3 /* GameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0599E199E97FA0069BDD3 /* GameCollectionViewCell.swift */; };
@@ -88,8 +87,6 @@
 		2557D534199A8BB1008E0E61 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		2557D536199ADE95008E0E61 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2557D53C199AE3CA008E0E61 /* NameTheMovie!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NameTheMovie!-Bridging-Header.h"; sourceTree = "<group>"; };
-		2557D53D199AE3CA008E0E61 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
-		2557D53E199AE3CA008E0E61 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
 		2557D541199AE46A008E0E61 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		2564AC8E19A402A200CA092B /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		25C0599E199E97FA0069BDD3 /* GameCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -239,8 +236,6 @@
 		2557D540199AE3CE008E0E61 /* GameKit Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2557D53D199AE3CA008E0E61 /* GameKitHelper.h */,
-				2557D53E199AE3CA008E0E61 /* GameKitHelper.m */,
 			);
 			name = "GameKit Helper";
 			sourceTree = "<group>";
@@ -422,7 +417,6 @@
 				25C0599F199E97FA0069BDD3 /* GameCollectionViewCell.swift in Sources */,
 				250DA4C019A2B89A00A50F17 /* PlotView.swift in Sources */,
 				25CFE2F219A68FE300EB6B9F /* Timer.swift in Sources */,
-				2557D53F199AE3CA008E0E61 /* GameKitHelper.m in Sources */,
 				25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */,
 				25CFE2F419A6A75900EB6B9F /* QuestionTableViewCell.swift in Sources */,
 				2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */,

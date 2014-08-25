@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController, GameLogicDelegate, QuestionViewControllerDelegate {
+class GameViewController: UIViewController, GameLogicDelegate, QuestionViewControllerDelegate, GameCenterManagerDelegate {
     
     var movies : [Movie]?
         
@@ -84,7 +84,6 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.questionVCOne.view.removeFromSuperview()
         
         self.questionVCOne.removeFromParentViewController()
-        
     }
     
     func beginGame() {
@@ -105,7 +104,6 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         
         self.addChildViewController(questionVCOne)
         self.questionVCOne.delegate = self
-
     }
     
     //MARK: Game Functions
@@ -136,8 +134,6 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             self.timerLabel.hidden = true
             
             self.questionVCOne.displayQuestionInVC(question)
-        } else {
-            self.displayScore()
         }
     }
     
@@ -145,7 +141,11 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.correctAnswers.append(correctAnswer)
         self.playerAnswers.append(playerAnswer)
         self.calculateScore(timeScore)
+        self.questionWasAnswered()
         self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "animateQuestionAfterAnswer", userInfo: nil, repeats: false)
+        self.countdownTime = 3.0
+        self.timerLabel.hidden = true
+
     }
     
     func animateQuestionAfterAnswer() {
@@ -153,15 +153,18 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             self.questionVCOne.view.frame = CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         }) { (Bool) -> Void in
             //start countdown timer
-            self.setupNextQuestion()
-            self.countdownTime = 3.0
-            self.beginCountdown()
+            if self.questionsAnswered < 5 {
+                self.setupNextQuestion()
+                self.beginCountdown()
+            } else {
+                
+                self.reportScore()
+            }
         }
     }
     
     func setupNextQuestion() {
-        self.questionTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "questionWasAnswered", userInfo: nil, repeats: false)
-        self.questionTimerTwo = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "displayQuestion:", userInfo: nil, repeats: false)
+        self.questionTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "displayQuestion:", userInfo: nil, repeats: false)
     }
     
     func questionWasAnswered() {
@@ -172,8 +175,36 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         }
     }
     
-    func displayScore() {
-        self.performSegueWithIdentifier("Results", sender: self)
+    //MARK: GameCenter Score
+
+    func reportScore() {
+        GameCenterManager.sharedManager().delegate = self
+        GameCenterManager.sharedManager().saveAndReportScore(Int32(self.score), leaderboard: "com.example.appName.scoreBoardName", sortOrder: GameCenterSortOrderHighToLow)
+
+    }
+    
+    func gameCenterManager(manager: GameCenterManager!, authenticateUser gameCenterLoginController: UIViewController!) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.gameCenterManager(manager, authenticateUser: gameCenterLoginController)
+    }
+
+    func gameCenterManager(manager: GameCenterManager!, reportedScore score: GKScore!, withError error: NSError!) {
+        var error : NSError?
+        if error != nil {
+            println(error?.localizedDescription)
+        } else {
+            self.performSegueWithIdentifier("Results", sender: self)
+        }
+    }
+    
+    func calculateScore(gameTimeRemaining: Double) {
+        if gameTimeRemaining > 10.0 {
+            let maxScoreTimeValue = 1000.0
+            self.score = (self.score + maxScoreTimeValue)
+        } else {
+            var scoreTimeValue = Double(gameTimeRemaining) * 100
+            self.score = (self.score + scoreTimeValue)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
@@ -189,72 +220,30 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         }
     }
     
-    func calculateScore(gameTimeRemaining: Double) {
-        if gameTimeRemaining > 10.0 {
-            let maxScoreTimeValue = 1000.0
-            self.score = (self.score + maxScoreTimeValue)
-        } else {
-            var scoreTimeValue = Double(gameTimeRemaining) * 100
-            self.score = (self.score + scoreTimeValue)
-        }
+    //MARK: Timer Setup
+    func startTimer() {
+        self.timerIsRunning = true
+        timerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(0.10, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
+    }
+
+    func stopTimer() {
+        self.timerIsRunning = false
+        timerLabelTimer.invalidate()
     }
     
-        //MARK: Timer Setup
-        func startTimer() {
-            self.timerIsRunning = true
-            timerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(0.10, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
+    func subtractTime() {
+        if self.countdownTime > 0.1 {
+            var timeLeft = self.countdownTime - 0.10
+            self.countdownTime = timeLeft
+            self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
+        } else {
+            self.stopTimer()
         }
-    
-        func stopTimer() {
-            self.timerIsRunning = false
-            timerLabelTimer.invalidate()
-        }
-    
-        func subtractTime() {
-//            if self.countdownTime < 5.0 {
-//                self.timerLabel.font = UIFont.systemFontOfSize(48.0)
-//            }
-            if self.countdownTime > 0.1 {
-                var timeLeft = self.countdownTime - 0.10
-                self.countdownTime = timeLeft
-                self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
-            } else {
-                self.stopTimer()
-            }
-        }
-    
-    //MARK: GameCenter Score
-    
-    func reportScoreToGameCenter() {
-        let gamekitHelper = GameKitHelper()
-        var gamecenterScore = GKScore(leaderboardIdentifier: gamekitHelper.leaderboardIdentifier)
-        println("Identifier \(gamekitHelper.leaderboardIdentifier)")
-        gamecenterScore.value = Int64(self.score)
-        
-        GKScore.reportScores([gamecenterScore], withCompletionHandler: { (error: NSError!) -> Void in
-            if error != nil {
-                println(error.localizedDescription)
-            }
-        })
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    - (void) reportScore: (int64_t) score forLeaderboardID: (NSString*) identifier
-    {
-    GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier: identifier];
-    scoreReporter.value = score;
-    scoreReporter.context = 0;
-    
-    NSArray *scores = @[scoreReporter];
-    [GKLeaderboard reportScores:scores withCompletionHandler:^(NSError *error) {
-    //Do something interesting here.
-    }];
-    }
-    */
 
 }

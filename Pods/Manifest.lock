@@ -1,13 +1,13 @@
 PODS:
-  - TTCounterLabel (1.0.5):
-    - TTTAttributedLabel
-  - TTTAttributedLabel (1.10.1)
+  - GameCenterManager (5.3):
+    - Reachability
+  - Reachability (3.1.1)
 
 DEPENDENCIES:
-  - TTCounterLabel (~> 1.0.5)
+  - GameCenterManager (~> 5.3)
 
 SPEC CHECKSUMS:
-  TTCounterLabel: 1b25160553f885c13b9cfe57b6bb1758dcaff60b
-  TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
+  GameCenterManager: 9d36711a4688a59a728e0e3f9a050aa835fba618
+  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
 
 COCOAPODS: 0.33.1
