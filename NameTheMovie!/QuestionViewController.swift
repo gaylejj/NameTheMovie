@@ -9,7 +9,7 @@
 import UIKit
 
 protocol QuestionViewControllerDelegate {
-    func questionAnswered(correctAnswer: String, playerAnswer: String)
+    func questionAnswered(correctAnswer: String, playerAnswer: String, timeScore: Double)
 }
 
 class QuestionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -22,6 +22,9 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     var timerIsRunning = false
     var questionHasBeenAnswered = false
     var gameTime = 13.0
+    var timeScore = 0.0
+    
+    var timerLabelTimer : NSTimer!
     
     var question : Question?
     var answer : Movie?
@@ -29,7 +32,10 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     var delegate : QuestionViewControllerDelegate?
     
     let gameVC : GameViewController?
-    let timerVC = Timer()
+    let nf = NSNumberFormatter()
+    let scoreNF = NSNumberFormatter()
+    
+    @IBOutlet weak var timerHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +44,11 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.overviewTextView.backgroundColor = UIColor.clearColor()
         self.tableView.backgroundColor = UIColor.clearColor()
         
+        nf.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        nf.maximumFractionDigits = 2
+        nf.minimumFractionDigits = 1
+        
         // Do any additional setup after loading the view.
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,16 +57,26 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func displayQuestionInVC(question: Question) {
+        self.gameTime = 13.0
+        self.timeScore = 0.0
         self.tableView.userInteractionEnabled = false
         self.question = question
         self.answer = question.movie
         self.tableView.reloadData()
         self.view.hidden = false
-        self.overviewTextView.text = self.answer?.overview
+        
+        var overview = "\(self.answer!.overview!)"
+        let newOverview = overview.stringByReplacingOccurrencesOfString(question.movie!.title!, withString: "________", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+        
+        self.overviewTextView.text = newOverview
+
+        self.timerLabel.text = "\(self.gameTime)"
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         }) { (Bool) -> Void in
             self.tableView.userInteractionEnabled = true
+            self.startTimer()
+            self.timerLabel.text = "\(self.gameTime)"
         }
     }
     
@@ -87,19 +102,21 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell
         self.questionHasBeenAnswered = true
-
-        if self.timerVC.timerIsRunning == true {
-            timerVC.stopTimer()
+        
+        if self.timerIsRunning == true {
+            self.stopTimer()
         }
         if self.questionHasBeenAnswered == true {
             if cell.shownQuestionLabel.text == self.answer?.title {
                 self.correctAnswerAnimation(indexPath)
+                self.timeScore = self.gameTime
             } else {
                 self.incorrectAnswerAnimation(indexPath)
+                self.timeScore = 0
             }
         }
         
-        self.delegate?.questionAnswered(self.answer!.title!, playerAnswer: (self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell).shownQuestionLabel.text)
+        self.delegate?.questionAnswered(self.answer!.title!, playerAnswer: (self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell).shownQuestionLabel.text, timeScore: self.timeScore)
     }
     
     func showCorrectAnswer() {
@@ -116,11 +133,9 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                     cell.shownQuestionLabel.textColor = UIColor.greenColor()
                 })
                 
-//                if gameVC!.questionHasBeenAnswered == false {
-//                    gameVC!.playerAnswers.append("___")
-//                    gameVC!.questionTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "questionWasAnswered", userInfo: nil, repeats: false)
-//                    gameVC!.questionTimerTwo = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "displayQuestion:", userInfo: nil, repeats: false)
-//                }
+                if self.questionHasBeenAnswered == false {
+                    self.delegate?.questionAnswered(self.answer!.title!, playerAnswer: "_____", timeScore: self.gameTime)
+                }
             }
         }
     }
@@ -144,9 +159,33 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         })
     }
     
-    
     func resetTableView(cell: QuestionTableViewCell!) {
         cell.shownQuestionLabel.textColor = UIColor.blackColor()
+    }
+    
+    //MARK: Timer Setup
+    func startTimer() {
+        self.timerIsRunning = true
+        timerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(0.10, target: self, selector:"subtractTime", userInfo: nil, repeats: true)
+    }
+
+    func stopTimer() {
+        self.timerIsRunning = false
+        timerLabelTimer.invalidate()
+    }
+    
+    func subtractTime() {
+        if self.gameTime < 5.0 {
+            self.timerLabel.font = UIFont.systemFontOfSize(48.0)
+        }
+        if self.gameTime > 0.1 {
+            var timeLeft = self.gameTime - 0.10
+            self.gameTime = timeLeft
+            self.timerLabel.text = "\(self.nf.stringFromNumber(self.gameTime))"
+        } else {
+            self.stopTimer()
+            self.showCorrectAnswer()
+        }
     }
 }
 

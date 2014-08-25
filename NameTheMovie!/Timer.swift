@@ -8,13 +8,13 @@
 
 import Foundation
 
-class Timer {
+class Timer: NSObject {
     var timerIsRunning = false
-    var gameTime = 13.0
+    var time : Double!
     var timerLabelTimer : NSTimer!
     
-    init() {
-        
+    init(time: Double) {
+        self.time = time
     }
     
     //MARK: Timer Setup
@@ -29,9 +29,9 @@ class Timer {
     }
     
     func subtractTime() {
-        if self.gameTime > 0.1 {
-            var timeLeft = self.gameTime - 0.10
-            self.gameTime = timeLeft
+        if self.time > 0.1 {
+            var timeLeft = self.time - 0.10
+            self.time = timeLeft
         } else {
             self.stopTimer()
         }
