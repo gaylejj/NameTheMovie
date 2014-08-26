@@ -143,8 +143,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.calculateScore(timeScore)
         self.questionWasAnswered()
         self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "animateQuestionAfterAnswer", userInfo: nil, repeats: false)
-        self.countdownTime = 3.0
-        self.timerLabel.hidden = true
+//        self.timerLabel.hidden = true
 
     }
     
@@ -154,6 +153,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         }) { (Bool) -> Void in
             //start countdown timer
             if self.questionsAnswered < 5 {
+                self.countdownTime = 3.0
                 self.setupNextQuestion()
                 self.beginCountdown()
             } else {
