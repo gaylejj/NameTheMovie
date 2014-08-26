@@ -20,8 +20,6 @@ class OpeningViewController: UIViewController {
     
     @IBOutlet weak var clapboardImageView: UIImageView!
     
-    let gamekitHelper = GameKitHelper()
-    
     var timer : NSTimer!
     
     var gameCenterEnabled = false
@@ -34,25 +32,37 @@ class OpeningViewController: UIViewController {
         self.appTitleLabel.adjustsFontSizeToFitWidth = true
         self.createdByLabel.adjustsFontSizeToFitWidth = true
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "segueToGenreVC", userInfo: nil, repeats: false)
-        
         self.view.backgroundColor = UIColor(red: 255/255, green: 103/255, blue: 97/255, alpha: 1.0)
         
-        self.gamekitHelper.authenticateLocalPlayer()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showGameCenterAuthController:"), name: "present_authentication_view_controller", object: nil)
+        if GameCenterManager.sharedManager().isGameCenterAvailable == true {
+            
+        }
+
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("segueToGenreVC"), name: appDelegate.kAuthenticationViewControllerFinished, object: nil)
+        
+        
+//        self.gamekitHelper.authenticateLocalPlayer()
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showGameCenterAuthController:"), name: PresentAuthenticationViewController, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: ("segueToGenreVC"), name: AuthenticationViewControllerFinished, object: nil)
 
         // Do any additional setup after loading the view.
     }
     
-    func showGameCenterAuthController(note: NSNotification) {
-        if let gkHelper = note.object as? GameKitHelper {
-            self.presentViewController(gkHelper.authenticationViewController, animated: true, completion: { () -> Void in
-                println("Showing auth vc")
-            })
-        }
-    }
+//    func showGameCenterAuthController(note: NSNotification) {
+//        if let gkHelper = note.object as? GameKitHelper {
+//            self.presentViewController(gkHelper.authenticationViewController, animated: true, completion: { () -> Void in
+//                println("Showing auth vc")
+//            })
+//        }
+//    }
     
     func segueToGenreVC() {
+        if let player = GameCenterManager.sharedManager().localPlayerData() {
+            self.gameCenterEnabled = true
+        }
+
         self.performSegueWithIdentifier("first", sender: self)
     }
 

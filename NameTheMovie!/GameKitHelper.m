@@ -11,6 +11,8 @@
 
 NSString *const PresentAuthenticationViewController =
   @"present_authentication_view_controller";
+NSString *const AuthenticationViewControllerFinished =
+@"authentication_view_controller_finished";
 
 @interface GameKitHelper()<GKGameCenterControllerDelegate>
 @end
@@ -129,8 +131,9 @@ NSString *const PresentAuthenticationViewController =
 - (void)gameCenterViewControllerDidFinish:
   (GKGameCenterViewController *)gameCenterViewController
 {
-  [gameCenterViewController dismissViewControllerAnimated:YES
-                                               completion:nil];
+  [gameCenterViewController dismissViewControllerAnimated:YES completion:^{
+      [[NSNotificationCenter defaultCenter] postNotificationName:AuthenticationViewControllerFinished object:nil userInfo:nil];      
+  }];
 }
 
 //- (void)showLeaderboardAndAchievements:(BOOL)ShouldShowLeaderboard {

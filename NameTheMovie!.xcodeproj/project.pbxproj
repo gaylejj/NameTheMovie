@@ -19,8 +19,6 @@
 		250DA4B819A2B4AE00A50F17 /* fantasy.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AE19A2B4AE00A50F17 /* fantasy.png */; };
 		250DA4B919A2B4AE00A50F17 /* scifi.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AF19A2B4AE00A50F17 /* scifi.png */; };
 		250DA4BC19A2B79A00A50F17 /* realanimation.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4BB19A2B79A00A50F17 /* realanimation.png */; };
-		250DA4BE19A2B88800A50F17 /* PlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4BD19A2B88800A50F17 /* PlotView.xib */; };
-		250DA4C019A2B89A00A50F17 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DA4BF19A2B89A00A50F17 /* PlotView.swift */; };
 		2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D4EE19995E48008E0E61 /* AppDelegate.swift */; };
 		2557D4F619995E48008E0E61 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2557D4F519995E48008E0E61 /* Images.xcassets */; };
 		2557D51219995EC7008E0E61 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D51019995EC7008E0E61 /* Movie.swift */; };
@@ -35,16 +33,16 @@
 		2557D533199A7E9A008E0E61 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D532199A7E9A008E0E61 /* GameLogic.swift */; };
 		2557D535199A8BB1008E0E61 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D534199A8BB1008E0E61 /* Question.swift */; };
 		2557D537199ADE95008E0E61 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D536199ADE95008E0E61 /* ProfileViewController.swift */; };
-		2557D53F199AE3CA008E0E61 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2557D53E199AE3CA008E0E61 /* GameKitHelper.m */; };
 		2557D542199AE46A008E0E61 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2557D541199AE46A008E0E61 /* GameKit.framework */; };
+		2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2564AC8E19A402A200CA092B /* QuestionViewController.swift */; };
 		25C0599F199E97FA0069BDD3 /* GameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0599E199E97FA0069BDD3 /* GameCollectionViewCell.swift */; };
 		25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */; };
 		25C059A4199EAD210069BDD3 /* TMDb logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */; };
 		25C059A6199EB0CB0069BDD3 /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */; };
 		25C2926219A194DC00A5472A /* film-clapboard.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 25C2926119A194DC00A5472A /* film-clapboard.jpeg */; };
 		25C2926419A1951400A5472A /* film-clapboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C2926319A1951400A5472A /* film-clapboard.png */; };
-		25C2926819A1A01A00A5472A /* RainbowColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C2926719A1A01A00A5472A /* RainbowColors.swift */; };
-		25C2926A19A1A2FF00A5472A /* ColorsPList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25C2926919A1A2FF00A5472A /* ColorsPList.plist */; };
+		25CFE2F219A68FE300EB6B9F /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFE2F119A68FE300EB6B9F /* Timer.swift */; };
+		25CFE2F419A6A75900EB6B9F /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFE2F319A6A75900EB6B9F /* QuestionTableViewCell.swift */; };
 		25D9FF16199EB63700B74DEE /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9FF15199EB63700B74DEE /* AnswerTableViewCell.swift */; };
 		25D9FF18199EB70B00B74DEE /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9FF17199EB70B00B74DEE /* ResultsViewController.swift */; };
 		E51504EB660B40A488E68BC5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F11CAD0B542E1AE2F34B3 /* libPods.a */; };
@@ -64,8 +62,6 @@
 		250DA4AE19A2B4AE00A50F17 /* fantasy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fantasy.png; sourceTree = "<group>"; };
 		250DA4AF19A2B4AE00A50F17 /* scifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scifi.png; sourceTree = "<group>"; };
 		250DA4BB19A2B79A00A50F17 /* realanimation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = realanimation.png; sourceTree = "<group>"; };
-		250DA4BD19A2B88800A50F17 /* PlotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlotView.xib; sourceTree = "<group>"; };
-		250DA4BF19A2B89A00A50F17 /* PlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		2557D4E919995E48008E0E61 /* NameTheMovie!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NameTheMovie!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2557D4ED19995E48008E0E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2557D4EE19995E48008E0E61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,17 +81,16 @@
 		2557D534199A8BB1008E0E61 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		2557D536199ADE95008E0E61 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2557D53C199AE3CA008E0E61 /* NameTheMovie!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NameTheMovie!-Bridging-Header.h"; sourceTree = "<group>"; };
-		2557D53D199AE3CA008E0E61 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
-		2557D53E199AE3CA008E0E61 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
 		2557D541199AE46A008E0E61 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		2564AC8E19A402A200CA092B /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		25C0599E199E97FA0069BDD3 /* GameCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCollectionViewCell.swift; sourceTree = "<group>"; };
 		25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "TMDb logo.jpeg"; sourceTree = "<group>"; };
 		25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		25C2926119A194DC00A5472A /* film-clapboard.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "film-clapboard.jpeg"; sourceTree = "<group>"; };
 		25C2926319A1951400A5472A /* film-clapboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "film-clapboard.png"; sourceTree = "<group>"; };
-		25C2926719A1A01A00A5472A /* RainbowColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RainbowColors.swift; sourceTree = "<group>"; };
-		25C2926919A1A2FF00A5472A /* ColorsPList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ColorsPList.plist; sourceTree = "<group>"; };
+		25CFE2F119A68FE300EB6B9F /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		25CFE2F319A6A75900EB6B9F /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		25D9FF15199EB63700B74DEE /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
 		25D9FF17199EB70B00B74DEE /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		BC0D45BF3DB64631A4F43438 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -211,6 +206,7 @@
 				25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */,
 				2557D52419996E38008E0E61 /* GenreViewController.swift */,
 				2557D530199A7CC3008E0E61 /* GameViewController.swift */,
+				2564AC8E19A402A200CA092B /* QuestionViewController.swift */,
 				25D9FF17199EB70B00B74DEE /* ResultsViewController.swift */,
 				2557D536199ADE95008E0E61 /* ProfileViewController.swift */,
 				2557D52019995F08008E0E61 /* NetworkController.swift */,
@@ -221,10 +217,6 @@
 		2557D51D19995EE1008E0E61 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				25C2926719A1A01A00A5472A /* RainbowColors.swift */,
-				25C2926919A1A2FF00A5472A /* ColorsPList.plist */,
-				250DA4BD19A2B88800A50F17 /* PlotView.xib */,
-				250DA4BF19A2B89A00A50F17 /* PlotView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -232,8 +224,6 @@
 		2557D540199AE3CE008E0E61 /* GameKit Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2557D53D199AE3CA008E0E61 /* GameKitHelper.h */,
-				2557D53E199AE3CA008E0E61 /* GameKitHelper.m */,
 			);
 			name = "GameKit Helper";
 			sourceTree = "<group>";
@@ -258,6 +248,7 @@
 				2557D51719995ED3008E0E61 /* GenrePList.plist */,
 				2557D532199A7E9A008E0E61 /* GameLogic.swift */,
 				2557D534199A8BB1008E0E61 /* Question.swift */,
+				25CFE2F119A68FE300EB6B9F /* Timer.swift */,
 			);
 			name = "Game setup";
 			sourceTree = "<group>";
@@ -268,6 +259,7 @@
 				25C0599E199E97FA0069BDD3 /* GameCollectionViewCell.swift */,
 				25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */,
 				25D9FF15199EB63700B74DEE /* AnswerTableViewCell.swift */,
+				25CFE2F319A6A75900EB6B9F /* QuestionTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -347,7 +339,6 @@
 			files = (
 				250DA4BC19A2B79A00A50F17 /* realanimation.png in Resources */,
 				2557D4F619995E48008E0E61 /* Images.xcassets in Resources */,
-				25C2926A19A1A2FF00A5472A /* ColorsPList.plist in Resources */,
 				2557D51919995ED3008E0E61 /* GenreList.json in Resources */,
 				250DA4B319A2B4AE00A50F17 /* adventure.png in Resources */,
 				25C2926219A194DC00A5472A /* film-clapboard.jpeg in Resources */,
@@ -363,7 +354,6 @@
 				250DA4B619A2B4AE00A50F17 /* crime.png in Resources */,
 				250DA4B819A2B4AE00A50F17 /* fantasy.png in Resources */,
 				250DA4B019A2B4AE00A50F17 /* thriller.png in Resources */,
-				250DA4BE19A2B88800A50F17 /* PlotView.xib in Resources */,
 				250DA4B419A2B4AE00A50F17 /* animation.png in Resources */,
 				250DA4B119A2B4AE00A50F17 /* western.png in Resources */,
 			);
@@ -409,10 +399,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */,
 				25C0599F199E97FA0069BDD3 /* GameCollectionViewCell.swift in Sources */,
-				250DA4C019A2B89A00A50F17 /* PlotView.swift in Sources */,
-				2557D53F199AE3CA008E0E61 /* GameKitHelper.m in Sources */,
+				25CFE2F219A68FE300EB6B9F /* Timer.swift in Sources */,
 				25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */,
+				25CFE2F419A6A75900EB6B9F /* QuestionTableViewCell.swift in Sources */,
 				2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */,
 				2557D537199ADE95008E0E61 /* ProfileViewController.swift in Sources */,
 				25C059A6199EB0CB0069BDD3 /* GenreTableViewCell.swift in Sources */,
@@ -425,7 +416,6 @@
 				2557D535199A8BB1008E0E61 /* Question.swift in Sources */,
 				2557D52119995F08008E0E61 /* NetworkController.swift in Sources */,
 				2557D531199A7CC3008E0E61 /* GameViewController.swift in Sources */,
-				25C2926819A1A01A00A5472A /* RainbowColors.swift in Sources */,
 				2557D51F19995EFA008E0E61 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

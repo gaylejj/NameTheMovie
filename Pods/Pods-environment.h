@@ -6,15 +6,15 @@
 // project.
 
 
-// TTCounterLabel
-#define COCOAPODS_POD_AVAILABLE_TTCounterLabel
-#define COCOAPODS_VERSION_MAJOR_TTCounterLabel 1
-#define COCOAPODS_VERSION_MINOR_TTCounterLabel 0
-#define COCOAPODS_VERSION_PATCH_TTCounterLabel 5
+// GameCenterManager
+#define COCOAPODS_POD_AVAILABLE_GameCenterManager
+#define COCOAPODS_VERSION_MAJOR_GameCenterManager 5
+#define COCOAPODS_VERSION_MINOR_GameCenterManager 3
+#define COCOAPODS_VERSION_PATCH_GameCenterManager 0
 
-// TTTAttributedLabel
-#define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
-#define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
-#define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 10
-#define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 1
+// Reachability
+#define COCOAPODS_POD_AVAILABLE_Reachability
+#define COCOAPODS_VERSION_MAJOR_Reachability 3
+#define COCOAPODS_VERSION_MINOR_Reachability 1
+#define COCOAPODS_VERSION_PATCH_Reachability 1
 

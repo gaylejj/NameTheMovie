@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GameLogicDelegate {
+class GameViewController: UIViewController, GameLogicDelegate, QuestionViewControllerDelegate, GameCenterManagerDelegate {
     
     var movies : [Movie]?
         
@@ -32,33 +32,27 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var score = 0.0
     
-    var gameTime = 13.0
+    var countdownTime = 3.0
     
     let nf = NSNumberFormatter()
     let scoreNF = NSNumberFormatter()
         
     var questionTimer : NSTimer!
     var questionTimerTwo : NSTimer!
-    var timerLabelTimer : NSTimer!
     var beginningTimer : NSTimer!
-    var showAnswersTimer : NSTimer!
-    var scoreTimer : NSTimer!
+    var countdownTimer : NSTimer!
+    var timerLabelTimer : NSTimer!
     
     var questionHasBeenAnswered = false
     var timerIsRunning = false
-    
-    @IBOutlet weak var overviewTextView: UITextView!
-    
+        
     @IBOutlet weak var timerLabel: UILabel!
     
-    @IBOutlet weak var collectionView : UICollectionView!
-        
-    var alertView = UIAlertController(title: "Score!", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+    var questionVCOne = QuestionViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 88/255, green: 167/255, blue: 210/255, alpha: 1.0)
-        self.overviewTextView.backgroundColor = UIColor(red: 88/255, green: 167/255, blue: 210/255, alpha: 1.0)
         // Do any additional setup after loading the view.
     }
     
@@ -69,13 +63,47 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.gameLogic.originalMovies = self.movies!
         self.gameLogic.networkController = self.networkController
         nf.numberStyle = NSNumberFormatterStyle.DecimalStyle
-        nf.maximumFractionDigits = 2
-        nf.minimumFractionDigits = 1
+        nf.maximumFractionDigits = 0
         
         scoreNF.maximumFractionDigits = 0
         
         self.createGame()
 
+        self.beginningTimer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "beginCountdown", userInfo: nil, repeats: false)
+        self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "beginGame", userInfo: nil, repeats: false)
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.setupQuestionVC()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.questionVCOne.view.removeFromSuperview()
+        
+        self.questionVCOne.removeFromParentViewController()
+    }
+    
+    func beginGame() {
+        self.displayQuestion(0)
+    }
+    
+    func beginCountdown() {
+        self.timerLabel.hidden = false
+        self.startTimer()
+    }
+    
+    func setupQuestionVC() {
+        self.questionVCOne = self.storyboard.instantiateViewControllerWithIdentifier("QuestionVC") as QuestionViewController
+
+        self.questionVCOne.view.hidden = true
+        
+        self.view.addSubview(questionVCOne.view)
+        
+        self.addChildViewController(questionVCOne)
+        self.questionVCOne.delegate = self
     }
     
     //MARK: Game Functions
@@ -92,44 +120,51 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         questions.append(question)
         if gameStarted == false {
             self.gameStarted = true
-            self.displayQuestion(self.questionsAnswered)
         }
     }
     
     func displayQuestion(questionsAnswered: Int) {
-        self.timerLabel.font = UIFont.systemFontOfSize(18.0)
-        self.collectionView.hidden = true
         if self.questionsAnswered < 5 {
-            self.gameTime = 13.0
             let question = questions[self.questionsAnswered]
             self.answer = question.movie
             
-            println("Display question \(self.gameStarted)")
-            var overview = "\(question.movie!.overview!)"
-            let newOverview = overview.stringByReplacingOccurrencesOfString(question.movie!.title!, withString: "________", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+            questionVCOne.view.frame = CGRect(x: 0-self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             
-            self.overviewTextView.text = newOverview
-            self.overviewTextView.scrollEnabled = true
+            self.questionVCOne.view.hidden = true
+            self.timerLabel.hidden = true
             
-            self.enableUserInteraction()
-            self.questionHasBeenAnswered = false
-            
-            println("Question displayed")
-            self.timerLabel.text = "\(self.gameTime)"
-            self.collectionView.reloadData()
-            if self.questionHasBeenAnswered == false {
-                self.beginningTimer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "startTimer", userInfo: nil, repeats: false)
-                self.showAnswersTimer = NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: "displayAnswers", userInfo: nil, repeats: false)
-            }
-            
-        } else {
-            self.displayScore()
+            self.questionVCOne.displayQuestionInVC(question)
         }
+    }
+    
+    func questionAnswered(correctAnswer: String, playerAnswer: String, timeScore : Double) {
+        self.correctAnswers.append(correctAnswer)
+        self.playerAnswers.append(playerAnswer)
+        self.calculateScore(timeScore)
+        self.questionWasAnswered()
+        self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "animateQuestionAfterAnswer", userInfo: nil, repeats: false)
+//        self.timerLabel.hidden = true
 
     }
     
-    func displayAnswers() {
-        self.collectionView.hidden = false
+    func animateQuestionAfterAnswer() {
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.questionVCOne.view.frame = CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        }) { (Bool) -> Void in
+            //start countdown timer
+            if self.questionsAnswered < 5 {
+                self.countdownTime = 3.0
+                self.setupNextQuestion()
+                self.beginCountdown()
+            } else {
+                
+                self.reportScore()
+            }
+        }
+    }
+    
+    func setupNextQuestion() {
+        self.questionTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "displayQuestion:", userInfo: nil, repeats: false)
     }
     
     func questionWasAnswered() {
@@ -140,10 +175,36 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    func displayScore() {
-        self.disableUserInteraction()
-        
-        self.performSegueWithIdentifier("Results", sender: self)
+    //MARK: GameCenter Score
+
+    func reportScore() {
+        GameCenterManager.sharedManager().delegate = self
+        GameCenterManager.sharedManager().saveAndReportScore(Int32(self.score), leaderboard: "com.example.appName.scoreBoardName", sortOrder: GameCenterSortOrderHighToLow)
+
+    }
+    
+    func gameCenterManager(manager: GameCenterManager!, authenticateUser gameCenterLoginController: UIViewController!) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.gameCenterManager(manager, authenticateUser: gameCenterLoginController)
+    }
+
+    func gameCenterManager(manager: GameCenterManager!, reportedScore score: GKScore!, withError error: NSError!) {
+        var error : NSError?
+        if error != nil {
+            println(error?.localizedDescription)
+        } else {
+            self.performSegueWithIdentifier("Results", sender: self)
+        }
+    }
+    
+    func calculateScore(gameTimeRemaining: Double) {
+        if gameTimeRemaining > 10.0 {
+            let maxScoreTimeValue = 1000.0
+            self.score = (self.score + maxScoreTimeValue)
+        } else {
+            var scoreTimeValue = Double(gameTimeRemaining) * 100
+            self.score = (self.score + scoreTimeValue)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
@@ -164,173 +225,25 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.timerIsRunning = true
         timerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(0.10, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
     }
-    
+
     func stopTimer() {
         self.timerIsRunning = false
         timerLabelTimer.invalidate()
     }
     
     func subtractTime() {
-        if self.gameTime < 5.0 {
-            self.timerLabel.font = UIFont.systemFontOfSize(48.0)
-        }
-        if self.gameTime > 0.1 {
-            var timeLeft = self.gameTime - 0.10
-            self.gameTime = timeLeft
-            self.timerLabel.text = "\(self.nf.stringFromNumber(self.gameTime))"
+        if self.countdownTime > 0.1 {
+            var timeLeft = self.countdownTime - 0.10
+            self.countdownTime = timeLeft
+            self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
         } else {
             self.stopTimer()
-            self.showCorrectAnswer()
         }
-    }
-    
-    func calculateScore() {
-        if self.gameTime > 10.0 {
-            let maxScoreTimeValue = 1000.0
-            self.score = (self.score + maxScoreTimeValue)
-        } else {
-            var scoreTimeValue = Double(self.gameTime) * 100
-            self.score = (self.score + scoreTimeValue)
-        }
-    }
-    
-    func showCorrectAnswer() {
-
-        var indexPaths = collectionView.indexPathsForVisibleItems()
-        
-        for indexPath in indexPaths {
-            self.disableUserInteraction()
-            
-            let cell = collectionView.cellForItemAtIndexPath(indexPath as NSIndexPath) as GameCollectionViewCell
-            
-            if cell.collectionAnswerLabel.text == self.answer?.title {
-                UIView.animateWithDuration(2.0, animations: { () -> Void in
-                    cell.collectionAnswerLabel.textColor = UIColor.greenColor()
-                })
-                
-                self.correctAnswers.append(cell.collectionAnswerLabel.text)
-                
-                if questionHasBeenAnswered == false {
-                    self.playerAnswers.append("___")
-                    self.questionTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "questionWasAnswered", userInfo: nil, repeats: false)
-                    self.questionTimerTwo = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "displayQuestion:", userInfo: nil, repeats: false)
-                }
-            }
-        }
-    }
-    
-    //MARK: UICollectionView Data Source
-    
-    func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
-        if !self.questions.isEmpty {
-            let question = self.questions[self.questionsAnswered]
-            return question.answers.count
-            } else {
-                return 0
-            }
-    }
-    
-    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("answer", forIndexPath: indexPath) as GameCollectionViewCell
-        
-        let question = self.questions[self.questionsAnswered]
-        self.resetCollectionViewColor(cell)
-        
-        cell.collectionAnswerLabel.text = question.answers[indexPath.row].title
-        if cell != nil {
-            cell.collectionAnswerLabel.numberOfLines = 0
-            cell.collectionAnswerLabel.adjustsFontSizeToFitWidth = true
-        }
-        
-        return cell
-    }
-    
-    //MARK: UICollectionView Delegate
-    
-    func collectionView(collectionView: UICollectionView!, didSelectItemAtIndexPath indexPath: NSIndexPath!) {
-        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-        self.questionHasBeenAnswered = true
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as GameCollectionViewCell
-
-        self.playerAnswers.append(cell.collectionAnswerLabel.text)
-        
-        if self.timerIsRunning == true {
-            self.stopTimer()
-        }
-        if questionHasBeenAnswered == true {
-            if cell.collectionAnswerLabel.text == self.answer?.title {
-                UIView.animateWithDuration(2.0, animations: { () -> Void in
-                    self.correctAnswers.append(cell.collectionAnswerLabel.text)
-                    cell.collectionAnswerLabel.textColor = UIColor.greenColor()
-                    self.disableUserInteraction()
-                    self.calculateScore()
-                    self.questionTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "questionWasAnswered", userInfo: nil, repeats: false)
-                    self.questionTimerTwo = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "displayQuestion:", userInfo: nil, repeats: false)
-                })
-            } else {
-                UIView.animateWithDuration(2.0, animations: { () -> Void in
-                    cell.collectionAnswerLabel.textColor = UIColor(red: 225/255, green: 1/255, blue: 20/255, alpha: 1.0)
-                    self.disableUserInteraction()
-                    self.showCorrectAnswer()
-                    self.questionTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "questionWasAnswered", userInfo: nil, repeats: false)
-                    self.questionTimerTwo = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "displayQuestion:", userInfo: nil, repeats: false)
-                })
-            }
-        }
-    }
-
-    //MARK: UIInteractions
-    
-    func resetCollectionViewColor(cell: GameCollectionViewCell!) {
-        cell.collectionAnswerLabel.textColor = UIColor.blackColor()
-    }
-    
-    func disableUserInteraction() {
-        self.collectionView.userInteractionEnabled = false
-    }
-    
-    func enableUserInteraction() {
-        self.collectionView.userInteractionEnabled = true
-    }
-    
-    func resetViewController() {
-        self.overviewTextView.text = ""
-        self.timerLabel.hidden = true
-        self.collectionView.hidden = true
-    }
-    
-    //MARK: GameCenter Score
-    
-    func reportScoreToGameCenter() {
-        let gamekitHelper = GameKitHelper()
-        var gamecenterScore = GKScore(leaderboardIdentifier: gamekitHelper.leaderboardIdentifier)
-        println("Identifier \(gamekitHelper.leaderboardIdentifier)")
-        gamecenterScore.value = Int64(self.score)
-        
-        GKScore.reportScores([gamecenterScore], withCompletionHandler: { (error: NSError!) -> Void in
-            if error != nil {
-                println(error.localizedDescription)
-            }
-        })
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    - (void) reportScore: (int64_t) score forLeaderboardID: (NSString*) identifier
-    {
-    GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier: identifier];
-    scoreReporter.value = score;
-    scoreReporter.context = 0;
-    
-    NSArray *scores = @[scoreReporter];
-    [GKLeaderboard reportScores:scores withCompletionHandler:^(NSError *error) {
-    //Do something interesting here.
-    }];
-    }
-    */
 
 }

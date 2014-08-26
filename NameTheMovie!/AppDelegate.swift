@@ -9,13 +9,33 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GameCenterManagerDelegate {
                             
     var window: UIWindow?
+    
+    let kPresentAuthenticationViewController = "present_authentication_view_controller"
+    let kAuthenticationViewControllerFinished = "authentication_view_controller_finished"
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
-        // Override point for customization after application launch.
+
+        // Setup Game Center
+        GameCenterManager.sharedManager().delegate = self
+        GameCenterManager.sharedManager().setupManager()
         return true
+    }
+    
+    func gameCenterManager(manager: GameCenterManager!, authenticateUser gameCenterLoginController: UIViewController!) {
+        
+        self.window?.rootViewController.presentViewController(gameCenterLoginController, animated: true, completion: nil)
+
+        NSNotificationCenter.defaultCenter().postNotificationName(self.kPresentAuthenticationViewController, object: nil)
+    }
+    
+    func gameCenterManager(manager: GameCenterManager!, availabilityChanged availabilityInformation: [NSObject : AnyObject]!) {
+        
+        if manager.isGameCenterAvailable {
+            NSNotificationCenter.defaultCenter().postNotificationName(self.kAuthenticationViewControllerFinished, object: nil, userInfo: availabilityInformation)            
+        }
     }
 
     func applicationWillResignActive(application: UIApplication!) {

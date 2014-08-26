@@ -64,7 +64,7 @@ class NetworkController: NSObject {
         
         let finalMovieID = newMovieID.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        if finalMovieID != nil {
+        if !finalMovieID.isEmpty {
             var url = NSURL(string: "http://api.themoviedb.org/3/movie/\(finalMovieID)?api_key=\(apiKey.apiKey)")
             println(url)
             
@@ -75,7 +75,7 @@ class NetworkController: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             
             var task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
-                if (error) {
+                if (error != nil) {
                     //Handle error
                     println(error.localizedDescription)
                 } else {
@@ -112,7 +112,7 @@ class NetworkController: NSObject {
         
         var task = session.dataTaskWithRequest(request) { (data: NSData!, response: NSURLResponse!, error: NSError!) in
             
-            if (error) {
+            if (error != nil) {
                 // Handle error...
                 println(error.localizedDescription)
             } else {
@@ -162,7 +162,7 @@ class NetworkController: NSObject {
             
             var task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
                 
-                if (error) {
+                if (error != nil) {
                     // Handle error...
                     println(error.localizedDescription)
                 } else {
