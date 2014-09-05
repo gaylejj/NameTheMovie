@@ -115,7 +115,6 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.timeScore = 0
             }
         }
-        
         self.delegate?.questionAnswered(self.answer!.title!, playerAnswer: (self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell).shownQuestionLabel.text, timeScore: self.timeScore)
     }
     

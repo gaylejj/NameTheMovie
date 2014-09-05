@@ -14,7 +14,6 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var genres : [Genre] = Genre.genreFromPlist()
     var movies : [Movie]?
-    var rainbowColors = RainbowColors.colorsFromPlist()
     
     let networkController = NetworkController()
     
@@ -104,8 +103,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func segueToProfileController() {
-//        self.performSegueWithIdentifier("Profile", sender: self)
-//        self.gamekitHelper.showGKGameCenterViewController(self)
+
         GameCenterManager.sharedManager().presentLeaderboardsOnViewController(self)
     }
     

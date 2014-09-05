@@ -41,22 +41,8 @@ class OpeningViewController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("segueToGenreVC"), name: appDelegate.kAuthenticationViewControllerFinished, object: nil)
-        
-        
-//        self.gamekitHelper.authenticateLocalPlayer()
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showGameCenterAuthController:"), name: PresentAuthenticationViewController, object: nil)
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: ("segueToGenreVC"), name: AuthenticationViewControllerFinished, object: nil)
-
-        // Do any additional setup after loading the view.
-    }
     
-//    func showGameCenterAuthController(note: NSNotification) {
-//        if let gkHelper = note.object as? GameKitHelper {
-//            self.presentViewController(gkHelper.authenticationViewController, animated: true, completion: { () -> Void in
-//                println("Showing auth vc")
-//            })
-//        }
-//    }
+    }
     
     func segueToGenreVC() {
         if let player = GameCenterManager.sharedManager().localPlayerData() {

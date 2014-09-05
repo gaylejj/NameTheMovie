@@ -91,7 +91,6 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     }
     
     func beginCountdown() {
-        self.timerLabel.hidden = false
         self.startTimer()
     }
     
@@ -143,17 +142,18 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.calculateScore(timeScore)
         self.questionWasAnswered()
         self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "animateQuestionAfterAnswer", userInfo: nil, repeats: false)
-//        self.timerLabel.hidden = true
 
     }
     
     func animateQuestionAfterAnswer() {
+
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.questionVCOne.view.frame = CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         }) { (Bool) -> Void in
             //start countdown timer
             if self.questionsAnswered < 5 {
                 self.countdownTime = 3.0
+                self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
                 self.setupNextQuestion()
                 self.beginCountdown()
             } else {
@@ -222,6 +222,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     //MARK: Timer Setup
     func startTimer() {
+        self.timerLabel.hidden = false
         self.timerIsRunning = true
         timerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(0.10, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
     }
