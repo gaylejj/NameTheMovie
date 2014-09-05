@@ -37,7 +37,7 @@ class GameLogic: NSObject {
         self.movies!.removeAtIndex(randomIndex)
         self.originalMovies!.removeAtIndex(randomIndex)
         
-        networkController.fetchMovieForClick(movieOne, callback: { (movie, errorDescription) -> Void in
+        networkController.fetchMovieForGame(movieOne, callback: { (movie, errorDescription) -> Void in
             if errorDescription != nil {
                 println("Error occurred")
             } else {

@@ -71,6 +71,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.overviewTextView.text = newOverview
 
         self.timerLabel.text = "\(self.gameTime)"
+        self.timerLabel.font = UIFont(name: "Avenir", size: 18.0)
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         }) { (Bool) -> Void in
@@ -93,6 +94,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.resetTableView(cell)
         cell.shownQuestionLabel.text = self.question!.answers[indexPath.row].title
+        cell.shownQuestionLabel.adjustsFontSizeToFitWidth = true
         cell.backgroundColor = UIColor.clearColor()
         
         return cell
@@ -175,7 +177,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func subtractTime() {
         if self.gameTime < 5.0 {
-            self.timerLabel.font = UIFont.systemFontOfSize(48.0)
+            self.timerLabel.font = UIFont(name: "Avenir", size: 48.0)
         }
         if self.gameTime > 0.1 {
             var timeLeft = self.gameTime - 0.10

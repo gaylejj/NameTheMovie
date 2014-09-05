@@ -53,7 +53,7 @@ class NetworkController: NSObject {
         return movie
     }
 
-    func fetchMovieForClick(movie: Movie!, callback: (movie: Movie!, errorDescription: String?) -> Void) {
+    func fetchMovieForGame(movie: Movie!, callback: (movie: Movie!, errorDescription: String?) -> Void) {
         
         println("Click movie is \(movie!.id)")
         println("Click movie title is \(movie.title)")
@@ -84,6 +84,8 @@ class NetworkController: NSObject {
                         case 200:
                             println("Everything Ok")
                             callback(movie: self.parseResponseForMovieID(data), errorDescription: nil)
+                        case 401:
+                            println("Authentication Failed: You do not have permissions to access this service")
                         case 404:
                             println("URL Not found")
                         case 503:
@@ -100,45 +102,7 @@ class NetworkController: NSObject {
         }
         
     }
-    
-    func fetchMovie(searchTerm: String, callback: (movies: [Movie]?, errorDescription: String?) -> Void) {
-        var url = NSURL(string: "http://api.themoviedb.org/3/search/movie?api_key=\(apiKey.apiKey)&include_adult=false&query=\(searchTerm)")
         
-        var request = NSMutableURLRequest(URL: url)
-        
-        request.HTTPMethod = "GET"
-        
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        var task = session.dataTaskWithRequest(request) { (data: NSData!, response: NSURLResponse!, error: NSError!) in
-            
-            if (error != nil) {
-                // Handle error...
-                println(error.localizedDescription)
-            } else {
-                if let httpResponse = response as? NSHTTPURLResponse {
-                    switch httpResponse.statusCode {
-                    case 200:
-                        println("Everything Ok")
-                        callback(movies: self.parseResponse(data), errorDescription: nil)
-                    case 401:
-                        println("Authentication Failed: You do not have permissions to access this service")
-                    case 404:
-                        println("URL Not found")
-                    default:
-                        println("Something happened")
-                    }
-                }
-            }
-            //
-            //            println(error)
-            //            println(response)
-            //            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-        }
-        
-        task.resume()
-    }
-    
     func discoverMovie(genre: Genre, callback: (movies: [Movie]?, errorDescription: String?) -> Void) {
         
         println("Discover Movie Call: \(genre.name)")
