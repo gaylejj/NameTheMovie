@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameCenterManagerDelegate
     
     func gameCenterManager(manager: GameCenterManager!, authenticateUser gameCenterLoginController: UIViewController!) {
         
-        self.window?.rootViewController.presentViewController(gameCenterLoginController, animated: true, completion: nil)
+        self.window?.rootViewController!.presentViewController(gameCenterLoginController, animated: true, completion: nil)
 
         NSNotificationCenter.defaultCenter().postNotificationName(self.kPresentAuthenticationViewController, object: nil)
     }

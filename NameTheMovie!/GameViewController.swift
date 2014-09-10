@@ -95,7 +95,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     }
     
     func setupQuestionVC() {
-        self.questionVCOne = self.storyboard.instantiateViewControllerWithIdentifier("QuestionVC") as QuestionViewController
+        self.questionVCOne = self.storyboard!.instantiateViewControllerWithIdentifier("QuestionVC") as QuestionViewController
 
         self.questionVCOne.view.hidden = true
         
@@ -207,7 +207,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "Results" {
             let resultsVC = segue.destinationViewController as ResultsViewController
             

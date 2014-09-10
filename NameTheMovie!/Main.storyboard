@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CL9-BA-s1p">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CL9-BA-s1p">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Profile View Controller-->
@@ -189,8 +190,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="As5-Nh-8MT">
-                                <rect key="frame" x="0.0" y="321" width="600" height="275"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="As5-Nh-8MT">
+                                <rect key="frame" x="0.0" y="321" width="600" height="279"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="questionCell" id="7Va-kz-Jrd" customClass="QuestionTableViewCell" customModule="NameTheMovie_" customModuleProvider="target">
@@ -227,7 +228,7 @@
                         <constraints>
                             <constraint firstItem="As5-Nh-8MT" firstAttribute="leading" secondItem="2dN-Xv-wTV" secondAttribute="leading" id="7Wp-ku-gqw"/>
                             <constraint firstItem="fZO-js-a7E" firstAttribute="leading" secondItem="2dN-Xv-wTV" secondAttribute="leading" constant="50" id="CGc-mJ-cmS"/>
-                            <constraint firstItem="l39-KL-Icv" firstAttribute="top" secondItem="As5-Nh-8MT" secondAttribute="bottom" constant="4" id="HKl-VB-njU"/>
+                            <constraint firstItem="l39-KL-Icv" firstAttribute="top" secondItem="As5-Nh-8MT" secondAttribute="bottom" id="HKl-VB-njU"/>
                             <constraint firstAttribute="centerX" secondItem="fZO-js-a7E" secondAttribute="centerX" id="OOz-JL-Tse"/>
                             <constraint firstItem="KNe-JK-d3a" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="15" id="XuE-T6-MQH"/>
                             <constraint firstItem="fZO-js-a7E" firstAttribute="top" secondItem="kEu-EW-pvu" secondAttribute="bottom" constant="8" id="YuL-xX-qYl"/>
@@ -406,6 +407,9 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This product uses the TMDb API but is not endorsed or certified by TMDb." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfc-7t-ax9">
                                 <rect key="frame" x="94" y="559" width="498" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ZoE-W5-WBQ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -427,11 +431,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film-clapboard.png" translatesAutoresizingMaskIntoConstraints="NO" id="63x-RD-cc6">
-                                <rect key="frame" x="150" y="158" width="300" height="300"/>
+                                <rect key="frame" x="145.5" y="200" width="309" height="309"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="5T8-fg-IBw"/>
                                     <constraint firstAttribute="height" constant="300" id="Qg3-qS-hW2"/>
+                                    <constraint firstAttribute="width" secondItem="63x-RD-cc6" secondAttribute="height" multiplier="1:1" id="xYO-Tc-vIf"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5T8-fg-IBw"/>
+                                        <exclude reference="Qg3-qS-hW2"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -440,11 +451,13 @@
                             <constraint firstAttribute="centerX" secondItem="7nk-Ww-Dan" secondAttribute="centerX" constant="1.5" id="Jxn-fp-Txm"/>
                             <constraint firstItem="kfc-7t-ax9" firstAttribute="top" relation="lessThanOrEqual" secondItem="OnX-g4-m1T" secondAttribute="bottom" constant="539" id="QlA-UU-N2Y"/>
                             <constraint firstAttribute="centerY" secondItem="7nk-Ww-Dan" secondAttribute="centerY" constant="178" id="Sh2-q2-YY9"/>
-                            <constraint firstItem="63x-RD-cc6" firstAttribute="top" secondItem="7nk-Ww-Dan" secondAttribute="bottom" constant="8" id="Y7u-RQ-Zig"/>
+                            <constraint firstItem="63x-RD-cc6" firstAttribute="top" secondItem="7nk-Ww-Dan" secondAttribute="bottom" constant="50" id="Y7u-RQ-Zig"/>
                             <constraint firstItem="OSy-wg-VFD" firstAttribute="top" secondItem="OnX-g4-m1T" secondAttribute="bottom" id="bbc-Pr-OC6"/>
                             <constraint firstItem="kfc-7t-ax9" firstAttribute="leading" secondItem="8gM-6K-WVy" secondAttribute="trailing" constant="8" id="eBu-jy-Ur1"/>
+                            <constraint firstItem="kfc-7t-ax9" firstAttribute="top" secondItem="63x-RD-cc6" secondAttribute="bottom" constant="50" id="eNZ-5h-U0f"/>
                             <constraint firstItem="OSy-wg-VFD" firstAttribute="leading" secondItem="Zs3-lF-pMa" secondAttribute="leading" constant="16" id="f5O-fZ-0sf"/>
                             <constraint firstAttribute="trailing" secondItem="kfc-7t-ax9" secondAttribute="trailing" constant="8" id="g9l-Kw-awr"/>
+                            <constraint firstItem="63x-RD-cc6" firstAttribute="top" secondItem="7nk-Ww-Dan" secondAttribute="bottom" constant="8" id="ggf-db-W7a"/>
                             <constraint firstItem="8gM-6K-WVy" firstAttribute="top" relation="lessThanOrEqual" secondItem="OSy-wg-VFD" secondAttribute="bottom" constant="445" id="gmL-Ji-2Gc"/>
                             <constraint firstAttribute="trailing" secondItem="OSy-wg-VFD" secondAttribute="trailing" constant="16" id="jko-HH-cC9"/>
                             <constraint firstItem="VK8-lq-yWT" firstAttribute="top" secondItem="kfc-7t-ax9" secondAttribute="bottom" constant="20" id="mk4-Pf-2dU"/>
@@ -452,6 +465,12 @@
                             <constraint firstItem="VK8-lq-yWT" firstAttribute="top" secondItem="8gM-6K-WVy" secondAttribute="bottom" constant="20" id="wUE-6Y-qIv"/>
                             <constraint firstItem="8gM-6K-WVy" firstAttribute="leading" secondItem="Zs3-lF-pMa" secondAttribute="leading" constant="8" id="wpQ-Zt-5af"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ggf-db-W7a"/>
+                                <exclude reference="QlA-UU-N2Y"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="appTitleLabel" destination="OSy-wg-VFD" id="shF-QE-KRD"/>

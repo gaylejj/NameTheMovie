@@ -61,11 +61,11 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     //MARK: TableView Methods
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.genres.count
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as GenreTableViewCell
         
         let genre = self.genres[indexPath.row]
@@ -82,7 +82,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.tableView.userInteractionEnabled = false
         
-        let gameVC = self.storyboard.instantiateViewControllerWithIdentifier("Game") as GameViewController
+        let gameVC = self.storyboard!.instantiateViewControllerWithIdentifier("Game") as GameViewController
         
         let genre = genres[indexPath.row]
         gameVC.genre = genre
@@ -94,7 +94,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
                 gameVC.movies = self.movies
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     if (self.navigationController != nil) {
-                        self.navigationController.pushViewController(gameVC, animated: true)
+                        self.navigationController!.pushViewController(gameVC, animated: true)
                     }
                 })
             })

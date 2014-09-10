@@ -81,7 +81,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if question == nil {
             return 0
         } else {
@@ -89,7 +89,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("questionCell", forIndexPath: indexPath) as QuestionTableViewCell
         
         self.resetTableView(cell)
@@ -117,14 +117,14 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.timeScore = 0
             }
         }
-        self.delegate?.questionAnswered(self.answer!.title!, playerAnswer: (self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell).shownQuestionLabel.text, timeScore: self.timeScore)
+        self.delegate?.questionAnswered(self.answer!.title!, playerAnswer: (self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell).shownQuestionLabel.text!, timeScore: self.timeScore)
     }
     
     func showCorrectAnswer() {
         
-        var indexPaths = tableView.indexPathsForVisibleRows()
+        var indexPaths : [NSIndexPath]? = tableView.indexPathsForVisibleRows() as [NSIndexPath]?
         
-        for indexPath in indexPaths {
+        for indexPath in indexPaths! {
             self.tableView.userInteractionEnabled = false
             
             let cell = tableView.cellForRowAtIndexPath(indexPath as NSIndexPath) as QuestionTableViewCell
