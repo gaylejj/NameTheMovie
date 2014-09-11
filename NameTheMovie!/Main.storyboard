@@ -415,51 +415,65 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name The Movie!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSy-wg-VFD">
-                                <rect key="frame" x="16" y="20" width="568" height="67"/>
+                                <rect key="frame" x="16" y="28" width="568" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xK2-Sg-uCd"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="56"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created By Jeff Gayle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nk-Ww-Dan">
-                                <rect key="frame" x="170" y="94" width="257" height="56"/>
+                                <rect key="frame" x="171" y="105" width="257" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="257" id="MMk-G6-3cY"/>
+                                    <constraint firstAttribute="height" constant="34" id="pa8-T4-6nl"/>
                                     <constraint firstAttribute="height" constant="56" id="sls-nv-7Pj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="sls-nv-7Pj"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film-clapboard.png" translatesAutoresizingMaskIntoConstraints="NO" id="63x-RD-cc6">
-                                <rect key="frame" x="145.5" y="200" width="309" height="309"/>
+                                <rect key="frame" x="157" y="199" width="285" height="285"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="5T8-fg-IBw"/>
                                     <constraint firstAttribute="height" constant="300" id="Qg3-qS-hW2"/>
+                                    <constraint firstAttribute="height" constant="100" id="SqW-dv-OFH"/>
                                     <constraint firstAttribute="width" secondItem="63x-RD-cc6" secondAttribute="height" multiplier="1:1" id="xYO-Tc-vIf"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="5T8-fg-IBw"/>
                                         <exclude reference="Qg3-qS-hW2"/>
+                                        <exclude reference="SqW-dv-OFH"/>
                                     </mask>
                                 </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7nk-Ww-Dan" firstAttribute="top" secondItem="OSy-wg-VFD" secondAttribute="bottom" constant="27" id="FNb-q1-Ere"/>
                             <constraint firstAttribute="centerX" secondItem="OSy-wg-VFD" secondAttribute="centerX" id="JVP-C2-d7N"/>
-                            <constraint firstAttribute="centerX" secondItem="7nk-Ww-Dan" secondAttribute="centerX" constant="1.5" id="Jxn-fp-Txm"/>
+                            <constraint firstAttribute="centerX" secondItem="7nk-Ww-Dan" secondAttribute="centerX" id="Jxn-fp-Txm"/>
                             <constraint firstItem="kfc-7t-ax9" firstAttribute="top" relation="lessThanOrEqual" secondItem="OnX-g4-m1T" secondAttribute="bottom" constant="539" id="QlA-UU-N2Y"/>
                             <constraint firstAttribute="centerY" secondItem="7nk-Ww-Dan" secondAttribute="centerY" constant="178" id="Sh2-q2-YY9"/>
-                            <constraint firstItem="63x-RD-cc6" firstAttribute="top" secondItem="7nk-Ww-Dan" secondAttribute="bottom" constant="50" id="Y7u-RQ-Zig"/>
-                            <constraint firstItem="OSy-wg-VFD" firstAttribute="top" secondItem="OnX-g4-m1T" secondAttribute="bottom" id="bbc-Pr-OC6"/>
+                            <constraint firstItem="63x-RD-cc6" firstAttribute="top" secondItem="7nk-Ww-Dan" secondAttribute="bottom" constant="60" id="Y7u-RQ-Zig"/>
+                            <constraint firstItem="OSy-wg-VFD" firstAttribute="top" secondItem="OnX-g4-m1T" secondAttribute="bottom" constant="8" id="bbc-Pr-OC6"/>
                             <constraint firstItem="kfc-7t-ax9" firstAttribute="leading" secondItem="8gM-6K-WVy" secondAttribute="trailing" constant="8" id="eBu-jy-Ur1"/>
-                            <constraint firstItem="kfc-7t-ax9" firstAttribute="top" secondItem="63x-RD-cc6" secondAttribute="bottom" constant="50" id="eNZ-5h-U0f"/>
+                            <constraint firstItem="kfc-7t-ax9" firstAttribute="top" secondItem="63x-RD-cc6" secondAttribute="bottom" constant="75" id="eNZ-5h-U0f"/>
+                            <constraint firstItem="7nk-Ww-Dan" firstAttribute="top" secondItem="OSy-wg-VFD" secondAttribute="bottom" constant="30" id="eg2-vi-sI0"/>
                             <constraint firstItem="OSy-wg-VFD" firstAttribute="leading" secondItem="Zs3-lF-pMa" secondAttribute="leading" constant="16" id="f5O-fZ-0sf"/>
                             <constraint firstAttribute="trailing" secondItem="kfc-7t-ax9" secondAttribute="trailing" constant="8" id="g9l-Kw-awr"/>
                             <constraint firstItem="63x-RD-cc6" firstAttribute="top" secondItem="7nk-Ww-Dan" secondAttribute="bottom" constant="8" id="ggf-db-W7a"/>
                             <constraint firstItem="8gM-6K-WVy" firstAttribute="top" relation="lessThanOrEqual" secondItem="OSy-wg-VFD" secondAttribute="bottom" constant="445" id="gmL-Ji-2Gc"/>
                             <constraint firstAttribute="trailing" secondItem="OSy-wg-VFD" secondAttribute="trailing" constant="16" id="jko-HH-cC9"/>
+                            <constraint firstItem="63x-RD-cc6" firstAttribute="top" secondItem="7nk-Ww-Dan" secondAttribute="bottom" constant="60" id="mQq-dr-k3Q"/>
                             <constraint firstItem="VK8-lq-yWT" firstAttribute="top" secondItem="kfc-7t-ax9" secondAttribute="bottom" constant="20" id="mk4-Pf-2dU"/>
                             <constraint firstAttribute="centerX" secondItem="63x-RD-cc6" secondAttribute="centerX" id="oaZ-vI-5qu"/>
                             <constraint firstItem="VK8-lq-yWT" firstAttribute="top" secondItem="8gM-6K-WVy" secondAttribute="bottom" constant="20" id="wUE-6Y-qIv"/>
@@ -467,7 +481,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Sh2-q2-YY9"/>
+                                <exclude reference="eg2-vi-sI0"/>
+                                <exclude reference="Y7u-RQ-Zig"/>
                                 <exclude reference="ggf-db-W7a"/>
+                                <exclude reference="gmL-Ji-2Gc"/>
                                 <exclude reference="QlA-UU-N2Y"/>
                             </mask>
                         </variation>

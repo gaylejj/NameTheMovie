@@ -32,6 +32,8 @@ class OpeningViewController: UIViewController {
         self.appTitleLabel.adjustsFontSizeToFitWidth = true
         self.createdByLabel.adjustsFontSizeToFitWidth = true
         
+        self.clapboardImageView.backgroundColor = UIColor.clearColor()
+        
 //        self.view.backgroundColor = UIColor(red: 255/255, green: 103/255, blue: 97/255, alpha: 1.0)
         
         if GameCenterManager.sharedManager().isGameCenterAvailable == true {
