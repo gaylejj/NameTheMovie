@@ -12,8 +12,6 @@ class NetworkController: NSObject {
     
     var session = NSURLSession.sharedSession()
     
-    let apiKey = APIKey()
-    
     func parseResponse(responseData: NSData) -> [Movie] {
         
         var movies = [Movie]()
@@ -65,7 +63,7 @@ class NetworkController: NSObject {
         let finalMovieID = newMovieID.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         if !finalMovieID.isEmpty {
-            var url = NSURL(string: "http://api.themoviedb.org/3/movie/\(finalMovieID)?api_key=\(apiKey.apiKey)")
+            var url = NSURL(string: "http://api.themoviedb.org/3/movie/\(finalMovieID)?api_key=\(API.apiKey())")
             println(url)
             
             var request = NSMutableURLRequest(URL: url)
@@ -112,8 +110,7 @@ class NetworkController: NSObject {
         
         if let genrePicked = genre.id as String! {
             
-            var urlString = "http://api.themoviedb.org/3/discover/movie?api_key=\(apiKey.apiKey)&include_adult=false&vote_count.gte=90&page=\(page)&with_genres=\(genrePicked)"
-            println(apiKey.apiKey)
+            var urlString = "http://api.themoviedb.org/3/discover/movie?api_key=\(API.apiKey())&include_adult=false&vote_count.gte=90&page=\(page)&with_genres=\(genrePicked)"
             
             let discoverURL = NSURL(string: urlString)
             

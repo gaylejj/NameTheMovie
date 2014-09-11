@@ -36,6 +36,7 @@
 		2557D537199ADE95008E0E61 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D536199ADE95008E0E61 /* ProfileViewController.swift */; };
 		2557D542199AE46A008E0E61 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2557D541199AE46A008E0E61 /* GameKit.framework */; };
 		2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2564AC8E19A402A200CA092B /* QuestionViewController.swift */; };
+		258DA93419C20FD0008ACF82 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258DA93319C20FD0008ACF82 /* Crashlytics.framework */; };
 		25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */; };
 		25C059A4199EAD210069BDD3 /* TMDb logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */; };
 		25C059A6199EB0CB0069BDD3 /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */; };
@@ -84,6 +85,7 @@
 		2557D53C199AE3CA008E0E61 /* NameTheMovie!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NameTheMovie!-Bridging-Header.h"; sourceTree = "<group>"; };
 		2557D541199AE46A008E0E61 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		2564AC8E19A402A200CA092B /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		258DA93319C20FD0008ACF82 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "TMDb logo.jpeg"; sourceTree = "<group>"; };
 		25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2557D542199AE46A008E0E61 /* GameKit.framework in Frameworks */,
+				258DA93419C20FD0008ACF82 /* Crashlytics.framework in Frameworks */,
 				E51504EB660B40A488E68BC5 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +270,7 @@
 		676332F9B52544E490ACB5CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				258DA93319C20FD0008ACF82 /* Crashlytics.framework */,
 				1E9F11CAD0B542E1AE2F34B3 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -284,6 +288,7 @@
 				2557D4E619995E48008E0E61 /* Frameworks */,
 				2557D4E719995E48008E0E61 /* Resources */,
 				F0244F88BD9E408DB00DE2C7 /* Copy Pods Resources */,
+				258DA93219C20F96008ACF82 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -362,6 +367,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		258DA93219C20F96008ACF82 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run f3b959917049b07a95f47cf63999d1bf4cc02181 611f7505a5480ee58079a1d1be1baa85c283859127a3a75daf61e34598c12bf3";
+		};
 		8D445E2569EE4F1D83FAF3C9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -511,6 +529,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "NameTheMovie!/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -518,6 +540,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NameTheMovie!/NameTheMovie!-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -530,12 +553,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "NameTheMovie!/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NameTheMovie!/NameTheMovie!-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -34,7 +34,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.title = "Genres"
         
         self.createImagesArray()
-                
+        
+        
         // Do any additional setup after loading the view.
     }
     

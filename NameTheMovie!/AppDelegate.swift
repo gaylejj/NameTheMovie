@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GameCenterManagerDelegate {
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameCenterManagerDelegate
         // Setup Game Center
         GameCenterManager.sharedManager().delegate = self
         GameCenterManager.sharedManager().setupManager()
+        
+        Crashlytics.startWithAPIKey(API.crashlyticsKey())
+                
         return true
     }
     
