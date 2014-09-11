@@ -73,11 +73,17 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as GenreTableViewCell
         
-            let genre = self.genres[indexPath.row]
-            let image = self.genreImages[indexPath.row]
+        let genre = self.genres[indexPath.row]
+        let image = self.genreImages[indexPath.row]
             
-            self.cell.genreTitleLabel.text = genre.name
-            self.cell.genreImageView.image = image
+        self.cell.genreTitleLabel.text = genre.name
+        self.cell.genreImageView.image = image
+        
+        if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
+            self.tableView.rowHeight = 41.0
+        }
+        
+        self.tableView.scrollEnabled = false
 
 
         return self.cell
@@ -105,21 +111,21 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         let genre = genres[indexPath.row]
         gameVC.genre = genre
         
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-            self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
-                self.movies = movies
-
-                gameVC.movies = self.movies
-                
-                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    if (self.navigationController != nil) {
-
-                        self.navigationController!.pushViewController(gameVC, animated: true)
-                    }
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
+                    self.movies = movies
+                    
+                    gameVC.movies = self.movies
+                    
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        if (self.navigationController != nil) {
+                            
+                            self.navigationController!.pushViewController(gameVC, animated: true)
+                        }
+                    })
                 })
-            })
-
-        }
+                
+            }
     }
     
     func segueToProfileController() {

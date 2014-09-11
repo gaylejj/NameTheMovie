@@ -97,9 +97,6 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
             self.tableView.rowHeight = 28.0
         }
-//        else {
-//            table.scrollEnabled = YES;
-//        }
         
         cell.shownQuestionLabel.text = self.question!.answers[indexPath.row].title
         cell.shownQuestionLabel.adjustsFontSizeToFitWidth = true
