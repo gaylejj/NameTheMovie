@@ -108,9 +108,11 @@ class NetworkController: NSObject {
         println("Discover Movie Call: \(genre.name)")
         println("Discover Movie Call: \(genre.id)")
         
+        var page = arc4random_uniform(11)
+        
         if let genrePicked = genre.id as String! {
             
-            var urlString = "http://api.themoviedb.org/3/discover/movie?api_key=\(apiKey.apiKey)&include_adult=false&vote_count.gte=90&with_genres=\(genrePicked)"
+            var urlString = "http://api.themoviedb.org/3/discover/movie?api_key=\(apiKey.apiKey)&include_adult=false&vote_count.gte=90&page=\(page)&with_genres=\(genrePicked)"
             println(apiKey.apiKey)
             
             let discoverURL = NSURL(string: urlString)

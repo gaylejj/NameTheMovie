@@ -4,12 +4,6 @@
 <array>
 	<dict>
 		<key>name</key>
-		<string>Western</string>
-		<key>id</key>
-		<string>37</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>Thriller</string>
 		<key>id</key>
 		<string>53</string>
