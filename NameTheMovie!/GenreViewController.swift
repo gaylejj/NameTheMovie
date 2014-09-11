@@ -21,6 +21,10 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var genreImages = [UIImage]()
     
+    var cell = GenreTableViewCell()
+    
+    var didAnimateCell: [NSIndexPath: Bool] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +57,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.userInteractionEnabled = true
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,15 +71,28 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as GenreTableViewCell
+        self.cell = tableView.dequeueReusableCellWithIdentifier("GenreCell", forIndexPath: indexPath) as GenreTableViewCell
         
-        let genre = self.genres[indexPath.row]
-        let image = self.genreImages[indexPath.row]
-        
-        cell.genreTitleLabel.text = genre.name
-        cell.genreImageView.image = image
+            let genre = self.genres[indexPath.row]
+            let image = self.genreImages[indexPath.row]
+            
+            self.cell.genreTitleLabel.text = genre.name
+            self.cell.genreImageView.image = image
 
-        return cell
+
+        return self.cell
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if self.didAnimateCell[indexPath] == nil || self.didAnimateCell[indexPath] == false {
+            self.didAnimateCell[indexPath] = true
+            if let genreCell = cell as? GenreTableViewCell {
+                CellAnimator.animate(genreCell)
+            }
+        }
+
+
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
@@ -92,8 +110,10 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.movies = movies
 
                 gameVC.movies = self.movies
+                
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     if (self.navigationController != nil) {
+
                         self.navigationController!.pushViewController(gameVC, animated: true)
                     }
                 })
