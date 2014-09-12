@@ -31,7 +31,6 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     var questionsAnswered = 0
     
     var score = 0.0
-    
     var countdownTime = 3.0
     
     let nf = NSNumberFormatter()

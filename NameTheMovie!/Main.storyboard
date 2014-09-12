@@ -170,10 +170,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-JK-d3a">
-                                <rect key="frame" x="255" y="293.5" width="91" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-JK-d3a">
+                                <rect key="frame" x="255" y="266" width="91" height="47.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20.5" id="47M-im-68h"/>
+                                    <constraint firstAttribute="height" constant="47.5" id="47M-im-68h"/>
                                     <constraint firstAttribute="width" constant="91" id="E5k-h0-NGj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
@@ -182,12 +182,12 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZO-js-a7E">
                                 <rect key="frame" x="50" y="28" width="500" height="250"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="qA1-l4-z9S"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="As5-Nh-8MT">
@@ -230,7 +230,7 @@
                             <constraint firstItem="fZO-js-a7E" firstAttribute="leading" secondItem="2dN-Xv-wTV" secondAttribute="leading" constant="50" id="CGc-mJ-cmS"/>
                             <constraint firstItem="l39-KL-Icv" firstAttribute="top" secondItem="As5-Nh-8MT" secondAttribute="bottom" id="HKl-VB-njU"/>
                             <constraint firstAttribute="centerX" secondItem="fZO-js-a7E" secondAttribute="centerX" id="OOz-JL-Tse"/>
-                            <constraint firstItem="KNe-JK-d3a" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="15" id="XuE-T6-MQH"/>
+                            <constraint firstItem="KNe-JK-d3a" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="-12" id="XuE-T6-MQH"/>
                             <constraint firstItem="fZO-js-a7E" firstAttribute="top" secondItem="kEu-EW-pvu" secondAttribute="bottom" constant="8" id="YuL-xX-qYl"/>
                             <constraint firstItem="As5-Nh-8MT" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="43" id="gid-Fm-M9U"/>
                             <constraint firstAttribute="trailing" secondItem="fZO-js-a7E" secondAttribute="trailing" constant="50" id="pnN-CL-hPL"/>

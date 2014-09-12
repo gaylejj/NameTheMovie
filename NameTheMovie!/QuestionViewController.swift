@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 protocol QuestionViewControllerDelegate {
     func questionAnswered(correctAnswer: String, playerAnswer: String, timeScore: Double)
@@ -74,10 +75,16 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.timerLabel.font = UIFont(name: "Avenir", size: 18.0)
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        }) { (Bool) -> Void in
+            self.overviewTextView.setContentOffset(CGPointZero, animated: false)
+        }) { (finished) in
             self.tableView.userInteractionEnabled = true
             self.startTimer()
             self.timerLabel.text = "\(self.gameTime)"
+            
+            //TODO: Add question scrolling animation
+            if finished {
+                self.startPlotScrolling()
+            }
         }
     }
     
@@ -167,6 +174,24 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func resetTableView(cell: QuestionTableViewCell!) {
         cell.shownQuestionLabel.textColor = UIColor.blackColor()
+    }
+    
+    func startPlotScrolling() {
+        if self.overviewTextView.contentSize.height > self.overviewTextView.frame.size.height {
+            UIView.animateWithDuration(6.5, delay: 1.5, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+
+                var initialOffset = self.overviewTextView.contentSize.height - self.overviewTextView.frame.size.height
+                
+                println("frame height is \(self.overviewTextView.frame.size.height)")
+                println("intrinsic height is \(self.overviewTextView.contentSize.height)")
+                
+                self.overviewTextView.setContentOffset(CGPoint(x: 0, y: initialOffset), animated: false)
+                
+                }) { (finished) -> Void in
+                    
+            }
+            
+        }
     }
     
     //MARK: Timer Setup
