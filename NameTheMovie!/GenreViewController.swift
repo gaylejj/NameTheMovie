@@ -25,6 +25,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var didAnimateCell: [NSIndexPath: Bool] = [:]
     
+    let transitionManager = TransitionManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -116,13 +118,9 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
                     self.movies = movies
                     
-                    gameVC.movies = self.movies
-                    
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                        if (self.navigationController != nil) {
-                            
-                            self.navigationController!.pushViewController(gameVC, animated: true)
-                        }
+         
+                        self.performSegueWithIdentifier("Question", sender: self)
                     })
                 })
                 
@@ -136,6 +134,16 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Question" {
+            let gameVC = segue.destinationViewController as GameViewController
+                
+            gameVC.movies = self.movies
+
+            gameVC.transitioningDelegate = self.transitionManager
+        }
     }
     
     @IBAction func unwindToGenreVC(segue: UIStoryboardSegue!) {

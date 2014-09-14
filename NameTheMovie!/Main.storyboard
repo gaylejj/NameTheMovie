@@ -112,7 +112,7 @@
                     <navigationItem key="navigationItem" id="Apm-3l-jNi"/>
                     <connections>
                         <outlet property="tableView" destination="baa-HB-tT0" id="uIy-3e-9jZ"/>
-                        <segue destination="huV-Ho-kzF" kind="show" identifier="Question" id="koQ-kt-8Q1"/>
+                        <segue destination="huV-Ho-kzF" kind="custom" identifier="Question" id="koQ-kt-8Q1"/>
                         <segue destination="Qri-pu-Ukl" kind="show" identifier="Profile" id="ZiM-JX-XKU"/>
                     </connections>
                 </viewController>
