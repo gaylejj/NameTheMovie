@@ -37,8 +37,13 @@
 		2557D542199AE46A008E0E61 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2557D541199AE46A008E0E61 /* GameKit.framework */; };
 		2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2564AC8E19A402A200CA092B /* QuestionViewController.swift */; };
 		256A6F3419C793720044B641 /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256A6F3319C793720044B641 /* AnimationController.swift */; };
+		256A6F3619C797C10044B641 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F3519C797C10044B641 /* LaunchScreen.xib */; };
+		256A6F3819C7A6540044B641 /* Original.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F3719C7A6540044B641 /* Original.png */; };
+		256A6F3B19C7A7CF0044B641 /* Launch Image Popcorn.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F3919C7A7CF0044B641 /* Launch Image Popcorn.png */; };
+		256A6F3C19C7A7CF0044B641 /* Launch Image Title.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F3A19C7A7CF0044B641 /* Launch Image Title.png */; };
+		256A6F4019C7A8CE0044B641 /* Launch Image Title2.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F3E19C7A8CE0044B641 /* Launch Image Title2.png */; };
+		256A6F4419C7AA020044B641 /* Launch Image Popcorn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F4319C7AA020044B641 /* Launch Image Popcorn2.png */; };
 		258DA93419C20FD0008ACF82 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258DA93319C20FD0008ACF82 /* Crashlytics.framework */; };
-		25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */; };
 		25C059A4199EAD210069BDD3 /* TMDb logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */; };
 		25C059A6199EB0CB0069BDD3 /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */; };
 		25C2926219A194DC00A5472A /* film-clapboard.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 25C2926119A194DC00A5472A /* film-clapboard.jpeg */; };
@@ -87,8 +92,13 @@
 		2557D541199AE46A008E0E61 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		2564AC8E19A402A200CA092B /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		256A6F3319C793720044B641 /* AnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
+		256A6F3519C797C10044B641 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		256A6F3719C7A6540044B641 /* Original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Original.png; sourceTree = "<group>"; };
+		256A6F3919C7A7CF0044B641 /* Launch Image Popcorn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Image Popcorn.png"; sourceTree = "<group>"; };
+		256A6F3A19C7A7CF0044B641 /* Launch Image Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Image Title.png"; sourceTree = "<group>"; };
+		256A6F3E19C7A8CE0044B641 /* Launch Image Title2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Image Title2.png"; sourceTree = "<group>"; };
+		256A6F4319C7AA020044B641 /* Launch Image Popcorn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Image Popcorn2.png"; sourceTree = "<group>"; };
 		258DA93319C20FD0008ACF82 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
 		25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "TMDb logo.jpeg"; sourceTree = "<group>"; };
 		25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		25C2926119A194DC00A5472A /* film-clapboard.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "film-clapboard.jpeg"; sourceTree = "<group>"; };
@@ -160,8 +170,14 @@
 				2557D51C19995EDE008E0E61 /* Controller */,
 				2557D51B19995EDA008E0E61 /* Model */,
 				2557D4EE19995E48008E0E61 /* AppDelegate.swift */,
+				256A6F3519C797C10044B641 /* LaunchScreen.xib */,
 				2557D52219995F5E008E0E61 /* Main.storyboard */,
 				2557D4F519995E48008E0E61 /* Images.xcassets */,
+				256A6F3719C7A6540044B641 /* Original.png */,
+				256A6F3919C7A7CF0044B641 /* Launch Image Popcorn.png */,
+				256A6F4319C7AA020044B641 /* Launch Image Popcorn2.png */,
+				256A6F3A19C7A7CF0044B641 /* Launch Image Title.png */,
+				256A6F3E19C7A8CE0044B641 /* Launch Image Title2.png */,
 				25C059A2199EAD210069BDD3 /* ImageAssets */,
 				2557D4EC19995E48008E0E61 /* Supporting Files */,
 			);
@@ -207,7 +223,6 @@
 		2557D51C19995EDE008E0E61 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */,
 				2557D52419996E38008E0E61 /* GenreViewController.swift */,
 				2557D530199A7CC3008E0E61 /* GameViewController.swift */,
 				2564AC8E19A402A200CA092B /* QuestionViewController.swift */,
@@ -345,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256A6F3619C797C10044B641 /* LaunchScreen.xib in Resources */,
 				250DA4BC19A2B79A00A50F17 /* realanimation.png in Resources */,
 				2557D4F619995E48008E0E61 /* Images.xcassets in Resources */,
 				2557D51919995ED3008E0E61 /* GenreList.json in Resources */,
@@ -356,12 +372,17 @@
 				2557D51A19995ED3008E0E61 /* GenrePList.plist in Resources */,
 				250DA4B219A2B4AE00A50F17 /* action.png in Resources */,
 				250DA4B719A2B4AE00A50F17 /* drama.png in Resources */,
+				256A6F3819C7A6540044B641 /* Original.png in Resources */,
 				250DA4B519A2B4AE00A50F17 /* comedy.png in Resources */,
 				2557D52319995F5E008E0E61 /* Main.storyboard in Resources */,
 				25C2926419A1951400A5472A /* film-clapboard.png in Resources */,
+				256A6F3B19C7A7CF0044B641 /* Launch Image Popcorn.png in Resources */,
 				250DA4B619A2B4AE00A50F17 /* crime.png in Resources */,
 				250DA4B819A2B4AE00A50F17 /* fantasy.png in Resources */,
+				256A6F3C19C7A7CF0044B641 /* Launch Image Title.png in Resources */,
 				250DA4B019A2B4AE00A50F17 /* thriller.png in Resources */,
+				256A6F4419C7AA020044B641 /* Launch Image Popcorn2.png in Resources */,
+				256A6F4019C7A8CE0044B641 /* Launch Image Title2.png in Resources */,
 				250DA4B419A2B4AE00A50F17 /* animation.png in Resources */,
 				250DA4B119A2B4AE00A50F17 /* western.png in Resources */,
 			);
@@ -422,7 +443,6 @@
 			files = (
 				2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */,
 				25CFE2F219A68FE300EB6B9F /* Timer.swift in Sources */,
-				25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */,
 				25CFE2F419A6A75900EB6B9F /* QuestionTableViewCell.swift in Sources */,
 				2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */,
 				2557D537199ADE95008E0E61 /* ProfileViewController.swift in Sources */,

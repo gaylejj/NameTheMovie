@@ -39,9 +39,18 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.navigationController?.delegate = self
         
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gameCenterEnabled"), name: appDelegate.kAuthenticationViewControllerFinished, object: nil)
+
+        
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    func gameCenterEnabledForPlayer() {
+        println(GameCenterManager.sharedManager().localPlayerData())
     }
     
     func createImagesArray() {

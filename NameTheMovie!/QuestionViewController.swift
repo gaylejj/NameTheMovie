@@ -21,6 +21,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var overViewTextHeight: NSLayoutConstraint!
     
     var timerIsRunning = false
     var questionHasBeenAnswered = false
@@ -113,6 +114,11 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         if self.view.frame.height == 480 {
             self.tableViewHeight.constant = CGFloat(160.0)
             self.tableView.rowHeight = 40
+            
+            self.overViewTextHeight.constant = 215
+        } else if self.view.frame.height == 568 {
+            self.tableViewHeight.constant = CGFloat(210.0)
+            self.tableView.rowHeight = 52.5
         }
         
         cell.shownQuestionLabel.text = self.question!.answers[indexPath.row].title
