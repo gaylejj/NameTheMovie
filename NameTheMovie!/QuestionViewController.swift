@@ -20,6 +20,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    
     var timerIsRunning = false
     var questionHasBeenAnswered = false
     var gameTime = 13.0
@@ -70,12 +72,17 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         let newOverview = overview.stringByReplacingOccurrencesOfString(question.movie!.title!, withString: "________", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
         
         self.overviewTextView.text = newOverview
+        if self.overviewTextView.contentSize.height > self.overviewTextView.frame.size.height
+        {
+            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
+        }
 
         self.timerLabel.text = "\(self.gameTime)"
         self.timerLabel.font = UIFont(name: "Avenir", size: 18.0)
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             self.overviewTextView.setContentOffset(CGPointZero, animated: false)
+
         }) { (finished) in
             self.tableView.userInteractionEnabled = true
             self.startTimer()
@@ -101,8 +108,11 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.resetTableView(cell)
         
-        if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
-            self.tableView.rowHeight = 28.0
+        self.tableView.rowHeight = 65.0
+        
+        if self.view.frame.height == 480 {
+            self.tableViewHeight.constant = CGFloat(160.0)
+            self.tableView.rowHeight = 40
         }
         
         cell.shownQuestionLabel.text = self.question!.answers[indexPath.row].title

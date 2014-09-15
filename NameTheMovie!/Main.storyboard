@@ -112,7 +112,7 @@
                     <navigationItem key="navigationItem" id="Apm-3l-jNi"/>
                     <connections>
                         <outlet property="tableView" destination="baa-HB-tT0" id="uIy-3e-9jZ"/>
-                        <segue destination="huV-Ho-kzF" kind="custom" identifier="Question" id="koQ-kt-8Q1"/>
+                        <segue destination="huV-Ho-kzF" kind="show" identifier="Question" id="koQ-kt-8Q1"/>
                         <segue destination="Qri-pu-Ukl" kind="show" identifier="Profile" id="ZiM-JX-XKU"/>
                     </connections>
                 </viewController>
@@ -170,18 +170,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-JK-d3a">
-                                <rect key="frame" x="255" y="266" width="91" height="47.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47.5" id="47M-im-68h"/>
-                                    <constraint firstAttribute="width" constant="91" id="E5k-h0-NGj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZO-js-a7E">
-                                <rect key="frame" x="50" y="28" width="500" height="250"/>
+                                <rect key="frame" x="15" y="28" width="570" height="250"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="qA1-l4-z9S"/>
@@ -190,9 +180,12 @@
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="As5-Nh-8MT">
-                                <rect key="frame" x="0.0" y="321" width="600" height="279"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="As5-Nh-8MT">
+                                <rect key="frame" x="0.0" y="340" width="600" height="260"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="260" id="KrP-z0-EjA"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="questionCell" id="7Va-kz-Jrd" customClass="QuestionTableViewCell" customModule="NameTheMovie_" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -200,18 +193,29 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfo-NJ-X02">
-                                                    <rect key="frame" x="10" y="0.0" width="580" height="49.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="10" y="10" width="580" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="wnv-Wo-jzG"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Sfo-NJ-X02" secondAttribute="trailing" constant="10" id="MCc-Hb-Hsp"/>
+                                                <constraint firstAttribute="centerY" secondItem="Sfo-NJ-X02" secondAttribute="centerY" id="SIO-rk-Qlt"/>
                                                 <constraint firstItem="Sfo-NJ-X02" firstAttribute="top" secondItem="6gD-MZ-jQG" secondAttribute="top" id="T7T-YW-Dqy"/>
                                                 <constraint firstItem="Sfo-NJ-X02" firstAttribute="leading" secondItem="6gD-MZ-jQG" secondAttribute="leading" constant="10" id="Uu9-87-x01"/>
                                                 <constraint firstAttribute="bottom" secondItem="Sfo-NJ-X02" secondAttribute="bottom" id="tbl-jX-rCw"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="T7T-YW-Dqy"/>
+                                                    <exclude reference="tbl-jX-rCw"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="shownQuestionLabel" destination="Sfo-NJ-X02" id="eN9-GC-vDJ"/>
@@ -223,24 +227,42 @@
                                     <outlet property="delegate" destination="r5U-4S-3vE" id="80w-0t-xub"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-JK-d3a">
+                                <rect key="frame" x="255" y="273" width="91" height="47.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47.5" id="47M-im-68h"/>
+                                    <constraint firstAttribute="width" constant="91" id="E5k-h0-NGj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="As5-Nh-8MT" firstAttribute="leading" secondItem="2dN-Xv-wTV" secondAttribute="leading" id="7Wp-ku-gqw"/>
-                            <constraint firstItem="fZO-js-a7E" firstAttribute="leading" secondItem="2dN-Xv-wTV" secondAttribute="leading" constant="50" id="CGc-mJ-cmS"/>
+                            <constraint firstItem="fZO-js-a7E" firstAttribute="leading" secondItem="2dN-Xv-wTV" secondAttribute="leading" constant="15" id="CGc-mJ-cmS"/>
                             <constraint firstItem="l39-KL-Icv" firstAttribute="top" secondItem="As5-Nh-8MT" secondAttribute="bottom" id="HKl-VB-njU"/>
+                            <constraint firstItem="l39-KL-Icv" firstAttribute="top" secondItem="As5-Nh-8MT" secondAttribute="bottom" id="I7a-JD-qLa"/>
                             <constraint firstAttribute="centerX" secondItem="fZO-js-a7E" secondAttribute="centerX" id="OOz-JL-Tse"/>
-                            <constraint firstItem="KNe-JK-d3a" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="-12" id="XuE-T6-MQH"/>
+                            <constraint firstItem="KNe-JK-d3a" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="-5" id="XuE-T6-MQH"/>
                             <constraint firstItem="fZO-js-a7E" firstAttribute="top" secondItem="kEu-EW-pvu" secondAttribute="bottom" constant="8" id="YuL-xX-qYl"/>
-                            <constraint firstItem="As5-Nh-8MT" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="43" id="gid-Fm-M9U"/>
-                            <constraint firstAttribute="trailing" secondItem="fZO-js-a7E" secondAttribute="trailing" constant="50" id="pnN-CL-hPL"/>
+                            <constraint firstItem="As5-Nh-8MT" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="60" id="gid-Fm-M9U"/>
+                            <constraint firstAttribute="trailing" secondItem="fZO-js-a7E" secondAttribute="trailing" constant="15" id="pnN-CL-hPL"/>
                             <constraint firstAttribute="trailing" secondItem="As5-Nh-8MT" secondAttribute="trailing" id="s8Y-qP-RTq"/>
                             <constraint firstAttribute="centerX" secondItem="KNe-JK-d3a" secondAttribute="centerX" id="vAL-c1-xrv"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gid-Fm-M9U"/>
+                                <exclude reference="HKl-VB-njU"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="overviewTextView" destination="fZO-js-a7E" id="Uc1-nS-mSW"/>
                         <outlet property="tableView" destination="As5-Nh-8MT" id="hYA-Id-fzY"/>
+                        <outlet property="tableViewHeight" destination="KrP-z0-EjA" id="RiA-33-Hnz"/>
                         <outlet property="timerHeightConstraint" destination="47M-im-68h" id="50M-Bu-oMe"/>
                         <outlet property="timerLabel" destination="KNe-JK-d3a" id="YGn-jC-o6i"/>
                     </connections>

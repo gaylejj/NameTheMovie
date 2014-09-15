@@ -36,6 +36,8 @@
 		2557D537199ADE95008E0E61 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D536199ADE95008E0E61 /* ProfileViewController.swift */; };
 		2557D542199AE46A008E0E61 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2557D541199AE46A008E0E61 /* GameKit.framework */; };
 		2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2564AC8E19A402A200CA092B /* QuestionViewController.swift */; };
+		256A6F0419C774FB0044B641 /* IrisTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256A6F0319C774FB0044B641 /* IrisTransition.swift */; };
+		256A6F3419C793720044B641 /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256A6F3319C793720044B641 /* AnimationController.swift */; };
 		258DA93419C20FD0008ACF82 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258DA93319C20FD0008ACF82 /* Crashlytics.framework */; };
 		2594459619C355610093D825 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2594459519C355610093D825 /* TransitionManager.swift */; };
 		25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */; };
@@ -86,6 +88,8 @@
 		2557D53C199AE3CA008E0E61 /* NameTheMovie!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NameTheMovie!-Bridging-Header.h"; sourceTree = "<group>"; };
 		2557D541199AE46A008E0E61 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		2564AC8E19A402A200CA092B /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		256A6F0319C774FB0044B641 /* IrisTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrisTransition.swift; sourceTree = "<group>"; };
+		256A6F3319C793720044B641 /* AnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		258DA93319C20FD0008ACF82 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		2594459519C355610093D825 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		25C059A0199EA88B0069BDD3 /* OpeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				2594459519C355610093D825 /* TransitionManager.swift */,
+				256A6F0319C774FB0044B641 /* IrisTransition.swift */,
+				256A6F3319C793720044B641 /* AnimationController.swift */,
 				25C059A8199EB0E90069BDD3 /* Cells */,
 			);
 			name = View;
@@ -421,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2594459619C355610093D825 /* TransitionManager.swift in Sources */,
+				256A6F0419C774FB0044B641 /* IrisTransition.swift in Sources */,
 				2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */,
 				25CFE2F219A68FE300EB6B9F /* Timer.swift in Sources */,
 				25C059A1199EA88B0069BDD3 /* OpeningViewController.swift in Sources */,
@@ -437,6 +444,7 @@
 				25D9FF16199EB63700B74DEE /* AnswerTableViewCell.swift in Sources */,
 				2557D535199A8BB1008E0E61 /* Question.swift in Sources */,
 				2557D52119995F08008E0E61 /* NetworkController.swift in Sources */,
+				256A6F3419C793720044B641 /* AnimationController.swift in Sources */,
 				2557D531199A7CC3008E0E61 /* GameViewController.swift in Sources */,
 				2557D51F19995EFA008E0E61 /* API.swift in Sources */,
 			);

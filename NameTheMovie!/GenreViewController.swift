@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GKGameCenterControllerDelegate {
+class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GKGameCenterControllerDelegate, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,7 +25,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var didAnimateCell: [NSIndexPath: Bool] = [:]
     
-    let transitionManager = TransitionManager()
+    let animationController = AnimationController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,9 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.title = "Genres"
         
         self.createImagesArray()
+        
+        self.navigationController?.delegate = self
+        
         
         
         // Do any additional setup after loading the view.
@@ -137,13 +140,17 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let gameVC = segue.destinationViewController as GameViewController
+
         if segue.identifier == "Question" {
-            let gameVC = segue.destinationViewController as GameViewController
-                
+
             gameVC.movies = self.movies
 
-            gameVC.transitioningDelegate = self.transitionManager
         }
+    }
+    
+    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self.animationController
     }
     
     @IBAction func unwindToGenreVC(segue: UIStoryboardSegue!) {

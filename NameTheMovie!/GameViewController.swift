@@ -74,7 +74,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewWillDisappear(animated)
+        super.viewDidAppear(animated)
         self.setupQuestionVC()
     }
     
