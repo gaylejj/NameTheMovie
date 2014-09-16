@@ -44,8 +44,6 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gameCenterEnabled"), name: appDelegate.kAuthenticationViewControllerFinished, object: nil)
 
         
-        
-        
         // Do any additional setup after loading the view.
     }
     

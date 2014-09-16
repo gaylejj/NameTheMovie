@@ -90,7 +90,7 @@ class NetworkController: NSObject {
                             println("Being Rate Limited")
                         default:
                             println("Something happened")
-                            println(httpResponse.description)
+                            println(httpResponse.statusCode)
                         }
                     }
                 }
@@ -125,6 +125,7 @@ class NetworkController: NSObject {
             
             var task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
                 
+                println("\(response.description)")
                 if (error != nil) {
                     // Handle error...
                     println(error.localizedDescription)
@@ -135,7 +136,7 @@ class NetworkController: NSObject {
                             println("Everything Ok")
                             callback(movies: self.parseResponse(data), errorDescription: nil)
                         default:
-                            println("Something happened")
+                            println("Something happened \(httpResponse.statusCode)")
                         }
                     }
                 }
