@@ -64,6 +64,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.gameTime = 13.0
         self.timeScore = 0.0
         self.tableView.userInteractionEnabled = false
+        self.questionHasBeenAnswered = false
         self.question = question
         self.answer = question.movie
         self.tableView.reloadData()
@@ -73,13 +74,22 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         let newOverview = overview.stringByReplacingOccurrencesOfString(question.movie!.title!, withString: "________", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
         
         self.overviewTextView.text = newOverview
-        if self.overviewTextView.contentSize.height > self.overviewTextView.frame.size.height
-        {
-            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
-        }
+        println("\(self.overviewTextView.contentSize.height) vs \(self.overviewTextView.frame.size.height)")
+//        if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
+//        {
+//            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
+//            println("Changed font size")
+//        } else {
+//            self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
+//        }
+        self.overviewTextView.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
+        self.overviewTextView.selectable = false
+        println("Font is \(self.overviewTextView.font)")
 
         self.timerLabel.text = "\(self.gameTime)"
         self.timerLabel.font = UIFont(name: "Avenir", size: 18.0)
+        self.timerLabel.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
+        
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             self.overviewTextView.setContentOffset(CGPointZero, animated: false)
@@ -109,6 +119,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.resetTableView(cell)
         
+        
         self.tableView.rowHeight = 65.0
         
         if self.view.frame.height == 480 {
@@ -123,6 +134,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         cell.shownQuestionLabel.text = self.question!.answers[indexPath.row].title
         cell.shownQuestionLabel.adjustsFontSizeToFitWidth = true
+        cell.shownQuestionLabel.textColor = UIColor.lightGrayColor()
+
         cell.backgroundColor = UIColor.clearColor()
         
         return cell

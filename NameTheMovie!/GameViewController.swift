@@ -51,7 +51,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 88/255, green: 167/255, blue: 210/255, alpha: 1.0)
+        self.view.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
         // Do any additional setup after loading the view.
     }
     

@@ -173,11 +173,6 @@
 				256A6F3519C797C10044B641 /* LaunchScreen.xib */,
 				2557D52219995F5E008E0E61 /* Main.storyboard */,
 				2557D4F519995E48008E0E61 /* Images.xcassets */,
-				256A6F3719C7A6540044B641 /* Original.png */,
-				256A6F3919C7A7CF0044B641 /* Launch Image Popcorn.png */,
-				256A6F4319C7AA020044B641 /* Launch Image Popcorn2.png */,
-				256A6F3A19C7A7CF0044B641 /* Launch Image Title.png */,
-				256A6F3E19C7A8CE0044B641 /* Launch Image Title2.png */,
 				25C059A2199EAD210069BDD3 /* ImageAssets */,
 				2557D4EC19995E48008E0E61 /* Supporting Files */,
 			);
@@ -252,6 +247,7 @@
 		25C059A2199EAD210069BDD3 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				25DC9BCB19C8A002001891A4 /* Launch Image Assets */,
 				250DA4BA19A2B4B200A50F17 /* Genre Icons */,
 				25C2926319A1951400A5472A /* film-clapboard.png */,
 				25C2926119A194DC00A5472A /* film-clapboard.jpeg */,
@@ -283,6 +279,19 @@
 				2539AF6819C155A200A128F1 /* CellAnimator.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		25DC9BCB19C8A002001891A4 /* Launch Image Assets */ = {
+			isa = PBXGroup;
+			children = (
+				256A6F3719C7A6540044B641 /* Original.png */,
+				256A6F3919C7A7CF0044B641 /* Launch Image Popcorn.png */,
+				256A6F4319C7AA020044B641 /* Launch Image Popcorn2.png */,
+				256A6F3A19C7A7CF0044B641 /* Launch Image Title.png */,
+				256A6F3E19C7A8CE0044B641 /* Launch Image Title2.png */,
+			);
+			name = "Launch Image Assets";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		676332F9B52544E490ACB5CF /* Frameworks */ = {
