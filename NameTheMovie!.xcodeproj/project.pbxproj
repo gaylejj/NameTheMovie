@@ -33,7 +33,6 @@
 		2557D531199A7CC3008E0E61 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D530199A7CC3008E0E61 /* GameViewController.swift */; };
 		2557D533199A7E9A008E0E61 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D532199A7E9A008E0E61 /* GameLogic.swift */; };
 		2557D535199A8BB1008E0E61 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D534199A8BB1008E0E61 /* Question.swift */; };
-		2557D537199ADE95008E0E61 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D536199ADE95008E0E61 /* ProfileViewController.swift */; };
 		2557D542199AE46A008E0E61 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2557D541199AE46A008E0E61 /* GameKit.framework */; };
 		2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2564AC8E19A402A200CA092B /* QuestionViewController.swift */; };
 		256A6F3419C793720044B641 /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256A6F3319C793720044B641 /* AnimationController.swift */; };
@@ -87,7 +86,6 @@
 		2557D530199A7CC3008E0E61 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2557D532199A7E9A008E0E61 /* GameLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
 		2557D534199A8BB1008E0E61 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
-		2557D536199ADE95008E0E61 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2557D53C199AE3CA008E0E61 /* NameTheMovie!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NameTheMovie!-Bridging-Header.h"; sourceTree = "<group>"; };
 		2557D541199AE46A008E0E61 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		2564AC8E19A402A200CA092B /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 				2557D530199A7CC3008E0E61 /* GameViewController.swift */,
 				2564AC8E19A402A200CA092B /* QuestionViewController.swift */,
 				25D9FF17199EB70B00B74DEE /* ResultsViewController.swift */,
-				2557D536199ADE95008E0E61 /* ProfileViewController.swift */,
 				2557D52019995F08008E0E61 /* NetworkController.swift */,
 			);
 			name = Controller;
@@ -454,7 +451,6 @@
 				25CFE2F219A68FE300EB6B9F /* Timer.swift in Sources */,
 				25CFE2F419A6A75900EB6B9F /* QuestionTableViewCell.swift in Sources */,
 				2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */,
-				2557D537199ADE95008E0E61 /* ProfileViewController.swift in Sources */,
 				25C059A6199EB0CB0069BDD3 /* GenreTableViewCell.swift in Sources */,
 				2557D51819995ED3008E0E61 /* Genre.swift in Sources */,
 				2557D52519996E38008E0E61 /* GenreViewController.swift in Sources */,

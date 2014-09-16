@@ -5,24 +5,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
-        <scene sceneID="P1b-Vi-oqB">
-            <objects>
-                <viewController storyboardIdentifier="Profile" id="Qri-pu-Ukl" customClass="ProfileViewController" customModule="NameTheMovie_" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ey4-v4-zi1"/>
-                        <viewControllerLayoutGuide type="bottom" id="FOa-4R-LFA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="euV-um-S1s">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6dM-HR-udk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2505" y="-891"/>
-        </scene>
         <!--Genre View Controller-->
         <scene sceneID="ocG-eY-fgG">
             <objects>
@@ -112,7 +94,6 @@
                     <connections>
                         <outlet property="tableView" destination="baa-HB-tT0" id="uIy-3e-9jZ"/>
                         <segue destination="huV-Ho-kzF" kind="show" identifier="Question" id="koQ-kt-8Q1"/>
-                        <segue destination="Qri-pu-Ukl" kind="show" identifier="Profile" id="ZiM-JX-XKU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Li-MR-xf7" userLabel="First Responder" sceneMemberID="firstResponder"/>

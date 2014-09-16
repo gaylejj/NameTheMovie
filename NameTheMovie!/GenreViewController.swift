@@ -140,6 +140,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     func segueToProfileController() {
 
         GameCenterManager.sharedManager().presentLeaderboardsOnViewController(self)
+        let leaderboardID = "com.jeff.PopcornQuizHighScore"
+        println("High Scores: \(GameCenterManager.sharedManager().highScoreForLeaderboard(leaderboardID))")
     }
     
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {

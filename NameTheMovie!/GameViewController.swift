@@ -178,8 +178,11 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
 
     func reportScore() {
         GameCenterManager.sharedManager().delegate = self
-        GameCenterManager.sharedManager().saveAndReportScore(Int32(self.score), leaderboard: "com.example.appName.scoreBoardName", sortOrder: GameCenterSortOrderHighToLow)
-
+        let score = Int32(self.score)
+        let currentScoreFromLeaderboard = GameCenterManager.sharedManager().highScoreForLeaderboard("com.jeff.PopcornQuizHighScore")
+        let finalScore = score + currentScoreFromLeaderboard
+        println(finalScore)
+        GameCenterManager.sharedManager().saveAndReportScore(finalScore, leaderboard: "com.jeff.PopcornQuizHighScore", sortOrder: GameCenterSortOrderHighToLow)
     }
     
     func gameCenterManager(manager: GameCenterManager!, authenticateUser gameCenterLoginController: UIViewController!) {
@@ -213,8 +216,8 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             resultsVC.correctAnswers = self.correctAnswers
             resultsVC.playerAnswers = self.playerAnswers
             resultsVC.score = self.score
-            resultsVC.genre = self.genre
-            resultsVC.movies = self.movies!
+//            resultsVC.genre = self.genre
+//            resultsVC.movies = self.movies!
             
         }
     }
