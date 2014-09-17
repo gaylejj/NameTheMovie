@@ -125,10 +125,11 @@ class NetworkController: NSObject {
             
             var task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
                 
-                println("\(response.description)")
+//                println("\(response.description)")
                 if (error != nil) {
                     // Handle error...
                     println(error.localizedDescription)
+                    callback(movies: nil, errorDescription: "\(error.localizedDescription)")
                 } else {
                     if let httpResponse = response as? NSHTTPURLResponse {
                         switch httpResponse.statusCode {
@@ -137,6 +138,7 @@ class NetworkController: NSObject {
                             callback(movies: self.parseResponse(data), errorDescription: nil)
                         default:
                             println("Something happened \(httpResponse.statusCode)")
+                            callback(movies: nil, errorDescription: "Please try again in a few minutes")
                         }
                     }
                 }

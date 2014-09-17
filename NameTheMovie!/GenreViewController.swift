@@ -126,12 +126,25 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         
             NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                 self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
-                    self.movies = movies
                     
-                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-         
-                        self.performSegueWithIdentifier("Question", sender: self)
-                    })
+                    if let string = errorDescription as String? {
+                        
+                        self.tableView.userInteractionEnabled = true
+                        
+                        let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again in a few minutes", preferredStyle: UIAlertControllerStyle.Alert)
+                        let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+                        alertController.addAction(cancelAction)
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                    } else {
+                        self.movies = movies
+                        
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            
+                            self.performSegueWithIdentifier("Question", sender: self)
+                        })
+                    }
+                    
                 })
                 
             }
