@@ -75,13 +75,13 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.overviewTextView.text = newOverview
 //        println("\(self.overviewTextView.contentSize.height) vs \(self.overviewTextView.frame.size.height)")
-//        if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
-//        {
-//            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
-//            println("Changed font size")
-//        } else {
-//            self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
-//        }
+        if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
+        {
+            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
+            println("Changed font size")
+        } else {
+            self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
+        }
         self.overviewTextView.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
         self.overviewTextView.selectable = false
 //        println("Font is \(self.overviewTextView.font)")

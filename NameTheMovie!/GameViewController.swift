@@ -156,8 +156,12 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
                 self.setupNextQuestion()
                 self.beginCountdown()
             } else {
-                
-                self.reportScore()
+                if GameCenterManager.sharedManager().localPlayerData() != nil {
+                    self.reportScore()
+                } else {
+                    println("No Player found")
+                    self.performSegueWithIdentifier("Results", sender: self)
+                }
             }
         }
     }
