@@ -149,16 +149,5 @@ class NetworkController: NSObject {
         }
         
     }
-    
-    func loadMoviePosterForCorrectAnswer(posterPath: String?) -> UIImage {
-        
-        let prefix = "http://image.tmdb.org/t/p/w90"
-        let urlString = prefix + "\(posterPath!)"
-        let url = NSURL(string: urlString)
-        let imgData = NSData(contentsOfURL: url)
-        let posterImage = UIImage(data: imgData)
-        
-        return posterImage
-        
-    }
+
 }

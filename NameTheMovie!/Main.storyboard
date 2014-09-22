@@ -266,7 +266,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ix4-Hz-DMm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Y8k-0n-4nn">
                                     <size key="itemSize" width="90" height="160"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -289,7 +289,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4M-YY-njP">
-                                                    <rect key="frame" x="0.0" y="135.5" width="90" height="24.5"/>
+                                                    <rect key="frame" x="0.0" y="135" width="90" height="24.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
@@ -322,20 +322,68 @@
                                     <outlet property="dataSource" destination="V35-JG-fgq" id="TF6-DD-zSH"/>
                                 </connections>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhw-4k-W2j">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="adu-ge-hgB"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Results" id="44P-ZA-Kkc">
+                                        <barButtonItem key="leftBarButtonItem" title="Play Again" id="Ild-3d-wAr">
+                                            <connections>
+                                                <segue destination="s52-Sf-uaC" kind="unwind" unwindAction="unwindToGenreVC:" id="lnw-s1-Bm0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="V35-JG-fgq" id="KrW-Si-eaD"/>
+                                </connections>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bg2-hx-GlF">
+                                <rect key="frame" x="91" y="74" width="418" height="27.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="141" id="R8K-K9-gc1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="R8K-K9-gc1"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Bg2-hx-GlF" secondAttribute="centerX" id="8bW-Df-gjM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bg2-hx-GlF" secondAttribute="trailing" constant="75" id="9wC-GV-DDv"/>
                             <constraint firstAttribute="trailing" secondItem="Ix4-Hz-DMm" secondAttribute="trailing" id="LYx-gW-v22"/>
+                            <constraint firstItem="Ix4-Hz-DMm" firstAttribute="top" secondItem="Xhw-4k-W2j" secondAttribute="bottom" constant="40" id="OXF-q2-eGN"/>
+                            <constraint firstItem="Bg2-hx-GlF" firstAttribute="leading" secondItem="XbB-6l-EIt" secondAttribute="leadingMargin" constant="75" id="P8a-hg-UYw"/>
+                            <constraint firstAttribute="trailing" secondItem="Xhw-4k-W2j" secondAttribute="trailing" id="Uft-Ao-L4e"/>
                             <constraint firstItem="Ix4-Hz-DMm" firstAttribute="top" secondItem="XbB-6l-EIt" secondAttribute="top" id="V0S-DK-VmT"/>
                             <constraint firstItem="Ix4-Hz-DMm" firstAttribute="leading" secondItem="XbB-6l-EIt" secondAttribute="leading" id="htP-YS-Wnd"/>
+                            <constraint firstItem="Xhw-4k-W2j" firstAttribute="top" secondItem="9gV-Jr-UUe" secondAttribute="bottom" id="iPG-WT-rop"/>
                             <constraint firstItem="1BL-TJ-BcK" firstAttribute="top" secondItem="Ix4-Hz-DMm" secondAttribute="bottom" id="o0u-yr-Yqg"/>
+                            <constraint firstItem="Bg2-hx-GlF" firstAttribute="top" secondItem="Xhw-4k-W2j" secondAttribute="bottom" constant="10" id="p1D-hY-x7Z"/>
+                            <constraint firstItem="Xhw-4k-W2j" firstAttribute="leading" secondItem="XbB-6l-EIt" secondAttribute="leading" id="tHf-wE-ULp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="V0S-DK-VmT"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Ix4-Hz-DMm" id="8UX-fB-awS"/>
+                        <outlet property="navigationBar" destination="Xhw-4k-W2j" id="1kc-u9-0AP"/>
+                        <outlet property="scoreLabel" destination="Bg2-hx-GlF" id="GY0-Lz-kIQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHY-R1-WSi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="s52-Sf-uaC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3166" y="-663"/>
         </scene>

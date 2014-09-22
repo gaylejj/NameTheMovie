@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class GameViewController: UIViewController, GameLogicDelegate, QuestionViewControllerDelegate, GameCenterManagerDelegate {
     
@@ -149,6 +150,9 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.questionVCOne.view.frame = CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         }) { (Bool) -> Void in
+            //MARK: Test remove animation
+//            self.questionVCOne.view.layer.removeAllAnimations()
+
             //start countdown timer
             if self.questionsAnswered < 5 {
                 self.countdownTime = 3.0
@@ -200,6 +204,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             println(error?.localizedDescription)
         } else {
             self.performSegueWithIdentifier("Results", sender: self)
+
         }
     }
     
@@ -220,6 +225,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             resultsVC.correctAnswers = self.correctAnswers
             resultsVC.playerAnswers = self.playerAnswers
             resultsVC.score = self.score
+            
 //            resultsVC.genre = self.genre
 //            resultsVC.movies = self.movies!
             

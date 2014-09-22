@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsViewController: UIViewController, UITableViewDataSource, UICollectionViewDataSource {
+class ResultsViewController: UIViewController, UICollectionViewDataSource, UINavigationBarDelegate, UIBarPositioningDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,8 +24,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UICollecti
     var genre : Genre!
     var movies = [Movie]()
     
-    let networkController = NetworkController()
-
+    var imageQueue = NSOperationQueue()
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var playAgainButton: UIButton!
     
@@ -45,14 +46,16 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UICollecti
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        self.tableView.reloadData()
-//        self.collectionView.reloadData()
         self.nf.maximumFractionDigits = 0
         self.collectionView.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
+        
+        self.scoreLabel.text = "Score: \(self.nf.stringFromNumber(self.score!))"
+        self.scoreLabel.adjustsFontSizeToFitWidth = true
 
-//        self.scoreLabel.text = "Score: \(self.nf.stringFromNumber(self.score!))"
-//        self.scoreLabel.adjustsFontSizeToFitWidth = true
-
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +63,8 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UICollecti
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Deprecated TableView Methods
+    /*
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("answerCell", forIndexPath: indexPath) as AnswerTableViewCell
 
@@ -82,7 +87,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UICollecti
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return self.correctAnswers.count
     }
+    */
     
+    //MARK: CollectionView Methods
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.correctAnswers.count
     }
@@ -95,23 +102,27 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UICollecti
         cell.correctAnswerLabel.text = correctAnswer.title
         cell.correctAnswerLabel.adjustsFontSizeToFitWidth = true
         
-        let poster = self.networkController.loadMoviePosterForCorrectAnswer(correctAnswer.poster_path!)
-        
-        cell.posterImageView.image = poster
+        self.loadMoviePosterForCorrectAnswer(correctAnswer.poster_path!, completion: { (poster) -> Void in
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                cell.posterImageView.image = poster
+            })
+        })
         
         return cell
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func loadMoviePosterForCorrectAnswer(posterPath: String?, completion: (poster: UIImage) -> Void) {
+        
+        self.imageQueue.addOperationWithBlock { () -> Void in
+            let prefix = "http://image.tmdb.org/t/p/w90"
+            let urlString = prefix + "\(posterPath!)"
+            let url = NSURL(string: urlString)
+            let imgData = NSData(contentsOfURL: url)
+            let posterImage = UIImage(data: imgData)
+            completion(poster: posterImage)
+            
+        }
+        
     }
-    */
 
 }
