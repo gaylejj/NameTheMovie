@@ -22,7 +22,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     var questions = [Question]()
     
-    var correctAnswers = [String]()
+    var correctAnswers = [Movie]()
     
     var playerAnswers = [String]()
     
@@ -135,7 +135,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         }
     }
     
-    func questionAnswered(correctAnswer: String, playerAnswer: String, timeScore : Double) {
+    func questionAnswered(correctAnswer: Movie, playerAnswer: String, timeScore : Double) {
         self.correctAnswers.append(correctAnswer)
         self.playerAnswers.append(playerAnswer)
         self.calculateScore(timeScore)

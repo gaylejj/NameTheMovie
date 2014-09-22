@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsViewController: UIViewController, UITableViewDataSource {
+class ResultsViewController: UIViewController, UITableViewDataSource, UICollectionViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,11 +19,14 @@ class ResultsViewController: UIViewController, UITableViewDataSource {
     var nf = NSNumberFormatter()
     
     var playerAnswers = [String]()
-    var correctAnswers = [String]()
+    var correctAnswers = [Movie]()
     
     var genre : Genre!
     var movies = [Movie]()
     
+    let networkController = NetworkController()
+
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var playAgainButton: UIButton!
     
     override func viewDidLoad() {
@@ -42,10 +45,13 @@ class ResultsViewController: UIViewController, UITableViewDataSource {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+//        self.collectionView.reloadData()
         self.nf.maximumFractionDigits = 0
-        self.scoreLabel.text = "Score: \(self.nf.stringFromNumber(self.score!))"
-        self.scoreLabel.adjustsFontSizeToFitWidth = true
+        self.collectionView.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
+
+//        self.scoreLabel.text = "Score: \(self.nf.stringFromNumber(self.score!))"
+//        self.scoreLabel.adjustsFontSizeToFitWidth = true
 
     }
 
@@ -60,7 +66,8 @@ class ResultsViewController: UIViewController, UITableViewDataSource {
         let correctAnswer = self.correctAnswers[indexPath.row]
         let playerAnswer = self.playerAnswers[indexPath.row]
             
-        cell.correctAnswerLabel.text = correctAnswer
+        cell.correctAnswerLabel.text = correctAnswer.title
+        println("\(correctAnswer.poster_path)")
         cell.playerAnswerLabel.text = playerAnswer
         
         cell.playerAnswerLabel.numberOfLines = 0
@@ -76,7 +83,26 @@ class ResultsViewController: UIViewController, UITableViewDataSource {
             return self.correctAnswers.count
     }
     
-
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.correctAnswers.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("answerCell", forIndexPath: indexPath) as AnswerCollectionViewCell
+        
+        let correctAnswer = self.correctAnswers[indexPath.row]
+        
+        cell.correctAnswerLabel.text = correctAnswer.title
+        cell.correctAnswerLabel.adjustsFontSizeToFitWidth = true
+        
+        let poster = self.networkController.loadMoviePosterForCorrectAnswer(correctAnswer.poster_path!)
+        
+        cell.posterImageView.image = poster
+        
+        return cell
+    }
+    
+    
 
     /*
     // MARK: - Navigation

@@ -43,6 +43,7 @@
 		256A6F4019C7A8CE0044B641 /* Launch Image Title2.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F3E19C7A8CE0044B641 /* Launch Image Title2.png */; };
 		256A6F4419C7AA020044B641 /* Launch Image Popcorn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F4319C7AA020044B641 /* Launch Image Popcorn2.png */; };
 		258DA93419C20FD0008ACF82 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258DA93319C20FD0008ACF82 /* Crashlytics.framework */; };
+		2595AF1E19D0BA1F00B825DA /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2595AF1D19D0BA1F00B825DA /* AnswerCollectionViewCell.swift */; };
 		25C059A4199EAD210069BDD3 /* TMDb logo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */; };
 		25C059A6199EB0CB0069BDD3 /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */; };
 		25C2926219A194DC00A5472A /* film-clapboard.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 25C2926119A194DC00A5472A /* film-clapboard.jpeg */; };
@@ -97,6 +98,7 @@
 		256A6F3E19C7A8CE0044B641 /* Launch Image Title2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Image Title2.png"; sourceTree = "<group>"; };
 		256A6F4319C7AA020044B641 /* Launch Image Popcorn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Image Popcorn2.png"; sourceTree = "<group>"; };
 		258DA93319C20FD0008ACF82 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		2595AF1D19D0BA1F00B825DA /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		25C059A3199EAD210069BDD3 /* TMDb logo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "TMDb logo.jpeg"; sourceTree = "<group>"; };
 		25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		25C2926119A194DC00A5472A /* film-clapboard.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "film-clapboard.jpeg"; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */,
 				25D9FF15199EB63700B74DEE /* AnswerTableViewCell.swift */,
 				2539AF6819C155A200A128F1 /* CellAnimator.swift */,
+				2595AF1D19D0BA1F00B825DA /* AnswerCollectionViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				2557D533199A7E9A008E0E61 /* GameLogic.swift in Sources */,
 				2557D51219995EC7008E0E61 /* Movie.swift in Sources */,
 				25D9FF16199EB63700B74DEE /* AnswerTableViewCell.swift in Sources */,
+				2595AF1E19D0BA1F00B825DA /* AnswerCollectionViewCell.swift in Sources */,
 				2557D535199A8BB1008E0E61 /* Question.swift in Sources */,
 				2557D52119995F08008E0E61 /* NetworkController.swift in Sources */,
 				256A6F3419C793720044B641 /* AnimationController.swift in Sources */,

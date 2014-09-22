@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 
 protocol QuestionViewControllerDelegate {
-    func questionAnswered(correctAnswer: String, playerAnswer: String, timeScore: Double)
+    func questionAnswered(correctAnswer: Movie, playerAnswer: String, timeScore: Double)
 }
 
 class QuestionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -75,13 +75,14 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.overviewTextView.text = newOverview
 //        println("\(self.overviewTextView.contentSize.height) vs \(self.overviewTextView.frame.size.height)")
-        if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
-        {
-            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
-            println("Changed font size")
-        } else {
-            self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
-        }
+//        if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
+//        {
+//            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
+//            println("Changed font size 14")
+//        } else {
+//            self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
+//            println("Changed font size 16")
+//        }
         self.overviewTextView.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
         self.overviewTextView.selectable = false
 //        println("Font is \(self.overviewTextView.font)")
@@ -92,6 +93,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            let point = CGPoint(x: 0, y: 0 - self.overviewTextView.frame.height)
+//            self.overviewTextView.setContentOffset(point, animated: false)
             self.overviewTextView.setContentOffset(CGPointZero, animated: false)
 
         }) { (finished) in
@@ -158,7 +161,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.timeScore = 0
             }
         }
-        self.delegate?.questionAnswered(self.answer!.title!, playerAnswer: (self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell).shownQuestionLabel.text!, timeScore: self.timeScore)
+        self.delegate?.questionAnswered(self.answer!, playerAnswer: (self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell).shownQuestionLabel.text!, timeScore: self.timeScore)
     }
     
     func showCorrectAnswer() {
@@ -176,7 +179,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                 })
                 
                 if self.questionHasBeenAnswered == false {
-                    self.delegate?.questionAnswered(self.answer!.title!, playerAnswer: "_____", timeScore: self.gameTime)
+                    self.delegate?.questionAnswered(self.answer!, playerAnswer: "_____", timeScore: self.gameTime)
                 }
             }
         }
@@ -215,6 +218,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                 println("intrinsic height is \(self.overviewTextView.contentSize.height)")
                 
                 self.overviewTextView.setContentOffset(CGPoint(x: 0, y: initialOffset), animated: false)
+//                self.overviewTextView.setContentOffset(CGPointZero, animated: false)
                 
                 }) { (finished) -> Void in
                     
