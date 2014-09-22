@@ -75,17 +75,16 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.overviewTextView.text = newOverview
 //        println("\(self.overviewTextView.contentSize.height) vs \(self.overviewTextView.frame.size.height)")
-//        if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
-//        {
-//            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
-//            println("Changed font size 14")
-//        } else {
-//            self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
-//            println("Changed font size 16")
-//        }
+        if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
+        {
+            self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
+            println("Changed font size 14")
+        } else {
+            self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
+            println("Changed font size 16")
+        }
         self.overviewTextView.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
         self.overviewTextView.selectable = false
-//        println("Font is \(self.overviewTextView.font)")
 
         self.timerLabel.text = "\(self.gameTime)"
         self.timerLabel.font = UIFont(name: "Avenir", size: 18.0)
@@ -102,9 +101,10 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             self.startTimer()
             self.timerLabel.text = "\(self.gameTime)"
             
-            //TODO: Add question scrolling animation
             if finished {
-                self.startPlotScrolling()
+                if self.questionHasBeenAnswered == false {
+                    self.startPlotScrolling()
+                }
             }
         }
     }
@@ -174,7 +174,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             let cell = tableView.cellForRowAtIndexPath(indexPath as NSIndexPath) as QuestionTableViewCell
             
             if cell.shownQuestionLabel.text == self.answer?.title {
-                UIView.animateWithDuration(2.0, animations: { () -> Void in
+                UIView.animateWithDuration(0.0, animations: { () -> Void in
                     cell.shownQuestionLabel.textColor = UIColor.greenColor()
                 })
                 
@@ -188,7 +188,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     func correctAnswerAnimation(indexPath : NSIndexPath) {
         let cell = self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell
         
-        UIView.animateWithDuration(2.0, animations: { () -> Void in
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
             cell.shownQuestionLabel.textColor = UIColor.greenColor()
             self.tableView.userInteractionEnabled = false
         })
@@ -197,7 +197,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     func incorrectAnswerAnimation(indexPath: NSIndexPath) {
         let cell = self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell
         
-        UIView.animateWithDuration(2.0, animations: { () -> Void in
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
             cell.shownQuestionLabel.textColor = UIColor(red: 225/255, green: 1/255, blue: 20/255, alpha: 1.0)
             self.tableView.userInteractionEnabled = false
             self.showCorrectAnswer()

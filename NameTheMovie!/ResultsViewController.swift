@@ -114,7 +114,9 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
     func loadMoviePosterForCorrectAnswer(posterPath: String?, completion: (poster: UIImage) -> Void) {
         
         self.imageQueue.addOperationWithBlock { () -> Void in
-            let prefix = "http://image.tmdb.org/t/p/w90"
+            let prefix = "http://image.tmdb.org/t/p/w130"
+            //TODO: 4s/5s layout constraints
+            //Use w90 for 4s/5s phones. 90x135 image, so change height layout constraint to 135, width of imageview to 90, height of cell to 155
             let urlString = prefix + "\(posterPath!)"
             let url = NSURL(string: urlString)
             let imgData = NSData(contentsOfURL: url)
