@@ -158,7 +158,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
             let leaderboardID = "com.jeff.PopcornQuizHighScore"
             println("High Scores: \(GameCenterManager.sharedManager().highScoreForLeaderboard(leaderboardID))")
         } else {
-            let alertController = UIAlertController(title: "Game Center", message: "Please go to Settings -> Game Center and sign in to enable this feature", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Game Center Unavailable", message: "Please go to Settings -> Game Center and sign in to enable this feature", preferredStyle: UIAlertControllerStyle.Alert)
             
             let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
             

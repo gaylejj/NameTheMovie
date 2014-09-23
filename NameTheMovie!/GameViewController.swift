@@ -127,6 +127,8 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             let question = questions[self.questionsAnswered]
             self.answer = question.movie
             
+            self.setupQuestionVC()
+            
             questionVCOne.view.frame = CGRect(x: 0-self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             
             self.questionVCOne.view.hidden = true
@@ -159,6 +161,9 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
                 self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
                 self.setupNextQuestion()
                 self.beginCountdown()
+                
+                self.questionVCOne.removeFromParentViewController()
+                self.questionVCOne.view.removeFromSuperview()
             } else {
                 if GameCenterManager.sharedManager().localPlayerData() != nil {
                     self.reportScore()

@@ -74,7 +74,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         let newOverview = overview.stringByReplacingOccurrencesOfString(question.movie!.title!, withString: "________", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
         
         self.overviewTextView.text = newOverview
-//        println("\(self.overviewTextView.contentSize.height) vs \(self.overviewTextView.frame.size.height)")
+
         if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
         {
             self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
@@ -92,9 +92,10 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-            let point = CGPoint(x: 0, y: 0 - self.overviewTextView.frame.height)
+
+//            let point = CGPoint(x: 0, y: 0 - self.overviewTextView.frame.height)
 //            self.overviewTextView.setContentOffset(point, animated: false)
-            self.overviewTextView.setContentOffset(CGPointZero, animated: false)
+//            self.overviewTextView.setContentOffset(CGPointZero, animated: false)
 
         }) { (finished) in
             self.tableView.userInteractionEnabled = true
@@ -102,9 +103,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             self.timerLabel.text = "\(self.gameTime)"
             
             if finished {
-                if self.questionHasBeenAnswered == false {
-                    self.startPlotScrolling()
-                }
+
+                self.startPlotScrolling()
             }
         }
     }
@@ -122,6 +122,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.resetTableView(cell)
         
+        self.overviewTextView.setContentOffset(CGPointZero, animated: false)
         
         self.tableView.rowHeight = 65.0
         
@@ -224,7 +225,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                 var initialOffset = self.overviewTextView.contentSize.height - self.overviewTextView.frame.size.height
                 
                 println("frame height is \(self.overviewTextView.frame.size.height)")
-                println("intrinsic height is \(self.overviewTextView.contentSize.height)")
+                println("Content height is \(self.overviewTextView.contentSize.height)")
                 
                 self.overviewTextView.setContentOffset(CGPoint(x: 0, y: initialOffset), animated: false)
 //                self.overviewTextView.setContentOffset(CGPointZero, animated: false)
