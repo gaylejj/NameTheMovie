@@ -97,10 +97,26 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("answerCell", forIndexPath: indexPath) as AnswerCollectionViewCell
         
+        if self.view.frame.height <= 568 {
+            cell.posterImageView.frame.size = CGSize(width: 90, height: 135)
+            if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.itemSize = CGSize(width: 90, height: 155)
+                cell.correctAnswerLabel.frame.size = CGSize(width: 90, height: 30)
+                cell.correctAnswerLabel.adjustsFontSizeToFitWidth = true
+            }
+            println(cell.posterImageView.frame.size)
+        } else {
+            cell.posterImageView.frame.size = CGSize(width: 120, height: 150)
+            cell.correctAnswerLabel.frame.size = CGSize(width: 120, height: 30)
+            println(cell.posterImageView.frame.size)
+        }
+        
         let correctAnswer = self.correctAnswers[indexPath.row]
         
         cell.correctAnswerLabel.text = correctAnswer.title
         cell.correctAnswerLabel.adjustsFontSizeToFitWidth = true
+        cell.correctAnswerLabel.numberOfLines = 1
+        cell.correctAnswerLabel.minimumScaleFactor = 0.5
         
         self.loadMoviePosterForCorrectAnswer(correctAnswer.poster_path!, completion: { (poster) -> Void in
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -114,7 +130,14 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
     func loadMoviePosterForCorrectAnswer(posterPath: String?, completion: (poster: UIImage) -> Void) {
         
         self.imageQueue.addOperationWithBlock { () -> Void in
-            let prefix = "http://image.tmdb.org/t/p/w130"
+            var prefix = ""
+            if self.view.frame.height > 568 {
+                prefix = "http://image.tmdb.org/t/p/w130"
+                println("Getting W130 picture")
+            } else {
+                println("Getting W90 picture")
+                prefix = "http://image.tmdb.org/t/p/w90"
+            }
             //TODO: 4s/5s layout constraints
             //Use w90 for 4s/5s phones. 90x135 image, so change height layout constraint to 135, width of imageview to 90, height of cell to 155
             let urlString = prefix + "\(posterPath!)"

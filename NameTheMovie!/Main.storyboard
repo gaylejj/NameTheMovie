@@ -265,10 +265,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhw-4k-W2j">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="adu-ge-hgB"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Results" id="44P-ZA-Kkc">
+                                        <barButtonItem key="leftBarButtonItem" title="Play Again" id="Ild-3d-wAr">
+                                            <connections>
+                                                <segue destination="s52-Sf-uaC" kind="unwind" unwindAction="unwindToGenreVC:" id="lnw-s1-Bm0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="V35-JG-fgq" id="KrW-Si-eaD"/>
+                                </connections>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bg2-hx-GlF">
+                                <rect key="frame" x="240" y="74" width="120" height="27.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="141" id="R8K-K9-gc1"/>
+                                    <constraint firstAttribute="width" constant="120" id="y5Y-Tx-3by"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="R8K-K9-gc1"/>
+                                    </mask>
+                                </variation>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ix4-Hz-DMm">
                                 <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Y8k-0n-4nn">
-                                    <size key="itemSize" width="120" height="190"/>
+                                    <size key="itemSize" width="120" height="170"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -278,17 +311,23 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="190"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rVc-Ec-X4P">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rVc-Ec-X4P">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="170"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="170" id="BYy-OP-MSR"/>
                                                         <constraint firstAttribute="width" constant="120" id="QTb-sD-XaH"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="BYy-OP-MSR"/>
+                                                            <exclude reference="QTb-sD-XaH"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4M-YY-njP">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4M-YY-njP">
                                                     <rect key="frame" x="0.0" y="170" width="120" height="20"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -322,38 +361,6 @@
                                     <outlet property="dataSource" destination="V35-JG-fgq" id="TF6-DD-zSH"/>
                                 </connections>
                             </collectionView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhw-4k-W2j">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="adu-ge-hgB"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Results" id="44P-ZA-Kkc">
-                                        <barButtonItem key="leftBarButtonItem" title="Play Again" id="Ild-3d-wAr">
-                                            <connections>
-                                                <segue destination="s52-Sf-uaC" kind="unwind" unwindAction="unwindToGenreVC:" id="lnw-s1-Bm0"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="V35-JG-fgq" id="KrW-Si-eaD"/>
-                                </connections>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bg2-hx-GlF">
-                                <rect key="frame" x="91" y="74" width="418" height="27.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="141" id="R8K-K9-gc1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="R8K-K9-gc1"/>
-                                    </mask>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -373,6 +380,8 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="V0S-DK-VmT"/>
+                                <exclude reference="9wC-GV-DDv"/>
+                                <exclude reference="P8a-hg-UYw"/>
                             </mask>
                         </variation>
                     </view>
