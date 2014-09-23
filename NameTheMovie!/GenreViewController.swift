@@ -42,6 +42,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gameCenterEnabled"), name: appDelegate.kAuthenticationViewControllerFinished, object: nil)
+        
+        println(self.navigationController?.navigationBar.frame.height)
 
         
         // Do any additional setup after loading the view.
@@ -62,9 +64,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         var romance = UIImage(named: "romcom.png")
         var sciFi = UIImage(named: "scifi.png")
         var thriller = UIImage(named: "thriller.png")
-        var western = UIImage(named: "western.png")
         
-        self.genreImages = [action, adventure, animation, comedy, crime, drama, fantasy, romance, sciFi, thriller, western]
+        self.genreImages = [action, adventure, animation, comedy, crime, drama, fantasy, romance, sciFi, thriller]
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -92,9 +93,14 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.cell.genreTitleLabel.text = genre.name
         self.cell.genreImageView.image = image
         
-        if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
-            self.tableView.rowHeight = 41.0
-        }
+//        if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
+//            self.tableView.rowHeight = 41.5
+//        } else if self.view.frame.height > 568 {
+//            self.tableView.rowHeight = (self.tableView.frame.height - 60.0) / 10.0
+//        }
+        self.tableView.rowHeight = (self.tableView.frame.height - 64.0) / 10.0
+        println(self.tableView.rowHeight)
+
         
         self.tableView.scrollEnabled = false
 

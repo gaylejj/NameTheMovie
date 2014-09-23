@@ -40,15 +40,16 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
         for otherAnswer in self.correctAnswers {
             println("Correct \(otherAnswer)")
         }
-        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.nf.maximumFractionDigits = 0
+        self.view.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
         self.collectionView.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
         
+        self.scoreLabel.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
         self.scoreLabel.text = "Score: \(self.nf.stringFromNumber(self.score!))"
         self.scoreLabel.adjustsFontSizeToFitWidth = true
 
