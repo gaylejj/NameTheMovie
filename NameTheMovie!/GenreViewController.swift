@@ -92,12 +92,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
             
         self.cell.genreTitleLabel.text = genre.name
         self.cell.genreImageView.image = image
-        
-//        if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
-//            self.tableView.rowHeight = 41.5
-//        } else if self.view.frame.height > 568 {
-//            self.tableView.rowHeight = (self.tableView.frame.height - 60.0) / 10.0
-//        }
+
         self.tableView.rowHeight = (self.tableView.frame.height - 64.0) / CGFloat(self.genres.count)
         println(self.tableView.rowHeight)
 
@@ -158,10 +153,29 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func segueToProfileController() {
 
-        GameCenterManager.sharedManager().presentLeaderboardsOnViewController(self)
-        let leaderboardID = "com.jeff.PopcornQuizHighScore"
-        println("High Scores: \(GameCenterManager.sharedManager().highScoreForLeaderboard(leaderboardID))")
+        if GameCenterManager.sharedManager().localPlayerData() != nil {
+            GameCenterManager.sharedManager().presentLeaderboardsOnViewController(self)
+            let leaderboardID = "com.jeff.PopcornQuizHighScore"
+            println("High Scores: \(GameCenterManager.sharedManager().highScoreForLeaderboard(leaderboardID))")
+        } else {
+            let alertController = UIAlertController(title: "Game Center", message: "Please go to Settings -> Game Center and sign in to enable this feature", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            let settingsAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                
+                println("stuff")
+                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString))
+                
+            })
+            
+            alertController.addAction(settingsAction)
+            alertController.addAction(cancelAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+
     }
+
     
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
