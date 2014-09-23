@@ -98,7 +98,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        } else if self.view.frame.height > 568 {
 //            self.tableView.rowHeight = (self.tableView.frame.height - 60.0) / 10.0
 //        }
-        self.tableView.rowHeight = (self.tableView.frame.height - 64.0) / 10.0
+        self.tableView.rowHeight = (self.tableView.frame.height - 64.0) / CGFloat(self.genres.count)
         println(self.tableView.rowHeight)
 
         

@@ -133,7 +133,16 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         } else if self.view.frame.height == 568 {
             self.tableViewHeight.constant = CGFloat(210.0)
             self.tableView.rowHeight = 52.5
+        } else if self.view.frame.height == 667 {
+            self.overViewTextHeight.constant = CGFloat(300)
+            self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
+        } else if self.view.frame.height == 736 {
+            self.overViewTextHeight.constant = CGFloat(350)
+            self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
         }
+        println(self.view.frame.height)
+        println(self.overviewTextView.frame.height)
+        println(self.overviewTextView.font)
         
         cell.shownQuestionLabel.text = self.question!.answers[indexPath.row].title
         cell.shownQuestionLabel.adjustsFontSizeToFitWidth = true
