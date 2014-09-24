@@ -10,6 +10,7 @@ import UIKit
 
 class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GKGameCenterControllerDelegate, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
 
+    //MARK: Properties/Outlets
     @IBOutlet weak var tableView: UITableView!
     
     var genres : [Genre] = Genre.genreFromPlist()
@@ -27,6 +28,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     let animationController = AnimationController()
     
+    //MARK: View loading functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,21 +40,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.createImagesArray()
         
         self.navigationController?.delegate = self
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("gameCenterEnabled"), name: appDelegate.kAuthenticationViewControllerFinished, object: nil)
-        
-        println(self.navigationController?.navigationBar.frame.height)
+    }
 
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    func gameCenterEnabledForPlayer() {
-        println(GameCenterManager.sharedManager().localPlayerData())
-    }
-    
     func createImagesArray() {
         var action = UIImage(named: "action.png")
         var adventure = UIImage(named: "adventure.png")
@@ -93,9 +82,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.cell.genreTitleLabel.text = genre.name
         self.cell.genreImageView.image = image
 
+        //Row height based on tableView height -> Changes with device
         self.tableView.rowHeight = (self.tableView.frame.height - 64.0) / CGFloat(self.genres.count)
-        println(self.tableView.rowHeight)
-
         
         self.tableView.scrollEnabled = false
 
@@ -103,6 +91,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         return self.cell
     }
     
+    //Animation when cells come into screen
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if self.didAnimateCell[indexPath] == nil || self.didAnimateCell[indexPath] == false {
@@ -111,8 +100,6 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
                 CellAnimator.animate(genreCell)
             }
         }
-
-
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
@@ -125,38 +112,40 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         let genre = genres[indexPath.row]
         gameVC.genre = genre
         
-            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-                self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
                     
-                    if let string = errorDescription as String? {
+                if let string = errorDescription as String? {
                         
-                        self.tableView.userInteractionEnabled = true
+                    self.tableView.userInteractionEnabled = true
                         
-                        let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again in a few minutes", preferredStyle: UIAlertControllerStyle.Alert)
-                        let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+                    let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again in a few minutes", preferredStyle: UIAlertControllerStyle.Alert)
+                    let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
                         alertController.addAction(cancelAction)
-                        self.presentViewController(alertController, animated: true, completion: nil)
-                        
-                    } else {
-                        self.movies = movies
-                        
-                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                            
-                            self.performSegueWithIdentifier("Question", sender: self)
-                        })
-                    }
                     
-                })
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                } else {
+                    self.movies = movies
+                        
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            
+                        self.performSegueWithIdentifier("Question", sender: self)
+                    })
+                }
                 
-            }
+            })
+            
+        }
     }
     
+    //MARK: GameCenter profile segue
+    //Show leaderboards or alert controller to login to gamecenter
     func segueToProfileController() {
 
         if GameCenterManager.sharedManager().localPlayerData() != nil {
             GameCenterManager.sharedManager().presentLeaderboardsOnViewController(self)
             let leaderboardID = "com.jeff.PopcornQuizHighScore"
-            println("High Scores: \(GameCenterManager.sharedManager().highScoreForLeaderboard(leaderboardID))")
         } else {
             let alertController = UIAlertController(title: "Game Center Unavailable", message: "Please go to Settings -> Game Center and sign in to enable this feature", preferredStyle: UIAlertControllerStyle.Alert)
             
@@ -164,23 +153,25 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             let settingsAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
                 
-                println("stuff")
+                //Open settings menu
+                println("Necessary for below code to work")
                 UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString))
                 
             })
             
             alertController.addAction(settingsAction)
             alertController.addAction(cancelAction)
+            
             self.presentViewController(alertController, animated: true, completion: nil)
         }
 
     }
-
     
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //MARK: Question Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let gameVC = segue.destinationViewController as GameViewController
 
@@ -191,6 +182,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+    //MARK: Custom Animation
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.animationController
     }

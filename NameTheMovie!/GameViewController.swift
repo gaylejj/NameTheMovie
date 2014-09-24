@@ -11,26 +11,17 @@ import QuartzCore
 
 class GameViewController: UIViewController, GameLogicDelegate, QuestionViewControllerDelegate, GameCenterManagerDelegate {
     
+    //MARK: Properties/Outlets
     var movies : [Movie]?
-        
     var answer : Movie?
-    
     var genre : Genre?
-    
     let networkController = NetworkController()
-    
     var gameLogic = GameLogic()
-    
     var questions = [Question]()
-    
     var correctAnswers = [Movie]()
-    
     var playerAnswers = [String]()
-    
     var gameStarted = false
-    
     var questionsAnswered = 0
-    
     var score = 0.0
     var countdownTime = 3.0
     
@@ -38,18 +29,17 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     let scoreNF = NSNumberFormatter()
         
     var questionTimer : NSTimer!
-    var questionTimerTwo : NSTimer!
     var beginningTimer : NSTimer!
     var countdownTimer : NSTimer!
     var timerLabelTimer : NSTimer!
     
-    var questionHasBeenAnswered = false
     var timerIsRunning = false
         
     @IBOutlet weak var timerLabel: UILabel!
     
-    var questionVCOne = QuestionViewController()
+    var questionVC = QuestionViewController()
     
+    //MARK: Loading functions
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
@@ -81,28 +71,22 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.questionVCOne.view.removeFromSuperview()
+        self.questionVC.view.removeFromSuperview()
         
-        self.questionVCOne.removeFromParentViewController()
+        self.questionVC.removeFromParentViewController()
     }
     
-    func beginGame() {
-        self.displayQuestion(0)
-    }
-    
-    func beginCountdown() {
-        self.startTimer()
-    }
+    //Setup QuestionVC
     
     func setupQuestionVC() {
-        self.questionVCOne = self.storyboard!.instantiateViewControllerWithIdentifier("QuestionVC") as QuestionViewController
+        self.questionVC = self.storyboard!.instantiateViewControllerWithIdentifier("QuestionVC") as QuestionViewController
 
-        self.questionVCOne.view.hidden = true
+        self.questionVC.view.hidden = true
         
-        self.view.addSubview(questionVCOne.view)
+        self.view.addSubview(self.questionVC.view)
         
-        self.addChildViewController(questionVCOne)
-        self.questionVCOne.delegate = self
+        self.addChildViewController(self.questionVC)
+        self.questionVC.delegate = self
     }
     
     //MARK: Game Functions
@@ -122,6 +106,14 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         }
     }
     
+    func beginGame() {
+        self.displayQuestion(0)
+    }
+    
+    func beginCountdown() {
+        self.startTimer()
+    }
+    
     func displayQuestion(questionsAnswered: Int) {
         if self.questionsAnswered < 5 {
             let question = questions[self.questionsAnswered]
@@ -129,15 +121,16 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             
             self.setupQuestionVC()
             
-            questionVCOne.view.frame = CGRect(x: 0-self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            self.questionVC.view.frame = CGRect(x: 0-self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             
-            self.questionVCOne.view.hidden = true
+            self.questionVC.view.hidden = true
             self.timerLabel.hidden = true
             
-            self.questionVCOne.displayQuestionInVC(question)
+            self.questionVC.displayQuestionInVC(question)
         }
     }
     
+    //MARK: Delegate response from question answered
     func questionAnswered(correctAnswer: Movie, playerAnswer: String, timeScore : Double) {
         self.correctAnswers.append(correctAnswer)
         self.playerAnswers.append(playerAnswer)
@@ -147,14 +140,12 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
 
     }
     
+    //Animate questionVC to the right off screen
     func animateQuestionAfterAnswer() {
 
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.questionVCOne.view.frame = CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            self.questionVC.view.frame = CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         }) { (Bool) -> Void in
-            //MARK: Test remove animation
-//            self.questionVCOne.view.layer.removeAllAnimations()
-
             //start countdown timer
             if self.questionsAnswered < 5 {
                 self.countdownTime = 3.0
@@ -162,13 +153,12 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
                 self.setupNextQuestion()
                 self.beginCountdown()
                 
-                self.questionVCOne.removeFromParentViewController()
-                self.questionVCOne.view.removeFromSuperview()
+                self.questionVC.removeFromParentViewController()
+                self.questionVC.view.removeFromSuperview()
             } else {
                 if GameCenterManager.sharedManager().localPlayerData() != nil {
                     self.reportScore()
                 } else {
-                    println("No Player found")
                     self.performSegueWithIdentifier("Results", sender: self)
                 }
             }
@@ -188,13 +178,15 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     }
     
     //MARK: GameCenter Score
-
     func reportScore() {
         GameCenterManager.sharedManager().delegate = self
+        
+        //Add score to previous score for player from leaderboard
         let score = Int32(self.score)
         let currentScoreFromLeaderboard = GameCenterManager.sharedManager().highScoreForLeaderboard("com.jeff.PopcornQuizHighScore")
         let finalScore = score + currentScoreFromLeaderboard
-        println(finalScore)
+        
+        //Report final score
         GameCenterManager.sharedManager().saveAndReportScore(finalScore, leaderboard: "com.jeff.PopcornQuizHighScore", sortOrder: GameCenterSortOrderHighToLow)
     }
     
@@ -223,6 +215,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         }
     }
     
+    //MARK: Prepare for segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "Results" {
             let resultsVC = segue.destinationViewController as ResultsViewController
@@ -230,9 +223,6 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             resultsVC.correctAnswers = self.correctAnswers
             resultsVC.playerAnswers = self.playerAnswers
             resultsVC.score = self.score
-            
-//            resultsVC.genre = self.genre
-//            resultsVC.movies = self.movies!
             
         }
     }

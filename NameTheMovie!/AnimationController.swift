@@ -10,10 +10,12 @@ import Foundation
 
 class AnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     
+    //Transition Duration
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
         return 2.0
     }
     
+    //Animation for Transition
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         var containerView = transitionContext.containerView()
         

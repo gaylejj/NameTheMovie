@@ -15,6 +15,7 @@ protocol QuestionViewControllerDelegate {
 
 class QuestionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    //MARK: Properties/Outlets
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var overviewTextView: UITextView!
     
@@ -22,6 +23,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var overViewTextHeight: NSLayoutConstraint!
+    @IBOutlet weak var timerHeightConstraint: NSLayoutConstraint!
     
     var timerIsRunning = false
     var questionHasBeenAnswered = false
@@ -39,8 +41,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     let nf = NSNumberFormatter()
     let scoreNF = NSNumberFormatter()
     
-    @IBOutlet weak var timerHeightConstraint: NSLayoutConstraint!
-    
+    //MARK: Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +61,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Display quesiton on questionVC
     func displayQuestionInVC(question: Question) {
         self.gameTime = 13.0
         self.timeScore = 0.0
@@ -70,11 +72,12 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.reloadData()
         self.view.hidden = false
         
+        //Create overview without movie title in it
         var overview = "\(self.answer!.overview!)"
         let newOverview = overview.stringByReplacingOccurrencesOfString(question.movie!.title!, withString: "________", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
-        
         self.overviewTextView.text = newOverview
 
+        //Change font size depending on length of overview
         if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
         {
             self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
@@ -83,32 +86,34 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
             println("Changed font size 16")
         }
+        
+        //Overview characteristics
         self.overviewTextView.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
         self.overviewTextView.selectable = false
 
+        //TimerLabel characteristics
         self.timerLabel.text = "\(self.gameTime)"
         self.timerLabel.font = UIFont(name: "Avenir", size: 18.0)
         self.timerLabel.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
         
+        //Animate questionVC into frame for player
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
 
-//            let point = CGPoint(x: 0, y: 0 - self.overviewTextView.frame.height)
-//            self.overviewTextView.setContentOffset(point, animated: false)
-//            self.overviewTextView.setContentOffset(CGPointZero, animated: false)
-
         }) { (finished) in
+            //Start timer
             self.tableView.userInteractionEnabled = true
             self.startTimer()
             self.timerLabel.text = "\(self.gameTime)"
             
             if finished {
-
+                //Start plot scrolling
                 self.startPlotScrolling()
             }
         }
     }
     
+    //MARK: Tableivew functions
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if question == nil {
             return 0
@@ -122,14 +127,15 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.resetTableView(cell)
         
+        //Offset overview to point 0,0
         self.overviewTextView.setContentOffset(CGPointZero, animated: false)
         
         self.tableView.rowHeight = 65.0
         
+        //Change tableview height/row height, or overview height based on device size
         if self.view.frame.height == 480 {
             self.tableViewHeight.constant = CGFloat(160.0)
             self.tableView.rowHeight = 40
-            
             self.overViewTextHeight.constant = 215
         } else if self.view.frame.height == 568 {
             self.tableViewHeight.constant = CGFloat(210.0)
@@ -141,10 +147,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             self.overViewTextHeight.constant = CGFloat(350)
             self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
         }
-        println(self.view.frame.height)
-        println(self.overviewTextView.frame.height)
-        println(self.overviewTextView.font)
         
+        //setting up cell
         cell.shownQuestionLabel.text = self.question!.answers[indexPath.row].title
         cell.shownQuestionLabel.adjustsFontSizeToFitWidth = true
         cell.shownQuestionLabel.textColor = UIColor.lightGrayColor()
@@ -159,9 +163,12 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell
         self.questionHasBeenAnswered = true
         
+        //stop timer
         if self.timerIsRunning == true {
             self.stopTimer()
         }
+        
+        //Check answer based on cell selected
         if self.questionHasBeenAnswered == true {
             if cell.shownQuestionLabel.text == self.answer?.title {
                 self.correctAnswerAnimation(indexPath)
@@ -171,9 +178,13 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.timeScore = 0
             }
         }
+        
+        //Call delegate
         self.delegate?.questionAnswered(self.answer!, playerAnswer: (self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell).shownQuestionLabel.text!, timeScore: self.timeScore)
     }
     
+    //MARK: Answer functions
+    //Called if timer runs out
     func showCorrectAnswer() {
         
         var indexPaths : [NSIndexPath]? = tableView.indexPathsForVisibleRows() as [NSIndexPath]?
@@ -195,6 +206,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    //Animate correct answer
     func correctAnswerAnimation(indexPath : NSIndexPath) {
         let cell = self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell
         
@@ -204,6 +216,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         })
     }
     
+    //Animate incorrect answer
     func incorrectAnswerAnimation(indexPath: NSIndexPath) {
         let cell = self.tableView.cellForRowAtIndexPath(indexPath) as QuestionTableViewCell
         
@@ -215,25 +228,21 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func resetTableView(cell: QuestionTableViewCell!) {
-        cell.shownQuestionLabel.textColor = UIColor.blackColor()
+        cell.shownQuestionLabel.textColor = UIColor.lightGrayColor()
     }
     
     func startPlotScrolling() {
+        //If overview is larger than the textview height, scroll
         if self.overviewTextView.contentSize.height > self.overviewTextView.frame.size.height {
             UIView.animateWithDuration(6.5, delay: 1.5, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
 
+                //Set offset to section not shown initially
                 var initialOffset = self.overviewTextView.contentSize.height - self.overviewTextView.frame.size.height
                 
-                println("frame height is \(self.overviewTextView.frame.size.height)")
-                println("Content height is \(self.overviewTextView.contentSize.height)")
-                
                 self.overviewTextView.setContentOffset(CGPoint(x: 0, y: initialOffset), animated: false)
-//                self.overviewTextView.setContentOffset(CGPointZero, animated: false)
                 
                 }) { (finished) -> Void in
-                    
             }
-            
         }
     }
     

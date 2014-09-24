@@ -10,10 +10,11 @@ import Foundation
 
 class NetworkController: NSObject {
     
+    //MARK: Session property
     var session = NSURLSession.sharedSession()
     
+    //MARK: Parse functions
     func parseResponse(responseData: NSData) -> [Movie] {
-        
         var movies = [Movie]()
         
         if let responseDict = NSJSONSerialization.JSONObjectWithData(responseData, options: nil, error: nil) as? NSDictionary {
@@ -26,12 +27,6 @@ class NetworkController: NSObject {
                         
                         let movie = Movie(resultDict: resultDict)
                         movies.append(movie)
-                        println("Movie's title is \(movie.title!)")
-                        println("Movie's poster path is \(movie.poster_path!)")
-                        println("Movie's id is \(movie.id!)")
-                        println("Movie's adult status is \(movie.is_adult!)")
-                        println("Movie's Overview is \(movie.overview)")
-                        
                     }
                 }
             }
@@ -44,27 +39,18 @@ class NetworkController: NSObject {
         
         if let responseDict = NSJSONSerialization.JSONObjectWithData(responseData, options: nil, error: nil) as? NSDictionary {
             movie = Movie(resultDict: responseDict)
-            println("Movie's overview is \(movie!.overview!)")
         }
-        println(movie!.title)
-        
         return movie
     }
 
+    //MARK: Fetch functions
+    //Get movie overview
     func fetchMovieForGame(movie: Movie!, callback: (movie: Movie!, errorDescription: String?) -> Void) {
         
-        println("Click movie is \(movie!.id)")
-        println("Click movie title is \(movie.title)")
+        var movieID = "\(movie!.id!)"
         
-        var movieID = "\(movie!.id)"
-        
-        let newMovieID = movieID.stringByReplacingOccurrencesOfString("Optional(", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        let finalMovieID = newMovieID.stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        if !finalMovieID.isEmpty {
-            var url = NSURL(string: "http://api.themoviedb.org/3/movie/\(finalMovieID)?api_key=\(API.apiKey())")
-            println(url)
+        if !movieID.isEmpty {
+            var url = NSURL(string: "http://api.themoviedb.org/3/movie/\(movieID)?api_key=\(API.apiKey())")
             
             var request = NSMutableURLRequest(URL: url)
             
@@ -75,7 +61,7 @@ class NetworkController: NSObject {
             var task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
                 if (error != nil) {
                     //Handle error
-                    println(error.localizedDescription)
+                    callback(movie: nil, errorDescription: "\(error.localizedDescription)")
                 } else {
                     if let httpResponse = response as? NSHTTPURLResponse {
                         switch httpResponse.statusCode {
@@ -100,11 +86,9 @@ class NetworkController: NSObject {
         }
         
     }
-        
+    
+    //Get movies from genre
     func discoverMovie(genre: Genre, callback: (movies: [Movie]?, errorDescription: String?) -> Void) {
-        
-        println("Discover Movie Call: \(genre.name)")
-        println("Discover Movie Call: \(genre.id)")
         
         var page = arc4random_uniform(11)
         
@@ -125,10 +109,8 @@ class NetworkController: NSObject {
             
             var task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
                 
-//                println("\(response.description)")
                 if (error != nil) {
                     // Handle error...
-                    println(error.localizedDescription)
                     callback(movies: nil, errorDescription: "\(error.localizedDescription)")
                 } else {
                     if let httpResponse = response as? NSHTTPURLResponse {
