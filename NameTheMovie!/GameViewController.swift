@@ -198,7 +198,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     func gameCenterManager(manager: GameCenterManager!, reportedScore score: GKScore!, withError error: NSError!) {
         var error : NSError?
         if error != nil {
-            println(error?.localizedDescription)
+            
         } else {
             self.performSegueWithIdentifier("Results", sender: self)
 

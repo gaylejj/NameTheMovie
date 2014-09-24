@@ -42,7 +42,7 @@ class GameLogic: NSObject {
         
         networkController.fetchMovieForGame(movieOne, callback: { (movie, errorDescription) -> Void in
             if errorDescription != nil {
-                println("Error occurred")
+                
             } else {
                 self.generateAnswersForGivenPlot(movie)
             }
@@ -103,7 +103,6 @@ class GameLogic: NSObject {
         finalQuestion.movie = question.movie
         
         var randomIndex = Int(arc4random_uniform(UInt32(3)))
-        println(randomIndex)
         finalQuestion.answers.append(question.answers[randomIndex])
         question.answers.removeAtIndex(randomIndex)
         

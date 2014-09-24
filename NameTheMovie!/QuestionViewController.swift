@@ -81,10 +81,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         if self.overviewTextView.contentSize.height > (1.5 * self.overviewTextView.frame.size.height)
         {
             self.overviewTextView.font = UIFont(name: "Avenir", size: 14.0)
-            println("Changed font size 14")
         } else {
             self.overviewTextView.font = UIFont(name: "Avenir", size: 16.0)
-            println("Changed font size 16")
         }
         
         //Overview characteristics

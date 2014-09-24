@@ -188,6 +188,6 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBAction func unwindToGenreVC(segue: UIStoryboardSegue!) {
-        println("Pressing Play Again")
+        
     }
 }

@@ -66,17 +66,15 @@ class NetworkController: NSObject {
                     if let httpResponse = response as? NSHTTPURLResponse {
                         switch httpResponse.statusCode {
                         case 200:
-                            println("Everything Ok")
                             callback(movie: self.parseResponseForMovieID(data), errorDescription: nil)
                         case 401:
-                            println("Authentication Failed: You do not have permissions to access this service")
+                            callback(movie: nil, errorDescription: "Authentication Failed: You do not have permissions to access this service")
                         case 404:
-                            println("URL Not found")
+                            callback(movie: nil, errorDescription: "URL Not found")
                         case 503:
-                            println("Being Rate Limited")
+                            callback(movie: nil, errorDescription: "Being Rate Limited")
                         default:
-                            println("Something happened")
-                            println(httpResponse.statusCode)
+                            callback(movie: nil, errorDescription: "Please try again in a few minutes \(httpResponse.statusCode)")
                         }
                     }
                 }
@@ -95,10 +93,7 @@ class NetworkController: NSObject {
         if let genrePicked = genre.id as String! {
             
             var urlString = "http://api.themoviedb.org/3/discover/movie?api_key=\(API.apiKey())&include_adult=false&vote_count.gte=90&page=\(page)&with_genres=\(genrePicked)"
-            
             let discoverURL = NSURL(string: urlString)
-            
-            println("URL: \(discoverURL)")
             
             var request = NSMutableURLRequest(URL: discoverURL)
             
@@ -116,20 +111,14 @@ class NetworkController: NSObject {
                     if let httpResponse = response as? NSHTTPURLResponse {
                         switch httpResponse.statusCode {
                         case 200:
-                            println("Everything Ok")
                             callback(movies: self.parseResponse(data), errorDescription: nil)
                         default:
-                            println("Something happened \(httpResponse.statusCode)")
-                            callback(movies: nil, errorDescription: "Please try again in a few minutes")
+                            callback(movies: nil, errorDescription: "Please try again in a few minutes \(httpResponse.statusCode)")
                         }
                     }
                 }
             })
-            
             task.resume()
-            
         }
-        
     }
-
 }
