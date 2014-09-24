@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameCenterManagerDelegate
         return true
     }
     
+    //Required method
     func gameCenterManager(manager: GameCenterManager!, authenticateUser gameCenterLoginController: UIViewController!) {
         
         self.window?.rootViewController!.presentViewController(gameCenterLoginController, animated: true, completion: nil)

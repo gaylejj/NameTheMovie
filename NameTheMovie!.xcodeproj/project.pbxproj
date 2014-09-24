@@ -48,7 +48,6 @@
 		25C059A6199EB0CB0069BDD3 /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */; };
 		25C2926219A194DC00A5472A /* film-clapboard.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 25C2926119A194DC00A5472A /* film-clapboard.jpeg */; };
 		25C2926419A1951400A5472A /* film-clapboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C2926319A1951400A5472A /* film-clapboard.png */; };
-		25CFE2F219A68FE300EB6B9F /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFE2F119A68FE300EB6B9F /* Timer.swift */; };
 		25CFE2F419A6A75900EB6B9F /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFE2F319A6A75900EB6B9F /* QuestionTableViewCell.swift */; };
 		25D9FF18199EB70B00B74DEE /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D9FF17199EB70B00B74DEE /* ResultsViewController.swift */; };
 		E51504EB660B40A488E68BC5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F11CAD0B542E1AE2F34B3 /* libPods.a */; };
@@ -102,7 +101,6 @@
 		25C059A5199EB0CB0069BDD3 /* GenreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		25C2926119A194DC00A5472A /* film-clapboard.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "film-clapboard.jpeg"; sourceTree = "<group>"; };
 		25C2926319A1951400A5472A /* film-clapboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "film-clapboard.png"; sourceTree = "<group>"; };
-		25CFE2F119A68FE300EB6B9F /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		25CFE2F319A6A75900EB6B9F /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		25D9FF17199EB70B00B74DEE /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		BC0D45BF3DB64631A4F43438 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -208,7 +206,6 @@
 				25C059A7199EB0D10069BDD3 /* Game setup */,
 				2557D51E19995EFA008E0E61 /* API.swift */,
 				2557D53C199AE3CA008E0E61 /* NameTheMovie!-Bridging-Header.h */,
-				2557D540199AE3CE008E0E61 /* GameKit Helper */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -234,13 +231,6 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		2557D540199AE3CE008E0E61 /* GameKit Helper */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "GameKit Helper";
-			sourceTree = "<group>";
-		};
 		25C059A2199EAD210069BDD3 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,7 +252,6 @@
 				2557D51719995ED3008E0E61 /* GenrePList.plist */,
 				2557D532199A7E9A008E0E61 /* GameLogic.swift */,
 				2557D534199A8BB1008E0E61 /* Question.swift */,
-				25CFE2F119A68FE300EB6B9F /* Timer.swift */,
 			);
 			name = "Game setup";
 			sourceTree = "<group>";
@@ -448,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */,
-				25CFE2F219A68FE300EB6B9F /* Timer.swift in Sources */,
 				25CFE2F419A6A75900EB6B9F /* QuestionTableViewCell.swift in Sources */,
 				2557D4EF19995E48008E0E61 /* AppDelegate.swift in Sources */,
 				25C059A6199EB0CB0069BDD3 /* GenreTableViewCell.swift in Sources */,

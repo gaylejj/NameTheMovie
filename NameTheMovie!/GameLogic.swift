@@ -14,6 +14,7 @@ protocol GameLogicDelegate {
 }
 
 class GameLogic: NSObject {
+    //MARK: Properties
     var networkController = NetworkController()
     
     var movies : [Movie]?
@@ -27,7 +28,9 @@ class GameLogic: NSObject {
     var answers = [Movie]() //Pass back to gameVC
     
     var delegate : GameLogicDelegate?
-        
+    
+    //MARK: Game Functions
+    //Create question
     func fetchQuestion() {
         let moviesCount = movies!.count - 1
         
@@ -46,10 +49,10 @@ class GameLogic: NSObject {
         })
     }
     
+    //Create 3 incorrect answers from list generated with genre call
     func generateAnswersForGivenPlot(movieForPlot : Movie) {
         let rightAnswer = movieForPlot
         var generatedAnswers = [Movie]()
-        println("The right answer is \(rightAnswer.title)")
         generatedAnswers.append(rightAnswer)
     
         var numbers = [Int]()
@@ -59,6 +62,7 @@ class GameLogic: NSObject {
             numbers.append(i)
         }
         
+        //Find 3 answers that don't match each other or movie title
         var i = 0
         while i < 3 {
             var incorrectAnswer = self.returnRandomAnswer(numbers, rightAnswer: rightAnswer)
@@ -75,26 +79,25 @@ class GameLogic: NSObject {
         question.answers = generatedAnswers
         question.movie = rightAnswer
         
-        println(self.answers.count)
-        
         self.shuffleQuestionAnswers(question)
     }
     
+    //Get random answer from array
     func returnRandomAnswer(numbers: [Int], rightAnswer: Movie) -> Movie {
         
         var randomIndex = Int(arc4random_uniform(UInt32(numbers.count)))
         
         let firstFalse = originalMovies![randomIndex]
+        //Check that false answer doesn't match correct answer
         if firstFalse.title == rightAnswer.title {
             return self.returnRandomAnswer(numbers, rightAnswer: rightAnswer)
         } else {
 //            self.originalMovies!.removeAtIndex(randomIndex)
-            println(firstFalse.title)
             return firstFalse
         }
-        
     }
     
+    //Shuffle correct/incorrect answers so correct isn't always first in line
     func shuffleQuestionAnswers(question: Question) {
         var finalQuestion = Question()
         finalQuestion.movie = question.movie
@@ -115,15 +118,11 @@ class GameLogic: NSObject {
         
         finalQuestion.answers.append(question.answers[0])
     
+        //Send question to delegate call
         if self.delegate != nil {
             NSOperationQueue.mainQueue().addOperationWithBlock() {
                 self.delegate!.generatedQuestion(finalQuestion)
             }
         }
     }
-    
-
-
-
-    
 }
