@@ -43,19 +43,17 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        
         self.gameLogic.delegate = self
         self.gameLogic.movies = self.movies!
         self.gameLogic.originalMovies = self.movies!
         self.gameLogic.networkController = self.networkController
         nf.numberStyle = NSNumberFormatterStyle.DecimalStyle
         nf.maximumFractionDigits = 0
-        
-        scoreNF.maximumFractionDigits = 0
+        scoreNF.maximumFractionDigits = 0    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         self.createGame()
 
@@ -86,6 +84,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.view.addSubview(self.questionVC.view)
         
         self.addChildViewController(self.questionVC)
+        self.questionVC.didMoveToParentViewController(self)
         self.questionVC.delegate = self
     }
     
@@ -153,6 +152,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
                 self.setupNextQuestion()
                 self.beginCountdown()
                 
+                self.questionVC.willMoveToParentViewController(nil)
                 self.questionVC.removeFromParentViewController()
                 self.questionVC.view.removeFromSuperview()
             } else {
