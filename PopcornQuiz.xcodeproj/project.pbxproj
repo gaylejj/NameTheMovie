@@ -68,7 +68,7 @@
 		250DA4AF19A2B4AE00A50F17 /* scifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scifi.png; sourceTree = "<group>"; };
 		250DA4BB19A2B79A00A50F17 /* realanimation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = realanimation.png; sourceTree = "<group>"; };
 		2539AF6819C155A200A128F1 /* CellAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
-		2557D4E919995E48008E0E61 /* NameTheMovie!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NameTheMovie!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2557D4E919995E48008E0E61 /* PopcornQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopcornQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2557D4ED19995E48008E0E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2557D4EE19995E48008E0E61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2557D4F519995E48008E0E61 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		2557D4EA19995E48008E0E61 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2557D4E919995E48008E0E61 /* NameTheMovie!.app */,
+				2557D4E919995E48008E0E61 /* PopcornQuiz.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,9 +292,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2557D4E819995E48008E0E61 /* NameTheMovie! */ = {
+		2557D4E819995E48008E0E61 /* PopcornQuiz */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2557D50519995E48008E0E61 /* Build configuration list for PBXNativeTarget "NameTheMovie!" */;
+			buildConfigurationList = 2557D50519995E48008E0E61 /* Build configuration list for PBXNativeTarget "PopcornQuiz" */;
 			buildPhases = (
 				8D445E2569EE4F1D83FAF3C9 /* Check Pods Manifest.lock */,
 				2557D4E519995E48008E0E61 /* Sources */,
@@ -307,9 +307,9 @@
 			);
 			dependencies = (
 			);
-			name = "NameTheMovie!";
+			name = PopcornQuiz;
 			productName = "NameTheMovie!";
-			productReference = 2557D4E919995E48008E0E61 /* NameTheMovie!.app */;
+			productReference = 2557D4E919995E48008E0E61 /* PopcornQuiz.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -332,7 +332,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2557D4E419995E48008E0E61 /* Build configuration list for PBXProject "NameTheMovie!" */;
+			buildConfigurationList = 2557D4E419995E48008E0E61 /* Build configuration list for PBXProject "PopcornQuiz" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -345,7 +345,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2557D4E819995E48008E0E61 /* NameTheMovie! */,
+				2557D4E819995E48008E0E61 /* PopcornQuiz */,
 			);
 		};
 /* End PBXProject section */
@@ -553,7 +553,7 @@
 				INFOPLIST_FILE = "NameTheMovie!/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PopcornQuiz;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NameTheMovie!/NameTheMovie!-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -577,7 +577,7 @@
 				INFOPLIST_FILE = "NameTheMovie!/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PopcornQuiz;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NameTheMovie!/NameTheMovie!-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -587,7 +587,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2557D4E419995E48008E0E61 /* Build configuration list for PBXProject "NameTheMovie!" */ = {
+		2557D4E419995E48008E0E61 /* Build configuration list for PBXProject "PopcornQuiz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2557D50319995E48008E0E61 /* Debug */,
@@ -596,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2557D50519995E48008E0E61 /* Build configuration list for PBXNativeTarget "NameTheMovie!" */ = {
+		2557D50519995E48008E0E61 /* Build configuration list for PBXNativeTarget "PopcornQuiz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2557D50619995E48008E0E61 /* Debug */,
