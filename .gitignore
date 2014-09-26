@@ -18,7 +18,6 @@ DerivedData
 *.xcuserstate
 API.swift
 .DS_Store
-ImageAssets
 
 # CocoaPods
 #
