@@ -11,8 +11,6 @@
 		250DA4B019A2B4AE00A50F17 /* thriller.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A619A2B4AE00A50F17 /* thriller.png */; };
 		250DA4B119A2B4AE00A50F17 /* western.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A719A2B4AE00A50F17 /* western.png */; };
 		250DA4B219A2B4AE00A50F17 /* action.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A819A2B4AE00A50F17 /* action.png */; };
-		250DA4B319A2B4AE00A50F17 /* adventure.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4A919A2B4AE00A50F17 /* adventure.png */; };
-		250DA4B419A2B4AE00A50F17 /* animation.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AA19A2B4AE00A50F17 /* animation.png */; };
 		250DA4B519A2B4AE00A50F17 /* comedy.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AB19A2B4AE00A50F17 /* comedy.png */; };
 		250DA4B619A2B4AE00A50F17 /* crime.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AC19A2B4AE00A50F17 /* crime.png */; };
 		250DA4B719A2B4AE00A50F17 /* drama.png in Resources */ = {isa = PBXBuildFile; fileRef = 250DA4AD19A2B4AE00A50F17 /* drama.png */; };
@@ -35,6 +33,7 @@
 		2557D535199A8BB1008E0E61 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2557D534199A8BB1008E0E61 /* Question.swift */; };
 		2557D542199AE46A008E0E61 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2557D541199AE46A008E0E61 /* GameKit.framework */; };
 		2564AC8F19A402A200CA092B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2564AC8E19A402A200CA092B /* QuestionViewController.swift */; };
+		2567992019D4E6B500D58917 /* adventure.png in Resources */ = {isa = PBXBuildFile; fileRef = 2567991F19D4E6B500D58917 /* adventure.png */; };
 		256A6F3419C793720044B641 /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256A6F3319C793720044B641 /* AnimationController.swift */; };
 		256A6F3619C797C10044B641 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F3519C797C10044B641 /* LaunchScreen.xib */; };
 		256A6F3819C7A6540044B641 /* Original.png in Resources */ = {isa = PBXBuildFile; fileRef = 256A6F3719C7A6540044B641 /* Original.png */; };
@@ -59,8 +58,6 @@
 		250DA4A619A2B4AE00A50F17 /* thriller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thriller.png; sourceTree = "<group>"; };
 		250DA4A719A2B4AE00A50F17 /* western.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = western.png; sourceTree = "<group>"; };
 		250DA4A819A2B4AE00A50F17 /* action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = action.png; sourceTree = "<group>"; };
-		250DA4A919A2B4AE00A50F17 /* adventure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adventure.png; sourceTree = "<group>"; };
-		250DA4AA19A2B4AE00A50F17 /* animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = animation.png; sourceTree = "<group>"; };
 		250DA4AB19A2B4AE00A50F17 /* comedy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comedy.png; sourceTree = "<group>"; };
 		250DA4AC19A2B4AE00A50F17 /* crime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crime.png; sourceTree = "<group>"; };
 		250DA4AD19A2B4AE00A50F17 /* drama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drama.png; sourceTree = "<group>"; };
@@ -88,6 +85,7 @@
 		2557D53C199AE3CA008E0E61 /* NameTheMovie!-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NameTheMovie!-Bridging-Header.h"; sourceTree = "<group>"; };
 		2557D541199AE46A008E0E61 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		2564AC8E19A402A200CA092B /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		2567991F19D4E6B500D58917 /* adventure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adventure.png; sourceTree = "<group>"; };
 		256A6F3319C793720044B641 /* AnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		256A6F3519C797C10044B641 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		256A6F3719C7A6540044B641 /* Original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Original.png; sourceTree = "<group>"; };
@@ -124,11 +122,10 @@
 			isa = PBXGroup;
 			children = (
 				250DA4BB19A2B79A00A50F17 /* realanimation.png */,
+				2567991F19D4E6B500D58917 /* adventure.png */,
 				250DA4A619A2B4AE00A50F17 /* thriller.png */,
 				250DA4A719A2B4AE00A50F17 /* western.png */,
 				250DA4A819A2B4AE00A50F17 /* action.png */,
-				250DA4A919A2B4AE00A50F17 /* adventure.png */,
-				250DA4AA19A2B4AE00A50F17 /* animation.png */,
 				250DA4AB19A2B4AE00A50F17 /* comedy.png */,
 				250DA4AC19A2B4AE00A50F17 /* crime.png */,
 				250DA4AD19A2B4AE00A50F17 /* drama.png */,
@@ -359,7 +356,6 @@
 				250DA4BC19A2B79A00A50F17 /* realanimation.png in Resources */,
 				2557D4F619995E48008E0E61 /* Images.xcassets in Resources */,
 				2557D51919995ED3008E0E61 /* GenreList.json in Resources */,
-				250DA4B319A2B4AE00A50F17 /* adventure.png in Resources */,
 				25C2926219A194DC00A5472A /* film-clapboard.jpeg in Resources */,
 				250DA4A519A2B17F00A50F17 /* romcom.png in Resources */,
 				250DA4B919A2B4AE00A50F17 /* scifi.png in Resources */,
@@ -378,7 +374,7 @@
 				250DA4B019A2B4AE00A50F17 /* thriller.png in Resources */,
 				256A6F4419C7AA020044B641 /* Launch Image Popcorn2.png in Resources */,
 				256A6F4019C7A8CE0044B641 /* Launch Image Title2.png in Resources */,
-				250DA4B419A2B4AE00A50F17 /* animation.png in Resources */,
+				2567992019D4E6B500D58917 /* adventure.png in Resources */,
 				250DA4B119A2B4AE00A50F17 /* western.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
