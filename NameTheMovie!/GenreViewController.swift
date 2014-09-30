@@ -22,6 +22,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var genreImages = [UIImage]()
     
+    var genreSelected : Genre!
+    
     var cell = GenreTableViewCell()
     
     var didAnimateCell: [NSIndexPath: Bool] = [:]
@@ -110,7 +112,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         let gameVC = self.storyboard!.instantiateViewControllerWithIdentifier("Game") as GameViewController
         
         let genre = genres[indexPath.row]
-        gameVC.genre = genre
+        self.genreSelected = genre
+//        gameVC.genre = genre
         
 //        let downloadQ = NSOperationQueue()
         let downloadQ = dispatch_queue_create("downloadQ", nil)
@@ -138,59 +141,59 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
 //            })
 //        }
 
-//        dispatch_async(downloadQ, {
-            // Do the request here..
-//            self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
-        
-//                if let string = errorDescription as String? {
-        
-//                    self.tableView.userInteractionEnabled = true
-        
-//                    let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again in a few minutes", preferredStyle: UIAlertControllerStyle.Alert)
-//                    let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
-//                    alertController.addAction(cancelAction)
-        
-//                    self.presentViewController(alertController, animated: true, completion: nil)
-        
-//                } else {
-//                    self.movies = movies
-//                }
-//            dispatch_async(dispatch_get_main_queue(), {
-                // Update the UI
-//                self.performSegueWithIdentifier("Question", sender: self)
-//            }
-//        })
-//        })
-//    }
-    
-    
-    
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+        dispatch_async(downloadQ, {
+//             Do the request here..
             self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
-                    
+        
                 if let string = errorDescription as String? {
-                        
+        
                     self.tableView.userInteractionEnabled = true
-                        
+        
                     let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again in a few minutes", preferredStyle: UIAlertControllerStyle.Alert)
                     let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
-                        alertController.addAction(cancelAction)
-                    
+                    alertController.addAction(cancelAction)
+        
                     self.presentViewController(alertController, animated: true, completion: nil)
-                        
+        
                 } else {
                     self.movies = movies
-                        
-                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                            
-                        self.performSegueWithIdentifier("Question", sender: self)
-                    })
                 }
-                
+            dispatch_async(dispatch_get_main_queue(), {
+//                 Update the UI
+                self.performSegueWithIdentifier("Question", sender: self)
             })
-            
-        }
+        })
+        })
     }
+    
+    
+    
+//        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+//            self.networkController.discoverMovie(genre, callback: { (movies, errorDescription) -> Void in
+//                    
+//                if let string = errorDescription as String? {
+//                        
+//                    self.tableView.userInteractionEnabled = true
+//                        
+//                    let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again in a few minutes", preferredStyle: UIAlertControllerStyle.Alert)
+//                    let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+//                        alertController.addAction(cancelAction)
+//                    
+//                    self.presentViewController(alertController, animated: true, completion: nil)
+//                        
+//                } else {
+//                    self.movies = movies
+//                        
+//                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                            
+//                        self.performSegueWithIdentifier("Question", sender: self)
+//                    })
+//                }
+//                
+//            })
+//        
+//        }
+//    }
     
     //MARK: GameCenter profile segue
     //Show leaderboards or alert controller to login to gamecenter
@@ -231,7 +234,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         if segue.identifier == "Question" {
 
             gameVC.movies = self.movies
-
+            gameVC.genre = self.genreSelected
         }
     }
     

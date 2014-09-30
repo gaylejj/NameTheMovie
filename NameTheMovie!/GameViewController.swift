@@ -50,12 +50,18 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.gameLogic.networkController = self.networkController
         nf.numberStyle = NSNumberFormatterStyle.DecimalStyle
         nf.maximumFractionDigits = 0
-        scoreNF.maximumFractionDigits = 0    }
+        scoreNF.maximumFractionDigits = 0
+        
+        self.createGame()
+
+        
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.title = "\(genre!.name!)"
         
-        self.createGame()
+//        self.createGame()
 
         self.beginningTimer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "beginCountdown", userInfo: nil, repeats: false)
         self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "beginGame", userInfo: nil, repeats: false)
@@ -64,6 +70,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
         self.setupQuestionVC()
     }
     

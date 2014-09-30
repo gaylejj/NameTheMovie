@@ -85,9 +85,7 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
         
         //Load movie posters
         self.loadMoviePosterForCorrectAnswer(correctAnswer.poster_path!, completion: { (poster) -> Void in
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                 cell.posterImageView.image = poster
-            })
         })
         
         return cell
@@ -108,7 +106,10 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
             let url = NSURL(string: urlString)
             let imgData = NSData(contentsOfURL: url)
             let posterImage = UIImage(data: imgData)
-            completion(poster: posterImage)
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completion(poster: posterImage)
+
+            })
         }
     }
 }
