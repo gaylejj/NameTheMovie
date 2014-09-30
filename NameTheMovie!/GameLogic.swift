@@ -40,13 +40,20 @@ class GameLogic: NSObject {
         self.movies!.removeAtIndex(randomIndex)
         self.originalMovies!.removeAtIndex(randomIndex)
         
-        networkController.fetchMovieForGame(movieOne, callback: { (movie, errorDescription) -> Void in
-            if errorDescription != nil {
-                
-            } else {
-                self.generateAnswersForGivenPlot(movie)
-            }
-        })
+        let movieQ = NSOperationQueue()
+        
+        movieQ.addOperationWithBlock { () -> Void in
+            self.networkController.fetchMovieForGame(movieOne, callback: { (movie, errorDescription) -> Void in
+                if errorDescription != nil {
+                    
+                } else {
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        self.generateAnswersForGivenPlot(movie)
+                    })
+                }
+            })
+
+        }
     }
     
     //Create 3 incorrect answers from list generated with genre call
