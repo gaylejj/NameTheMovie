@@ -37,8 +37,6 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         let profileButton = UIBarButtonItem(title: "Profile", style: UIBarButtonItemStyle.Plain, target: self, action: "segueToProfileController")
         self.navigationItem.rightBarButtonItem = profileButton
         
-        self.title = "Genres"
-        
         self.createImagesArray()
         
         self.navigationController?.delegate = self
@@ -62,6 +60,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.userInteractionEnabled = true
+        self.title = "Genres"
 
     }
 

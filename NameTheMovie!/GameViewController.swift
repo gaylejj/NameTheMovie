@@ -56,7 +56,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         
         self.timerLabel.hidden = true
         self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
-        
+                
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -118,28 +118,35 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             self.networkController.discoverMovie(self.genre!, callback: { (movies, errorDescription) -> Void in
                 if let string = errorDescription as String? {
                     
-                    let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again or go back and choose another genre", preferredStyle: UIAlertControllerStyle.Alert)
-                    let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
-                    let tryAgainAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-                        self.makeNetworkCall()
-                    })
-                    alertController.addAction(cancelAction)
-                    alertController.addAction(tryAgainAction)
+                    self.createAndShowAlertController()
                     
-                    self.presentViewController(alertController, animated: true, completion: nil)
                 } else {
                     if movies!.count != 0 {
                         self.gameLogic.movies = movies
                         self.gameLogic.originalMovies = movies
-                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                             self.createGame()
-                        })
+//                        })
                     } else {
-                        self.makeNetworkCall()
+                        println("Found zero movies")
+                        
+                        self.createAndShowAlertController()
                     }
                 }
             })
         }
+    }
+    
+    func createAndShowAlertController() {
+        let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again or go back and choose another genre", preferredStyle: UIAlertControllerStyle.Alert)
+        let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+        let tryAgainAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            self.makeNetworkCall()
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(tryAgainAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     //MARK: Game Functions

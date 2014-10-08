@@ -88,11 +88,13 @@ class NetworkController: NSObject {
     //Get movies from genre
     func discoverMovie(genre: Genre, callback: (movies: [Movie]?, errorDescription: String?) -> Void) {
         
-        var page = arc4random_uniform(11)
+        var page = arc4random_uniform(11) + 1
+        println("\(page)")
         
         if let genrePicked = genre.id as String! {
             
             var urlString = "http://api.themoviedb.org/3/discover/movie?api_key=\(API.apiKey())&include_adult=false&vote_count.gte=90&page=\(page)&with_genres=\(genrePicked)"
+            
             let discoverURL = NSURL(string: urlString)
             
             var request = NSMutableURLRequest(URL: discoverURL)

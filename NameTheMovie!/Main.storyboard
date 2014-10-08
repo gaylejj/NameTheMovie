@@ -8,7 +8,7 @@
         <!--Genre View Controller-->
         <scene sceneID="ocG-eY-fgG">
             <objects>
-                <viewController storyboardIdentifier="Genre" id="XU0-fu-Eke" customClass="GenreViewController" customModule="NameTheMovie_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Genre" id="XU0-fu-Eke" customClass="GenreViewController" customModule="PopcornQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qeg-GQ-4Hf"/>
                         <viewControllerLayoutGuide type="bottom" id="IM6-vG-9tQ"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GenreCell" id="cGV-1G-JP8" customClass="GenreTableViewCell" customModule="NameTheMovie_" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GenreCell" id="cGV-1G-JP8" customClass="GenreTableViewCell" customModule="PopcornQuiz" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cGV-1G-JP8" id="dpG-fF-ioi">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -103,7 +103,7 @@
         <!--Game View Controller-->
         <scene sceneID="qz9-eL-rGf">
             <objects>
-                <viewController storyboardIdentifier="Game" id="huV-Ho-kzF" customClass="GameViewController" customModule="NameTheMovie_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Game" id="huV-Ho-kzF" customClass="GameViewController" customModule="PopcornQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oNh-lO-R2B"/>
                         <viewControllerLayoutGuide type="bottom" id="pjU-5l-iYw"/>
@@ -141,7 +141,7 @@
         <!--Question View Controller-->
         <scene sceneID="3Iu-KS-h6b">
             <objects>
-                <viewController storyboardIdentifier="QuestionVC" id="r5U-4S-3vE" customClass="QuestionViewController" customModule="NameTheMovie_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuestionVC" id="r5U-4S-3vE" customClass="QuestionViewController" customModule="PopcornQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kEu-EW-pvu"/>
                         <viewControllerLayoutGuide type="bottom" id="l39-KL-Icv"/>
@@ -168,7 +168,7 @@
                                     <constraint firstAttribute="height" constant="260" id="KrP-z0-EjA"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="questionCell" id="7Va-kz-Jrd" customClass="QuestionTableViewCell" customModule="NameTheMovie_" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="questionCell" id="7Va-kz-Jrd" customClass="QuestionTableViewCell" customModule="PopcornQuiz" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Va-kz-Jrd" id="6gD-MZ-jQG">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -256,7 +256,7 @@
         <!--Results View Controller-->
         <scene sceneID="rIc-gH-B3d">
             <objects>
-                <viewController id="V35-JG-fgq" customClass="ResultsViewController" customModule="NameTheMovie_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="V35-JG-fgq" customClass="ResultsViewController" customModule="PopcornQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9gV-Jr-UUe"/>
                         <viewControllerLayoutGuide type="bottom" id="1BL-TJ-BcK"/>
@@ -307,7 +307,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="answerCell" id="ya4-oM-Hb0" customClass="AnswerCollectionViewCell" customModule="NameTheMovie_" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="answerCell" id="ya4-oM-Hb0" customClass="AnswerCollectionViewCell" customModule="PopcornQuiz" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -399,7 +399,7 @@
         <!--Results View Controller-->
         <scene sceneID="Vk6-Q1-hqD">
             <objects>
-                <viewController storyboardIdentifier="Results" id="LGi-WL-k37" customClass="ResultsViewController" customModule="NameTheMovie_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Results" id="LGi-WL-k37" customClass="ResultsViewController" customModule="PopcornQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iB0-OA-HmN"/>
                         <viewControllerLayoutGuide type="bottom" id="fr8-Rj-Y0U"/>
@@ -412,7 +412,7 @@
                                 <rect key="frame" x="0.0" y="125" width="600" height="475"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="answerCell" id="CfB-C8-rev" customClass="AnswerTableViewCell" customModule="NameTheMovie_" customModuleProvider="target">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="answerCell" id="CfB-C8-rev" customClass="AnswerTableViewCell" customModule="PopcornQuiz" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CfB-C8-rev" id="Ruh-19-HBF">
                                             <autoresizingMask key="autoresizingMask"/>
