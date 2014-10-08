@@ -25,6 +25,10 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     var score = 0.0
     var countdownTime = 3.0
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+    let gameLoadingView = UIImageView()
+    let startGameButton = UIButton()
+    
     let nf = NSNumberFormatter()
     let scoreNF = NSNumberFormatter()
         
@@ -45,33 +49,26 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.view.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
         
         self.gameLogic.delegate = self
-        self.gameLogic.movies = self.movies!
-        self.gameLogic.originalMovies = self.movies!
         self.gameLogic.networkController = self.networkController
         nf.numberStyle = NSNumberFormatterStyle.DecimalStyle
         nf.maximumFractionDigits = 0
         scoreNF.maximumFractionDigits = 0
         
-        self.createGame()
-
+        self.timerLabel.hidden = true
+        self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "\(genre!.name!)"
-        
-//        self.createGame()
-
-        self.beginningTimer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "beginCountdown", userInfo: nil, repeats: false)
-        self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "beginGame", userInfo: nil, repeats: false)
-
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         self.setupQuestionVC()
+        self.makeNetworkCall()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -95,6 +92,56 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.questionVC.delegate = self
     }
     
+    //MARK: Setup Activity Monitor/Button
+    
+    func setupActivityMonitorAndButton() {
+        self.gameLoadingView.frame = CGRectMake(self.view.center.x - 100, self.view.center.y - 100, 200, 200)
+        //        self.gameLoadingView.backgroundColor = UIColor.blackColor()
+        self.activityIndicator.frame = CGRectMake(75, 50, 50, 50)
+        self.startGameButton.frame = CGRectMake(0, 100, 200, 50)
+        self.startGameButton.setTitle("Loading Game", forState: UIControlState.Normal)
+        self.startGameButton.userInteractionEnabled = false
+        self.startGameButton.addTarget(self, action: "startGameButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(self.gameLoadingView)
+        self.gameLoadingView.addSubview(self.activityIndicator)
+        self.gameLoadingView.addSubview(self.startGameButton)
+        self.activityIndicator.startAnimating()
+    }
+    
+    //MARK: Network Call
+    
+    func makeNetworkCall() {
+        self.setupActivityMonitorAndButton()
+        let downloadQueue = NSOperationQueue()
+        
+        downloadQueue.addOperationWithBlock { () -> Void in
+            self.networkController.discoverMovie(self.genre!, callback: { (movies, errorDescription) -> Void in
+                if let string = errorDescription as String? {
+                    
+                    let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again or go back and choose another genre", preferredStyle: UIAlertControllerStyle.Alert)
+                    let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+                    let tryAgainAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                        self.makeNetworkCall()
+                    })
+                    alertController.addAction(cancelAction)
+                    alertController.addAction(tryAgainAction)
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                } else {
+                    if movies!.count != 0 {
+                        self.gameLogic.movies = movies
+                        self.gameLogic.originalMovies = movies
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            self.createGame()
+                        })
+                    } else {
+                        self.makeNetworkCall()
+                    }
+                }
+            })
+        }
+    }
+    
     //MARK: Game Functions
     
     func createGame() {
@@ -110,6 +157,18 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         if gameStarted == false {
             self.gameStarted = true
         }
+        if questions.count == 5 {
+            self.activityIndicator.stopAnimating()
+            self.startGameButton.setTitle("Start Game", forState: UIControlState.Normal)
+            self.startGameButton.userInteractionEnabled = true
+            self.gameLoadingView.userInteractionEnabled = true
+        }
+    }
+    
+    func startGameButtonPressed() {
+        println("button touched")
+        self.beginningTimer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "beginCountdown", userInfo: nil, repeats: false)
+        self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "beginGame", userInfo: nil, repeats: false)
     }
     
     func beginGame() {
@@ -236,6 +295,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     //MARK: Timer Setup
     func startTimer() {
+        self.gameLoadingView.removeFromSuperview()
         self.timerLabel.hidden = false
         self.timerIsRunning = true
         timerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(0.10, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
