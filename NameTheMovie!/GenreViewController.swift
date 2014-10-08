@@ -16,8 +16,6 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     var genres : [Genre] = Genre.genreFromPlist()
     var movies : [Movie]?
     
-    let networkController = NetworkController()
-    
     var gameCenterEnabled = false
     
     var genreImages = [UIImage]()

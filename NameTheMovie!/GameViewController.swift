@@ -26,8 +26,8 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     var countdownTime = 3.0
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
-    let gameLoadingView = UIImageView()
-    let startGameButton = UIButton()
+    let loadingView = UIImageView()
+    let gameButton = UIButton()
     
     let nf = NSNumberFormatter()
     let scoreNF = NSNumberFormatter()
@@ -95,16 +95,27 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     //MARK: Setup Activity Monitor/Button
     
     func setupActivityMonitorAndButton() {
-        self.gameLoadingView.frame = CGRectMake(self.view.center.x - 100, self.view.center.y - 100, 200, 200)
-        //        self.gameLoadingView.backgroundColor = UIColor.blackColor()
+        self.loadingView.frame = CGRectMake(self.view.center.x - 100, self.view.center.y - 100, 200, 200)
         self.activityIndicator.frame = CGRectMake(75, 50, 50, 50)
-        self.startGameButton.frame = CGRectMake(0, 100, 200, 50)
-        self.startGameButton.setTitle("Loading Game", forState: UIControlState.Normal)
-        self.startGameButton.userInteractionEnabled = false
-        self.startGameButton.addTarget(self, action: "startGameButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(self.gameLoadingView)
-        self.gameLoadingView.addSubview(self.activityIndicator)
-        self.gameLoadingView.addSubview(self.startGameButton)
+        self.gameButton.frame = CGRectMake(0, 100, 200, 50)
+        self.gameButton.setTitle("Loading Game", forState: UIControlState.Normal)
+        self.gameButton.userInteractionEnabled = false
+        self.gameButton.addTarget(self, action: "startGameButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(self.loadingView)
+        self.loadingView.addSubview(self.activityIndicator)
+        self.loadingView.addSubview(self.gameButton)
+        self.activityIndicator.startAnimating()
+    }
+    
+    func setupReportScoreActivityMonitor() {
+        self.loadingView.frame = CGRectMake(self.view.center.x - 100, self.view.center.y - 100, 200, 200)
+//        self.activityIndicator.frame = CGRectMake(75, 50, 50, 50)
+        self.activityIndicator.hidden = false
+        self.gameButton.setTitle("Reporting Score", forState: UIControlState.Normal)
+        self.gameButton.userInteractionEnabled = false
+        self.view.addSubview(self.loadingView)
+        self.loadingView.addSubview(self.activityIndicator)
+        self.loadingView.addSubview(self.gameButton)
         self.activityIndicator.startAnimating()
     }
     
@@ -166,9 +177,9 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         }
         if questions.count == 5 {
             self.activityIndicator.stopAnimating()
-            self.startGameButton.setTitle("Start Game", forState: UIControlState.Normal)
-            self.startGameButton.userInteractionEnabled = true
-            self.gameLoadingView.userInteractionEnabled = true
+            self.gameButton.setTitle("Start Game", forState: UIControlState.Normal)
+            self.gameButton.userInteractionEnabled = true
+            self.loadingView.userInteractionEnabled = true
         }
     }
     
@@ -252,6 +263,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     //MARK: GameCenter Score
     func reportScore() {
+        self.setupReportScoreActivityMonitor()
         GameCenterManager.sharedManager().delegate = self
         
         //Add score to previous score for player from leaderboard
@@ -273,6 +285,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         if error != nil {
             
         } else {
+            self.loadingView.removeFromSuperview()
             self.performSegueWithIdentifier("Results", sender: self)
 
         }
@@ -302,7 +315,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     //MARK: Timer Setup
     func startTimer() {
-        self.gameLoadingView.removeFromSuperview()
+        self.loadingView.removeFromSuperview()
         self.timerLabel.hidden = false
         self.timerIsRunning = true
         timerLabelTimer = NSTimer.scheduledTimerWithTimeInterval(0.10, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
