@@ -59,12 +59,35 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidAppear(animated)
         self.tableView.userInteractionEnabled = true
         self.title = "Genres"
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkTutorial", name: appDelegate.kAuthenticationViewControllerFinished, object: nil)
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Tutorial
+    
+    func checkTutorial() {
+        if NSUserDefaults.standardUserDefaults().boolForKey("tutorial") {
+            println("Not first time")
+        } else {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "tutorial")
+            self.showTutorial()
+            println("Showing tutorial")
+        }
+    }
+    
+    func showTutorial() {
+        let alertController = UIAlertController(title: "Tutorial", message: "Choose a genre and guess the movie based on the plot of 5 different movies!", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     //MARK: TableView Methods
