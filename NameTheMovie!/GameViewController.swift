@@ -96,20 +96,22 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     func setupActivityMonitorAndButton() {
         self.loadingView.frame = CGRectMake(self.view.center.x - 100, self.view.center.y - 100, 200, 200)
-        self.activityIndicator.frame = CGRectMake(75, 50, 50, 50)
         self.gameButton.frame = CGRectMake(0, 100, 200, 50)
         self.gameButton.setTitle("Loading Game", forState: UIControlState.Normal)
         self.gameButton.userInteractionEnabled = false
         self.gameButton.addTarget(self, action: "startGameButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        self.loadingView.animationImages = self.popcornAnimation()
+        self.loadingView.animationDuration = 1.2
+        self.loadingView.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(self.loadingView)
-        self.loadingView.addSubview(self.activityIndicator)
+        self.loadingView.startAnimating()
         self.loadingView.addSubview(self.gameButton)
-        self.activityIndicator.startAnimating()
+
     }
     
     func setupReportScoreActivityMonitor() {
         self.loadingView.frame = CGRectMake(self.view.center.x - 100, self.view.center.y - 100, 200, 200)
-//        self.activityIndicator.frame = CGRectMake(75, 50, 50, 50)
+        self.activityIndicator.frame = CGRectMake(75, 50, 50, 50)
         self.activityIndicator.hidden = false
         self.gameButton.setTitle("Reporting Score", forState: UIControlState.Normal)
         self.gameButton.userInteractionEnabled = false
@@ -117,6 +119,17 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.loadingView.addSubview(self.activityIndicator)
         self.loadingView.addSubview(self.gameButton)
         self.activityIndicator.startAnimating()
+    }
+    
+    //MARK: Popcorn Animation
+    
+    func popcornAnimation() -> [UIImage] {
+        var images = [UIImage]()
+        for i in 0..<15 {
+            let image = UIImage(named: "popcorn_\(i)")
+            images.append(image)
+        }
+        return images
     }
     
     //MARK: Network Call
@@ -135,9 +148,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
                     if movies!.count != 0 {
                         self.gameLogic.movies = movies
                         self.gameLogic.originalMovies = movies
-//                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                            self.createGame()
-//                        })
+                        self.createGame()
                     } else {
                         println("Found zero movies")
                         
@@ -176,7 +187,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             self.gameStarted = true
         }
         if questions.count == 5 {
-            self.activityIndicator.stopAnimating()
+            self.loadingView.stopAnimating()
             self.gameButton.setTitle("Start Game", forState: UIControlState.Normal)
             self.gameButton.userInteractionEnabled = true
             self.loadingView.userInteractionEnabled = true
