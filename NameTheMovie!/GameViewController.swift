@@ -96,7 +96,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     
     func setupActivityMonitorAndButton() {
         self.loadingView.frame = CGRectMake(self.view.center.x - 100, self.view.center.y - 100, 200, 200)
-        self.gameButton.frame = CGRectMake(0, 100, 200, 50)
+        self.gameButton.frame = CGRectMake(self.view.center.x - 100, self.view.center.y - 25, 200, 50)
         self.gameButton.setTitle("Loading Game", forState: UIControlState.Normal)
         self.gameButton.userInteractionEnabled = false
         self.gameButton.addTarget(self, action: "startGameButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
@@ -105,7 +105,9 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.loadingView.contentMode = UIViewContentMode.ScaleAspectFit
         self.view.addSubview(self.loadingView)
         self.loadingView.startAnimating()
-        self.loadingView.addSubview(self.gameButton)
+//        self.loadingView.addSubview(self.gameButton)
+        self.view.addSubview(self.gameButton)
+        self.gameButton.alpha = 0.0
 
     }
     
@@ -117,7 +119,9 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         self.gameButton.userInteractionEnabled = false
         self.view.addSubview(self.loadingView)
         self.loadingView.addSubview(self.activityIndicator)
-        self.loadingView.addSubview(self.gameButton)
+//        self.loadingView.addSubview(self.gameButton)
+//        self.view.addSubview(self.gameButton)
+        self.gameButton.hidden = false
         self.activityIndicator.startAnimating()
     }
     
@@ -187,8 +191,17 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             self.gameStarted = true
         }
         if questions.count == 5 {
-            self.loadingView.stopAnimating()
+            self.animateGameStart()
+        }
+    }
+    
+    func animateGameStart() {
+        UIView.animateWithDuration(2, animations: { () -> Void in
             self.gameButton.setTitle("Start Game", forState: UIControlState.Normal)
+            self.loadingView.frame = CGRect(x: self.loadingView.frame.origin.x, y: self.view.frame.size.height + self.loadingView.frame.size.height, width: self.loadingView.frame.size.width, height: self.loadingView.frame.size.height)
+            self.gameButton.alpha = 1.0
+        }) { (succeed) -> Void in
+            self.loadingView.stopAnimating()
             self.gameButton.userInteractionEnabled = true
             self.loadingView.userInteractionEnabled = true
         }
@@ -198,6 +211,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         println("button touched")
         self.beginningTimer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: "beginCountdown", userInfo: nil, repeats: false)
         self.countdownTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "beginGame", userInfo: nil, repeats: false)
+        self.gameButton.hidden = true
     }
     
     func beginGame() {
