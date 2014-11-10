@@ -52,7 +52,7 @@ class NetworkController: NSObject {
         if !movieID.isEmpty {
             var url = NSURL(string: "http://api.themoviedb.org/3/movie/\(movieID)?api_key=\(API.apiKey())")
             
-            var request = NSMutableURLRequest(URL: url)
+            var request = NSMutableURLRequest(URL: url!)
             
             request.HTTPMethod = "GET"
             
@@ -97,7 +97,7 @@ class NetworkController: NSObject {
             
             let discoverURL = NSURL(string: urlString)
             
-            var request = NSMutableURLRequest(URL: discoverURL)
+            var request = NSMutableURLRequest(URL: discoverURL!)
             
             request.HTTPMethod = "GET"
             

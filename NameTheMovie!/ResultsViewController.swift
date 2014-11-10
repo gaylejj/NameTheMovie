@@ -104,10 +104,10 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
             
             let urlString = prefix + "\(posterPath!)"
             let url = NSURL(string: urlString)
-            let imgData = NSData(contentsOfURL: url)
-            let posterImage = UIImage(data: imgData)
+            let imgData = NSData(contentsOfURL: url!)
+            let posterImage = UIImage(data: imgData!)
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                completion(poster: posterImage)
+                completion(poster: posterImage!)
 
             })
         }

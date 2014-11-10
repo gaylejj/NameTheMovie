@@ -25,7 +25,7 @@ class Genre: NSObject {
         
         let plistArray = NSArray(contentsOfFile: path!)
         
-        for obj in plistArray {
+        for obj in plistArray! {
             if let genre = obj as? Dictionary<String, String> {
                 let name = genre["name"] as String!
                 let id = genre["id"] as String!

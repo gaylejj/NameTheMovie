@@ -41,16 +41,16 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     func createImagesArray() {
-        var action = UIImage(named: "action.png")
-        var adventure = UIImage(named: "adventure.png")
-        var animation = UIImage(named: "realanimation.png")
-        var comedy = UIImage(named: "comedy.png")
-        var crime = UIImage(named: "crime.png")
-        var drama = UIImage(named: "drama.png")
-        var fantasy = UIImage(named: "fantasy.png")
-        var romance = UIImage(named: "romcom.png")
-        var sciFi = UIImage(named: "scifi.png")
-        var thriller = UIImage(named: "thriller.png")
+        var action = UIImage(named: "action.png")!
+        var adventure = UIImage(named: "adventure.png")!
+        var animation = UIImage(named: "realanimation.png")!
+        var comedy = UIImage(named: "comedy.png")!
+        var crime = UIImage(named: "crime.png")!
+        var drama = UIImage(named: "drama.png")!
+        var fantasy = UIImage(named: "fantasy.png")!
+        var romance = UIImage(named: "romcom.png")!
+        var sciFi = UIImage(named: "scifi.png")!
+        var thriller = UIImage(named: "thriller.png")!
         
         self.genreImages = [action, adventure, animation, comedy, crime, drama, fantasy, romance, sciFi, thriller]
     }
@@ -181,7 +181,7 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
                 
                 //Open settings menu
                 println("Necessary for below code to work")
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString))
+                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
                 
             })
             

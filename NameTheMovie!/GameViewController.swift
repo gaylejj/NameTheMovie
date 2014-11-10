@@ -131,7 +131,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         var images = [UIImage]()
         for i in 0..<15 {
             let image = UIImage(named: "popcorn_\(i)")
-            images.append(image)
+            images.append(image!)
         }
         return images
     }
