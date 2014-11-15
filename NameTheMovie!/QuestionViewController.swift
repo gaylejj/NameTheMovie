@@ -262,7 +262,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         if self.gameTime > 0.1 {
             var timeLeft = self.gameTime - 0.10
             self.gameTime = timeLeft
-            self.timerLabel.text = "\(self.nf.stringFromNumber(self.gameTime))"
+            self.timerLabel.text = "\(self.nf.stringFromNumber(self.gameTime)!)"
         } else {
             self.stopTimer()
             self.showCorrectAnswer()

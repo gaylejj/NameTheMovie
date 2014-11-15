@@ -40,7 +40,7 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
         self.collectionView.backgroundColor = UIColor(red: 51/255, green: 77/255, blue: 93/255, alpha: 1.0)
         
         self.scoreLabel.textColor = UIColor(red: 234/255, green: 190/255, blue: 58/255, alpha: 1.0)
-        self.scoreLabel.text = "Score: \(self.nf.stringFromNumber(self.score!))"
+        self.scoreLabel.text = "Score: \(self.nf.stringFromNumber(self.score!)!)"
         self.scoreLabel.adjustsFontSizeToFitWidth = true
 
     }

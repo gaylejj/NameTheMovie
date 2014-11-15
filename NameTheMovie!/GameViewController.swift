@@ -55,7 +55,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         scoreNF.maximumFractionDigits = 0
         
         self.timerLabel.hidden = true
-        self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
+        self.timerLabel!.text! = "\(self.nf.stringFromNumber(self.countdownTime)!)"
                 
     }
     
@@ -257,7 +257,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
             //start countdown timer
             if self.questionsAnswered < 5 {
                 self.countdownTime = 3.0
-                self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
+                self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime)!)"
                 self.setupNextQuestion()
                 self.beginCountdown()
                 
@@ -355,7 +355,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
         if self.countdownTime > 0.1 {
             var timeLeft = self.countdownTime - 0.10
             self.countdownTime = timeLeft
-            self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime))"
+            self.timerLabel.text = "\(self.nf.stringFromNumber(self.countdownTime)!)"
         } else {
             self.stopTimer()
         }
