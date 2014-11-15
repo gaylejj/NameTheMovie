@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-class GameViewController: UIViewController, GameLogicDelegate, QuestionViewControllerDelegate, GameCenterManagerDelegate {
+class GameViewController: UIViewController, GameLogicDelegate, QuestionViewControllerDelegate, GameCenterManagerDelegate, UIAlertViewDelegate {
     
     //MARK: Properties/Outlets
     var movies : [Movie]?
@@ -69,6 +69,7 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
 
         self.setupQuestionVC()
         self.makeNetworkCall()
+
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -164,15 +165,37 @@ class GameViewController: UIViewController, GameLogicDelegate, QuestionViewContr
     }
     
     func createAndShowAlertController() {
-        let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again or go back and choose another genre", preferredStyle: UIAlertControllerStyle.Alert)
-        let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
-        let tryAgainAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            self.makeNetworkCall()
-        })
-        alertController.addAction(cancelAction)
-        alertController.addAction(tryAgainAction)
+        switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+        case .OrderedSame, .OrderedDescending:
+            println("iOS >= 8.0")
+            let alertController = UIAlertController(title: "Error", message: "Something happened, we are very sorry. Please try again or go back and choose another genre", preferredStyle: UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+            let tryAgainAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                self.makeNetworkCall()
+            })
+            alertController.addAction(cancelAction)
+            alertController.addAction(tryAgainAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        case .OrderedAscending:
+            println("iOS < 8.0")
+            let alertView = UIAlertView()
+            alertView.title = "Error"
+            alertView.message = "Something happened, we are very sorry. Please try again or go back and choose another genre"
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.addButtonWithTitle("Try Again")
+            alertView.show()
+        }
+
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        let title = alertView.buttonTitleAtIndex(buttonIndex)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        if title == "Try Again" {
+            self.makeNetworkCall()
+        }
     }
     
     //MARK: Game Functions

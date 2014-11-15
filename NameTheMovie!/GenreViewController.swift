@@ -8,7 +8,8 @@
 
 import UIKit
 
-class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GKGameCenterControllerDelegate, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GKGameCenterControllerDelegate, UIAlertViewDelegate //, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate
+{
 
     //MARK: Properties/Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -37,7 +38,8 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.createImagesArray()
         
-        self.navigationController?.delegate = self
+        //iOS 8
+//        self.navigationController?.delegate = self
     }
 
     func createImagesArray() {
@@ -84,10 +86,22 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func showTutorial() {
-        let alertController = UIAlertController(title: "Tutorial", message: "Choose a genre and guess the movie based on the plot of 5 different movies!", preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
-        alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+        case .OrderedSame, .OrderedDescending:
+            println("iOS >= 8.0")
+            let alertController = UIAlertController(title: "Tutorial", message: "Choose a genre and guess the movie based on the plot of 5 different movies!", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        case .OrderedAscending:
+            println("iOS < 8.0")
+            let alertView = UIAlertView()
+            alertView.title = "Tutorial"
+            alertView.message = "Choose a genre and guess the movie based on the plot of 5 different movies!"
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.show()
+        }
     }
     
     //MARK: TableView Methods
@@ -173,22 +187,34 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
             GameCenterManager.sharedManager().presentLeaderboardsOnViewController(self)
             let leaderboardID = "com.jeff.PopcornQuizHighScore"
         } else {
-            let alertController = UIAlertController(title: "Game Center Unavailable", message: "Please go to Settings -> Game Center and sign in to enable this feature", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
-            
-            let settingsAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+            case .OrderedSame, .OrderedDescending:
+                println("iOS >= 8.0")
+                let alertController = UIAlertController(title: "Game Center Unavailable", message: "Please go to Settings -> Game Center and sign in to enable this feature", preferredStyle: UIAlertControllerStyle.Alert)
                 
-                //Open settings menu
-                println("Necessary for below code to work")
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
                 
-            })
-            
-            alertController.addAction(settingsAction)
-            alertController.addAction(cancelAction)
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
+                let settingsAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                    
+                    //Open settings menu
+                    println("Necessary for below code to work")
+                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                    
+                })
+                alertController.addAction(settingsAction)
+                alertController.addAction(cancelAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            case .OrderedAscending:
+                println("iOS < 8.0")
+                let alertView = UIAlertView()
+                alertView.title = "Game Center Unavailable"
+                alertView.message = "Please go to Settings -> Game Center and sign in to enable this feature"
+                alertView.delegate = self
+                alertView.addButtonWithTitle("OK")
+                alertView.show()
+            }
         }
 
     }
@@ -208,10 +234,10 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
-    //MARK: Custom Animation
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self.animationController
-    }
+    //MARK: Custom Animation iOS8 only
+//    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return self.animationController
+//    }
     
     @IBAction func unwindToGenreVC(segue: UIStoryboardSegue!) {
         
