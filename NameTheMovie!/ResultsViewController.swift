@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsViewController: UIViewController, UICollectionViewDataSource, UINavigationBarDelegate, UIBarPositioningDelegate {
+class ResultsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationBarDelegate, UIBarPositioningDelegate {
 
     //MARK: Properties/Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -66,10 +66,20 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
         //Adjust image for 5s/4s devices
         if self.view.frame.height <= 568 {
             cell.posterImageView.frame.size = CGSize(width: 90, height: 135)
-            if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                layout.itemSize = CGSize(width: 90, height: 155)
-                cell.correctAnswerLabel.frame.size = CGSize(width: 90, height: 30)
-                cell.correctAnswerLabel.adjustsFontSizeToFitWidth = true
+            cell.correctAnswerLabel.frame.size = CGSize(width: 90, height: 30)
+            cell.correctAnswerLabel.adjustsFontSizeToFitWidth = true
+            
+            switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+            case .OrderedSame, .OrderedDescending:
+                println("iOS >= 8.0")
+                if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                    
+                    layout.itemSize = CGSize(width: 90, height: 155)
+                    
+                }
+                
+            case .OrderedAscending:
+                println("Something")
             }
         } else {
             cell.posterImageView.frame.size = CGSize(width: 120, height: 150)
@@ -89,6 +99,21 @@ class ResultsViewController: UIViewController, UICollectionViewDataSource, UINav
         })
         
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+        case .OrderedSame, .OrderedDescending:
+            println("iOS >= 8.0")
+            var size = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAtIndexPath: indexPath)
+            return size
+        case .OrderedAscending:
+            var size = CGSize(width: 120, height: 180)
+            if self.view.frame.height <= 568 {
+                size = CGSize(width: 90, height: 155)
+            }
+            return size
+        }
     }
     
     //MARK: Load movie posters

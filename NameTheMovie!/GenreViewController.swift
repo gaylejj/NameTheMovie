@@ -127,6 +127,10 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         return self.cell
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return (self.tableView.frame.height - 64.0) / CGFloat(self.genres.count)
+    }
+    
     //Animation when cells come into screen
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         

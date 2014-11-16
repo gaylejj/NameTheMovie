@@ -24,6 +24,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var overViewTextHeight: NSLayoutConstraint!
     @IBOutlet weak var timerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var overViewTextTopHeight: NSLayoutConstraint!
     
     var timerIsRunning = false
     var questionHasBeenAnswered = false
@@ -52,6 +53,41 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         nf.numberStyle = NSNumberFormatterStyle.DecimalStyle
         nf.maximumFractionDigits = 2
         nf.minimumFractionDigits = 1
+        
+        switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+        case .OrderedSame, .OrderedDescending:
+            println("iOS >= 8.0")
+            self.overViewTextTopHeight.constant = 8
+            if self.view.frame.height == 480 {
+                self.tableViewHeight.constant = CGFloat(160.0)
+                self.overViewTextHeight.constant = 215
+            } else if self.view.frame.height == 568 {
+                self.tableViewHeight.constant = CGFloat(210.0)
+            } else if self.view.frame.height == 667 {
+                self.tableViewHeight.constant = CGFloat(260.0)
+                self.overViewTextHeight.constant = CGFloat(300)
+                self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
+            } else if self.view.frame.height == 736 {
+                self.tableViewHeight.constant = CGFloat(260.0)
+                self.overViewTextHeight.constant = CGFloat(350)
+                self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
+            }
+            
+        case .OrderedAscending:
+            self.overViewTextTopHeight.constant = 46
+            if self.view.frame.height == 480 {
+                self.tableViewHeight.constant = CGFloat(160.0)
+                self.overViewTextHeight.constant = 215
+                
+            } else if self.view.frame.height == 568 {
+                self.tableViewHeight.constant = CGFloat(210.0)
+                
+            }
+            self.tableView.setNeedsUpdateConstraints()
+            self.overviewTextView.setNeedsUpdateConstraints()
+            self.timerLabel.setNeedsUpdateConstraints()
+        }
+
         
         // Do any additional setup after loading the view.
     }
@@ -120,6 +156,16 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var height = CGFloat(65)
+        if self.view.frame.height == 480 {
+            height = 40
+        } else if self.view.frame.height == 568 {
+            height = 52.5
+        }
+        return height
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("questionCell", forIndexPath: indexPath) as QuestionTableViewCell
         
@@ -128,23 +174,22 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         //Offset overview to point 0,0
         self.overviewTextView.setContentOffset(CGPointZero, animated: false)
         
-        self.tableView.rowHeight = 65.0
-        
         //Change tableview height/row height, or overview height based on device size
-        if self.view.frame.height == 480 {
-            self.tableViewHeight.constant = CGFloat(160.0)
-            self.tableView.rowHeight = 40
-            self.overViewTextHeight.constant = 215
-        } else if self.view.frame.height == 568 {
-            self.tableViewHeight.constant = CGFloat(210.0)
-            self.tableView.rowHeight = 52.5
-        } else if self.view.frame.height == 667 {
-            self.overViewTextHeight.constant = CGFloat(300)
-            self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
-        } else if self.view.frame.height == 736 {
-            self.overViewTextHeight.constant = CGFloat(350)
-            self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
-        }
+//        if self.view.frame.height == 480 {
+//            self.tableViewHeight.constant = CGFloat(160.0)
+//            self.tableView.rowHeight = 40
+//            self.overViewTextHeight.constant = 215
+//        } else if self.view.frame.height == 568 {
+//            self.tableViewHeight.constant = CGFloat(210.0)
+//            self.tableView.rowHeight = 52.5
+//        } else if self.view.frame.height == 667 {
+//            self.overViewTextHeight.constant = CGFloat(300)
+//            self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
+//        } else if self.view.frame.height == 736 {
+//            self.overViewTextHeight.constant = CGFloat(350)
+//            self.overviewTextView.font = UIFont(name: "Avenir", size: 18.0)
+//        }
+        
         
         //setting up cell
         cell.shownQuestionLabel.text = self.question!.answers[indexPath.row].title

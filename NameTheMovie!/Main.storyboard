@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Ov-lm-GOB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Ov-lm-GOB">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Genre View Controller-->
@@ -208,8 +208,8 @@
                                     <outlet property="delegate" destination="r5U-4S-3vE" id="80w-0t-xub"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="91" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-JK-d3a">
-                                <rect key="frame" x="255" y="273" width="91" height="47.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="13" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="91" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-JK-d3a">
+                                <rect key="frame" x="255" y="285" width="91" height="47.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47.5" id="47M-im-68h"/>
                                     <constraint firstAttribute="width" constant="91" id="E5k-h0-NGj"/>
@@ -226,7 +226,7 @@
                             <constraint firstItem="l39-KL-Icv" firstAttribute="top" secondItem="As5-Nh-8MT" secondAttribute="bottom" id="HKl-VB-njU"/>
                             <constraint firstItem="l39-KL-Icv" firstAttribute="top" secondItem="As5-Nh-8MT" secondAttribute="bottom" id="I7a-JD-qLa"/>
                             <constraint firstAttribute="centerX" secondItem="fZO-js-a7E" secondAttribute="centerX" id="OOz-JL-Tse"/>
-                            <constraint firstItem="KNe-JK-d3a" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="-5" id="XuE-T6-MQH"/>
+                            <constraint firstItem="KNe-JK-d3a" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="-3" id="XuE-T6-MQH"/>
                             <constraint firstItem="fZO-js-a7E" firstAttribute="top" secondItem="kEu-EW-pvu" secondAttribute="bottom" constant="8" id="YuL-xX-qYl"/>
                             <constraint firstItem="As5-Nh-8MT" firstAttribute="top" secondItem="fZO-js-a7E" secondAttribute="bottom" constant="60" id="gid-Fm-M9U"/>
                             <constraint firstAttribute="trailing" secondItem="fZO-js-a7E" secondAttribute="trailing" constant="15" id="pnN-CL-hPL"/>
@@ -242,6 +242,7 @@
                     </view>
                     <connections>
                         <outlet property="overViewTextHeight" destination="qA1-l4-z9S" id="cjX-qp-0kD"/>
+                        <outlet property="overViewTextTopHeight" destination="YuL-xX-qYl" id="2ze-sb-t06"/>
                         <outlet property="overviewTextView" destination="fZO-js-a7E" id="Uc1-nS-mSW"/>
                         <outlet property="tableView" destination="As5-Nh-8MT" id="hYA-Id-fzY"/>
                         <outlet property="tableViewHeight" destination="KrP-z0-EjA" id="RiA-33-Hnz"/>
